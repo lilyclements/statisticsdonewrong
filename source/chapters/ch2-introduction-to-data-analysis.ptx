@@ -2,6 +2,7 @@
 <chapter xml:id="ch-data-analysis" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>An Introduction to Data Analysis</title>
 
+<introduction>
   <p>
     Much of experimental science comes down to measuring changes. Does one
     medicine work better than another? Do cells with one version of a gene
@@ -37,6 +38,7 @@
     rather than just proving that some patients are unlucky?
   </p>
 
+</introduction>
   <section xml:id="sec-p-values">
     <title>The power of <em>p</em> values</title>
 
