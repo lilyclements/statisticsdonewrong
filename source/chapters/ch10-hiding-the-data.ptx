@@ -8,7 +8,7 @@
   </epigraph>
 
   <p>
-    We've talked about the common mistakes made by scientists, and how the
+    We've talked about the <xref ref="ch-mistakes">common mistakes</xref> made by scientists, and how the
     best way to spot them is a bit of outside scrutiny. Peer review provides
     some of this scrutiny, but a peer reviewer doesn't have the time to
     extensively re-analyze data and read code for typos <mdash/> reviewers can
@@ -171,7 +171,7 @@
     <title>Science in a Filing Cabinet</title>
 
     <p>
-      Earlier we saw the impact of multiple comparisons and truth inflation on
+      Earlier we saw the impact of <xref ref="sec-multiple-comparisons">multiple comparisons</xref> and <xref ref="sec-truth-inflation">truth inflation</xref> on
       study results. These problems arise when studies make numerous
       comparisons with low statistical power, giving a high rate of false
       positives and inflated estimates of effect sizes, and they appear

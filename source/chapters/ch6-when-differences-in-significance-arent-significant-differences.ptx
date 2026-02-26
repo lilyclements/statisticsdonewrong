@@ -154,7 +154,7 @@
       time to recover could be 25 in both groups, for example, and the
       differences only appeared because group 1 was lucky this time. But
       does this mean the difference is not statistically significant? What
-      would the <em>p</em> value be?
+      would the <xref ref="sec-p-values"><em>p</em> value</xref> be?
     </p>
 
     <p>

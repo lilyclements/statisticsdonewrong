@@ -47,7 +47,11 @@
       widespread, many students will find themselves in the same position,
       and they need resources. Projects like
       <url href="http://www.openintro.org/stat/textbook.php"
-      visual="openintro.org/stat/textbook.php">OpenIntro Stats</url> are
+      visual="openintro.org/stat/textbook.php">OpenIntro Stats</url><fn>PreTeXt versions are available at
+      <url href="https://pretextbooks.github.io/openintro-statistics/frontmatter.html"
+      visual="pretextbooks.github.io/openintro-statistics/frontmatter.html">OpenIntro Statistics</url> and
+      <url href="https://pretextbooks.github.io/ims/welcome.html"
+      visual="pretextbooks.github.io/ims/welcome.html">Introduction to Modern Statistics</url>.</fn> are
       promising, and I hope to see more in the near future.
     </p>
 
@@ -75,9 +79,9 @@
       statistical power calculations, clinical trial registration numbers,
       a completed CONSORT checklist, adjustment for multiple comparisons,
       and sharing of data and source code. The guidelines cover most issues
-      covered in <em>Statistics Done Wrong</em>, except for stopping rules
+      covered in <em>Statistics Done Wrong</em>, except for <xref ref="ch-regression">stopping rules</xref>
       and discussion of any reasons for departing from the trial's
-      registered protocol. <em>Nature</em> will also make statisticians
+      registered <xref ref="ch-freedom">protocol</xref>. <em>Nature</em> will also make statisticians
       available to consult for papers as needed.
     </p>
 

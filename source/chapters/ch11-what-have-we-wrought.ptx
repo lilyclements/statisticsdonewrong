@@ -18,7 +18,7 @@
     Findings Are False. <em>PLoS Medicine</em>, 2(8):e124, 2005.</fn> was
     grounded in mathematical concerns rather than an empirical test of
     research results. If most research articles have poor statistical power
-    <mdash/> and they do <mdash/> while researchers have the freedom to
+    <mdash/> and <xref ref="ch-power">they do</xref> <mdash/> while researchers have the freedom to
     choose among multitudes of analyses methods to get favorable results
     <mdash/> and they do <mdash/> when most tested hypotheses are false
     and most true hypotheses correspond to very small effects, we are
@@ -72,7 +72,7 @@
     M. Fenton. Unpublished rating scales: a major source of bias in
     randomised controlled trials of treatments for schizophrenia.
     <em>The British Journal of Psychiatry</em>, 176:249<ndash/>252,
-    2000.</fn> Other medical studies simply omit particular results if
+    2000.</fn> Other medical studies simply <xref ref="sec-omit-details">omit particular results</xref> if
     they're not favorable or interesting, biasing subsequent meta-analyses
     to only include positive results. A third of meta-analyses are
     estimated to suffer from this problem.<fn>J. J. Kirkham, K. M. Dwan,

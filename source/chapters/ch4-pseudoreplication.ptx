@@ -73,7 +73,7 @@
         Analyze each dependent data point separately. You could perform an
         analysis of every patient's blood pressure on day 5, giving you only
         one data point per person. But be careful, because if you do this
-        for every day, you'll have problems with multiple comparisons, which
+        for every day, you'll have problems with <xref ref="sec-multiple-comparisons">multiple comparisons</xref>, which
         we will discuss in the next chapter.
       </p>
     </li>
