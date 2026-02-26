@@ -34,22 +34,22 @@
       </colophon>
     </frontmatter>
 
-    <xi:include href="chapters/ch-introduction.ptx"/>
-    <xi:include href="chapters/ch-data-analysis.ptx"/>
-    <xi:include href="chapters/ch-power.ptx"/>
-    <xi:include href="chapters/ch-pseudoreplication.ptx"/>
-    <xi:include href="chapters/ch-p-value.ptx"/>
-    <xi:include href="chapters/ch-significant-differences.ptx"/>
-    <xi:include href="chapters/ch-regression.ptx"/>
-    <xi:include href="chapters/ch-freedom.ptx"/>
-    <xi:include href="chapters/ch-mistakes.ptx"/>
-    <xi:include href="chapters/ch-hiding.ptx"/>
-    <xi:include href="chapters/ch-results.ptx"/>
-    <xi:include href="chapters/ch-what-next.ptx"/>
-    <xi:include href="chapters/ch-conclusion.ptx"/>
+    <xi:include href="chapters/introduction.ptx"/>
+    <xi:include href="chapters/data-analysis.ptx"/>
+    <xi:include href="chapters/power.ptx"/>
+    <xi:include href="chapters/pseudoreplication.ptx"/>
+    <xi:include href="chapters/p-value.ptx"/>
+    <xi:include href="chapters/significant-differences.ptx"/>
+    <xi:include href="chapters/regression.ptx"/>
+    <xi:include href="chapters/freedom.ptx"/>
+    <xi:include href="chapters/mistakes.ptx"/>
+    <xi:include href="chapters/hiding.ptx"/>
+    <xi:include href="chapters/results.ptx"/>
+    <xi:include href="chapters/what-next.ptx"/>
+    <xi:include href="chapters/conclusion.ptx"/>
 
     <backmatter xml:id="backmatter">
-      <xi:include href="chapters/ch-bibliography.ptx"/>
+      <xi:include href="chapters/zbibliography.ptx"/>
     </backmatter>
 
   </book>
