@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xml:id="ch-significant-differences" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>When Differences in Significance Aren't Significant Differences</title>
-
+  <introduction>
   <p>
     <q>We compared treatments A and B with a placebo. Treatment A showed a
     significant benefit over placebo, while treatment B had no statistically
@@ -78,7 +78,7 @@
     brothers and older sisters. Unfortunately, not enough data was published
     in the paper to allow a direct calculation.<xref ref="gelman-2006bj"/>
   </p>
-
+  </introduction>
   <section xml:id="sec-confidence-intervals">
     <title>When Significant Differences Are Missed</title>
 
