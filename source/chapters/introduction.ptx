@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-introduction" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Introduction</title>
+
+  <p>
+    In the final chapter of his famous book <em>How to Lie with Statistics</em>,
+    Darrell Huff tells us that <q>anything smacking of the medical profession</q>
+    or published by scientific laboratories and universities is worthy of
+    our trust. After all, Huff filled an entire book with the misleading
+    statistical trickery used in politics and the media, but few people complain
+    about statistics done by trained professional scientists.
+  </p>
+
+  <p>
+    Statistical data analysis is fundamental to science. Open a random page
+    in your favorite medical journal and you'll be deluged with statistics:
+    <em>t</em> tests, <em>p</em> values, proportional hazards models, risk ratios,
+    logistic regressions, least-squares fits, and confidence intervals.
+    Statisticians have provided scientists with tools of enormous power to
+    find order and meaning in the most complex of datasets, and scientists
+    have embraced them with glee.
+  </p>
+
+  <p>
+    They have not, however, embraced statistics <em>education</em>, and many
+    undergraduate programs in the sciences require no statistical training
+    whatsoever.
+  </p>
+
+  <p>
+    What follows is a list of the more egregious statistical fallacies
+    regularly committed in the name of science. It assumes no knowledge of
+    statistical methods, since many scientists receive no formal statistical
+    training. And be warned: once you learn the fallacies, you will see them
+    <em>everywhere.</em>
+  </p>
+
+</chapter>

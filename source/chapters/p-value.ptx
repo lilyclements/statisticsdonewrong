@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-p-value" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>The <em>p</em> Value and the Base Rate Fallacy</title>
+
+  <p>
+    The <em>p</em> value is one of the most widely used and widely misunderstood
+    concepts in statistics. A <em>p</em> value is the probability of obtaining
+    results at least as extreme as those observed, given that the null
+    hypothesis is true.
+  </p>
+
+  <p>
+    It is <em>not</em> the probability that your results occurred by chance, and
+    it is <em>not</em> the probability that the null hypothesis is true. These
+    common misinterpretations lead to the base rate fallacy: ignoring the
+    prior probability that a hypothesis is true when evaluating evidence.
+  </p>
+
+  <p>
+    This chapter explores what <em>p</em> values really mean, how they are
+    commonly misinterpreted, and what consequences these misinterpretations
+    have for scientific practice.
+  </p>
+
+</chapter>

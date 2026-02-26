@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-regression" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Stopping Rules and Regression to the Mean</title>
+
+  <p>
+    When should you stop collecting data? If you analyze your data as you
+    collect it and stop when you achieve statistical significance, you will
+    dramatically inflate your false positive rate. This is known as optional
+    stopping, and it is a subtle but serious problem in scientific research.
+  </p>
+
+  <p>
+    Related to this is regression to the mean: extreme measurements tend to
+    be followed by less extreme ones, simply because of random variation.
+    A patient who scores very low on a test will likely score higher the
+    next time <mdash/> not because of any treatment, but because their first
+    score was unusually low.
+  </p>
+
+  <p>
+    This chapter discusses stopping rules, regression to the mean, and
+    how to avoid being fooled by these phenomena.
+  </p>
+
+</chapter>

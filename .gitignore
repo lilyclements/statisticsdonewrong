@@ -22,3 +22,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# PreTeXt build output
+output/
+.ptx/

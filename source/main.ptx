@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <docinfo>
+    <brandlogo url="https://www.statisticsdonewrong.com/" source="images/cover.png"/>
+    <document-id>statistics-done-wrong</document-id>
+  </docinfo>
+
+  <book xml:id="statistics-done-wrong">
+    <title>Statistics Done Wrong</title>
+    <subtitle>The Woefully Complete Guide</subtitle>
+
+    <frontmatter xml:id="frontmatter">
+      <titlepage>
+        <author>
+          <personname>Alex Reinhart</personname>
+          <institution>Carnegie Mellon University</institution>
+        </author>
+        <date><today/></date>
+      </titlepage>
+
+      <colophon>
+        <copyright>
+          <year>2013<ndash/>2015</year>
+          <holder>Alex Reinhart</holder>
+          <shortlicense>
+            This work is licensed under the
+            <url href="https://creativecommons.org/licenses/by/3.0/"
+              visual="creativecommons.org/licenses/by/3.0/">
+              Creative Commons Attribution 3.0 Unported License
+            </url>.
+          </shortlicense>
+        </copyright>
+      </colophon>
+    </frontmatter>
+
+    <xi:include href="chapters/introduction.ptx"/>
+    <xi:include href="chapters/data-analysis.ptx"/>
+    <xi:include href="chapters/power.ptx"/>
+    <xi:include href="chapters/pseudoreplication.ptx"/>
+    <xi:include href="chapters/p-value.ptx"/>
+    <xi:include href="chapters/significant-differences.ptx"/>
+    <xi:include href="chapters/regression.ptx"/>
+    <xi:include href="chapters/freedom.ptx"/>
+    <xi:include href="chapters/mistakes.ptx"/>
+    <xi:include href="chapters/hiding.ptx"/>
+    <xi:include href="chapters/results.ptx"/>
+    <xi:include href="chapters/what-next.ptx"/>
+    <xi:include href="chapters/conclusion.ptx"/>
+
+    <backmatter xml:id="backmatter">
+      <xi:include href="chapters/zbibliography.ptx"/>
+    </backmatter>
+
+  </book>
+</pretext>

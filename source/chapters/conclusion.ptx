@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-conclusion" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Conclusion</title>
+
+  <p>
+    Beware false confidence. You may soon develop a smug sense of
+    satisfaction that <em>your</em> work doesn't screw up like everyone else's. But
+    this guide has not given you a thorough introduction to the mathematics of
+    data analysis. There are many ways to foul up statistics beyond these
+    simple conceptual errors.
+  </p>
+
+  <p>
+    Errors will occur often, because somehow, few undergraduate science
+    degrees or medical schools require courses in statistics and
+    experimental design. This is seen as acceptable despite the paramount
+    role of data and statistical analysis in the pursuit of modern science.
+    Scientists need formal statistical training and advice.
+  </p>
+
+  <p>
+    Change will not be easy. Rigorous statistical standards don't come free:
+    if scientists start routinely performing statistical power computations,
+    for example, they'll soon discover they need vastly larger sample sizes
+    to reach solid conclusions. But isn't it worse to build our progress
+    on a foundation of unsound results?
+  </p>
+
+  <p>
+    To any science students: invest in a statistics course or two while you
+    have the chance. To researchers: invest in training, a good book, and
+    statistical advice.
+  </p>
+
+</chapter>

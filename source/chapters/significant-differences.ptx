@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-significant-differences" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>When Differences in Significance Aren't Significant Differences</title>
+
+  <p>
+    A common error in scientific reasoning is to compare the statistical
+    significance of two results and draw conclusions from the comparison.
+    If result A is statistically significant and result B is not, researchers
+    often conclude that A and B are different from each other.
+  </p>
+
+  <p>
+    This reasoning is flawed. The difference between significant and
+    not significant is not itself statistically significant. Two results
+    may both be compatible with the same underlying effect, or may
+    represent genuinely different effects <mdash/> but you cannot tell
+    simply by comparing their <em>p</em> values.
+  </p>
+
+  <p>
+    This chapter explores the correct way to compare results and effect
+    sizes, and the dangers of treating significance as a binary category.
+  </p>
+
+</chapter>

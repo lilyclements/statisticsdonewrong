@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-pseudoreplication" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Pseudoreplication: Choose Your Data Wisely</title>
+
+  <p>
+    Pseudoreplication occurs when measurements are not truly independent of
+    each other but are treated as though they are. This inflates the apparent
+    sample size and leads to overconfident conclusions.
+  </p>
+
+  <p>
+    A classic example: if you measure the same mouse ten times, you do not
+    have ten independent data points. You have one mouse with ten measurements.
+    Treating these as ten independent observations grossly exaggerates your
+    statistical power and the certainty of your conclusions.
+  </p>
+
+  <p>
+    This chapter discusses how pseudoreplication arises, how to recognize it,
+    and how to design studies that avoid it.
+  </p>
+
+</chapter>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-results" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>What Have We Wrought?</title>
+
+  <p>
+    The statistical errors described in this book are not rare edge cases.
+    They are widespread, and their consequences are serious. Entire fields
+    of science may be built on shaky statistical foundations, with many
+    published findings that cannot be replicated.
+  </p>
+
+  <p>
+    Several high-profile replication failures have called into question
+    the reliability of published scientific research. When researchers
+    attempt to replicate well-known findings, they often fail <mdash/>
+    sometimes dramatically so.
+  </p>
+
+  <p>
+    This chapter surveys what we know about the state of scientific
+    reproducibility and discusses the consequences for science and society.
+  </p>
+
+</chapter>

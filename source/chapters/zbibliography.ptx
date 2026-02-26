@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<references xml:id="ch-bibliography" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Bibliography</title>
+
+  <biblio type="raw" xml:id="ioannidis-2005">
+    J. P. A. Ioannidis.
+    <title>Why Most Published Research Findings Are False</title>.
+    <journal>PLoS Medicine</journal>, 2(8):e124, 2005.
+  </biblio>
+
+  <biblio type="raw" xml:id="button-2013">
+    K. S. Button, J. P. A. Ioannidis, C. Mokrysz, B. A. Nosek, J. Flint,
+    E. S. J. Robinson, M. R. Munafò.
+    <title>Power failure: why small sample size undermines the reliability of neuroscience</title>.
+    <journal>Nature Reviews Neuroscience</journal>, 14:365<ndash/>376, 2013.
+  </biblio>
+
+  <biblio type="raw" xml:id="gelman-loken-2014">
+    A. Gelman, E. Loken.
+    <title>The statistical crisis in science</title>.
+    <journal>American Scientist</journal>, 102(6):460, 2014.
+  </biblio>
+
+  <biblio type="raw" xml:id="simmons-2011">
+    J. P. Simmons, L. D. Nelson, U. Simonsohn.
+    <title>False-positive psychology: Undisclosed flexibility in data collection
+    and analysis allows presenting anything as significant</title>.
+    <journal>Psychological Science</journal>, 22(11):1359<ndash/>1366, 2011.
+  </biblio>
+
+  <biblio type="raw" xml:id="open-science-2015">
+    Open Science Collaboration.
+    <title>Estimating the reproducibility of psychological science</title>.
+    <journal>Science</journal>, 349(6251):aac4716, 2015.
+  </biblio>
+
+</references>

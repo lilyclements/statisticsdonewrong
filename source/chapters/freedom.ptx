@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-freedom" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Researcher Freedom: Good Vibrations?</title>
+
+  <p>
+    Scientists make dozens of small decisions when designing and analyzing
+    experiments: which participants to exclude, which outcomes to measure,
+    when to stop collecting data, which covariates to include. Each of these
+    decisions is a degree of freedom that can be exploited, consciously or
+    not, to obtain a desired result.
+  </p>
+
+  <p>
+    This <q>researcher degrees of freedom</q> problem means that many published
+    findings reflect the choices made during analysis as much as they reflect
+    the underlying reality. Even well-meaning scientists can fool themselves
+    into finding false results if they are not careful.
+  </p>
+
+  <p>
+    This chapter examines how researcher freedom operates, how it inflates
+    false positive rates, and what practices can constrain it.
+  </p>
+
+</chapter>

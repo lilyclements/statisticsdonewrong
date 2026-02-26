@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-mistakes" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Everybody Makes Mistakes</title>
+
+  <p>
+    Statistical errors are not limited to a few careless researchers <mdash/>
+    they are pervasive across disciplines. Studies of published research
+    find errors in a substantial fraction of papers, from simple arithmetic
+    mistakes to fundamental conceptual misunderstandings.
+  </p>
+
+  <p>
+    Errors arise from many sources: inadequate training, software bugs,
+    copy-and-paste mistakes, and the pressure to produce significant results.
+    Even careful researchers make mistakes, and the peer review process
+    is not reliable enough to catch them all.
+  </p>
+
+  <p>
+    This chapter catalogues common statistical errors found in the literature
+    and discusses what can be done to reduce their frequency.
+  </p>
+
+</chapter>

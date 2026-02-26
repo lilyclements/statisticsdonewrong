@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-power" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Statistical Power and Underpowered Statistics</title>
+
+  <p>
+    Statistical power is the ability of a study to detect an effect when one
+    actually exists. An underpowered study is one that is unlikely to detect
+    an effect even when it is real.
+  </p>
+
+  <p>
+    Many studies in the scientific literature are dramatically underpowered.
+    They do not have enough subjects to reliably detect effects of the size
+    they are looking for, meaning that a negative result is nearly meaningless.
+    Yet negative results are just as important as positive ones for building
+    a complete picture of scientific knowledge.
+  </p>
+
+  <p>
+    This chapter explores what statistical power means, how to compute it,
+    and what the consequences are of running underpowered studies.
+  </p>
+
+</chapter>

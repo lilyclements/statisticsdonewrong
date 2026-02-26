@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ch-hiding" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Hiding the Data</title>
+
+  <p>
+    Science is built on transparency. Reproducibility requires that other
+    scientists be able to examine the data and methods behind a published
+    result. Yet data sharing is far from universal, and there are many ways
+    <mdash/> both intentional and accidental <mdash/> that data and methods
+    can be hidden from scrutiny.
+  </p>
+
+  <p>
+    Publication bias means that positive results are far more likely to be
+    published than negative ones. Selective reporting means that only some
+    of the outcomes measured in a study appear in the final paper.
+    Together, these practices create a distorted picture of scientific
+    evidence.
+  </p>
+
+  <p>
+    This chapter discusses publication bias, selective reporting, data
+    sharing, and what the scientific community can do to improve transparency.
+  </p>
+
+</chapter>
