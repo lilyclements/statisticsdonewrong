@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xml:id="ch-p-value" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>The <em>p</em> Value and the Base Rate Fallacy</title>
-
+  <introduction>
   <p>
     You've already seen that <em>p</em> values are hard to interpret. Getting a
     statistically insignificant result doesn't mean there's no difference.
@@ -113,7 +113,7 @@
   <p>
     One good example is medical diagnostic tests.
   </p>
-
+  </introduction>
   <section xml:id="sec-base-rate-medical-testing">
     <title>The Base Rate Fallacy in Medical Testing</title>
 
