@@ -2,36 +2,73 @@
 <references xml:id="ch-bibliography" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Bibliography</title>
 
-  <biblio type="raw" xml:id="ioannidis-2005">
+  <biblio type="raw" xml:id="ioannidis-2005bw">
     J. P. A. Ioannidis.
     <title>Why Most Published Research Findings Are False</title>.
     <journal>PLoS Medicine</journal>, 2(8):e124, 2005.
   </biblio>
 
-  <biblio type="raw" xml:id="button-2013">
+  <biblio type="raw" xml:id="goodman-1999tx">
+    S. N. Goodman.
+    <title>Toward evidence-based medical statistics. 1: The P value fallacy</title>.
+    <journal>Annals of Internal Medicine</journal>, 130:995<ndash/>1004, 1999.
+  </biblio>
+
+  <biblio type="raw" xml:id="tsang-2009iw">
+    R. Tsang, L. Colley, L. D. Lynd.
+    <title>Inadequate statistical power to detect clinically significant differences
+    in adverse event rates in randomized controlled trials</title>.
+    <journal>Journal of Clinical Epidemiology</journal>, 62:609<ndash/>616, 2009.
+  </biblio>
+
+  <biblio type="raw" xml:id="moher-1994">
+    D. Moher, C. S. Dulberg, G. A. Wells.
+    <title>Statistical power, sample size, and their reporting in randomized
+    controlled trials</title>.
+    <journal>JAMA</journal>, 272:122<ndash/>124, 1994.
+  </biblio>
+
+  <biblio type="raw" xml:id="bedard-2007dy">
+    P. L. Bedard, M. K. Krzyzanowska, M. Pintilie, I. F. Tannock.
+    <title>Statistical Power of Negative Randomized Controlled Trials Presented
+    at American Society for Clinical Oncology Annual Meetings</title>.
+    <journal>Journal of Clinical Oncology</journal>, 25:3482<ndash/>3487, 2007.
+  </biblio>
+
+  <biblio type="raw" xml:id="brown-1987uu">
+    C. G. Brown, G. D. Kelen, J. J. Ashton, H. A. Werman.
+    <title>The beta error and sample size determination in clinical trials in
+    emergency medicine</title>.
+    <journal>Annals of Emergency Medicine</journal>, 16:183<ndash/>187, 1987.
+  </biblio>
+
+  <biblio type="raw" xml:id="chung-1998ku">
+    K. C. Chung, L. K. Kalliainen, R. A. Hayward.
+    <title>Type II (beta) errors in the hand literature: the importance of
+    power</title>.
+    <journal>The Journal of Hand Surgery</journal>, 23:20<ndash/>25, 1998.
+  </biblio>
+
+  <biblio type="raw" xml:id="button-2013dz">
     K. S. Button, J. P. A. Ioannidis, C. Mokrysz, B. A. Nosek, J. Flint,
     E. S. J. Robinson, M. R. Munafò.
-    <title>Power failure: why small sample size undermines the reliability of neuroscience</title>.
+    <title>Power failure: why small sample size undermines the reliability of
+    neuroscience</title>.
     <journal>Nature Reviews Neuroscience</journal>, 14:365<ndash/>376, 2013.
   </biblio>
 
-  <biblio type="raw" xml:id="gelman-loken-2014">
-    A. Gelman, E. Loken.
-    <title>The statistical crisis in science</title>.
-    <journal>American Scientist</journal>, 102(6):460, 2014.
+  <biblio type="raw" xml:id="hauer-2004fz">
+    E. Hauer.
+    <title>The harm done by tests of significance</title>.
+    <journal>Accident Analysis <ampersand/> Prevention</journal>,
+    36:495<ndash/>500, 2004.
   </biblio>
 
-  <biblio type="raw" xml:id="simmons-2011">
-    J. P. Simmons, L. D. Nelson, U. Simonsohn.
-    <title>False-positive psychology: Undisclosed flexibility in data collection
-    and analysis allows presenting anything as significant</title>.
-    <journal>Psychological Science</journal>, 22(11):1359<ndash/>1366, 2011.
-  </biblio>
-
-  <biblio type="raw" xml:id="open-science-2015">
-    Open Science Collaboration.
-    <title>Estimating the reproducibility of psychological science</title>.
-    <journal>Science</journal>, 349(6251):aac4716, 2015.
+  <biblio type="raw" xml:id="preusser-1982gp">
+    D. F. Preusser, W. A. Leaf, K. B. DeBartolo, R. D. Blomberg, M. M. Levy.
+    <title>The effect of right-turn-on-red on pedestrian and bicyclist
+    accidents</title>.
+    <journal>Journal of Safety Research</journal>, 13:45<ndash/>55, 1982.
   </biblio>
 
 </references>

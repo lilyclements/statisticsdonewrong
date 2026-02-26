@@ -5,10 +5,13 @@
   <p>
     In the final chapter of his famous book <em>How to Lie with Statistics</em>,
     Darrell Huff tells us that <q>anything smacking of the medical profession</q>
-    or published by scientific laboratories and universities is worthy of
-    our trust. After all, Huff filled an entire book with the misleading
-    statistical trickery used in politics and the media, but few people complain
-    about statistics done by trained professional scientists.
+    or published by scientific laboratories and universities is worthy of our
+    trust <mdash/> not unconditional trust, but certainly more trust than we'd
+    afford the media or shifty politicians. After all, Huff filled an entire
+    book with the misleading statistical trickery used in politics and the
+    media, but few people complain about statistics done by trained professional
+    scientists. Scientists seek understanding, not ammunition to use against
+    political opponents.
   </p>
 
   <p>
@@ -28,11 +31,98 @@
   </p>
 
   <p>
+    Since the 1980s, researchers have described numerous statistical fallacies
+    and misconceptions in the popular peer-reviewed scientific literature, and
+    have found that many scientific papers <mdash/> perhaps more than half
+    <mdash/> fall prey to these errors. Inadequate statistical power renders
+    many studies incapable of finding what they're looking for; multiple
+    comparisons and misinterpreted <em>p</em> values cause numerous false
+    positives; flexible data analysis makes it easy to find a correlation where
+    none exists. The problem isn't fraud but poor statistical education <mdash/>
+    poor enough that some scientists conclude that most published research
+    findings are probably false.<xref ref="ioannidis-2005bw"/>
+  </p>
+
+  <p>
     What follows is a list of the more egregious statistical fallacies
     regularly committed in the name of science. It assumes no knowledge of
     statistical methods, since many scientists receive no formal statistical
     training. And be warned: once you learn the fallacies, you will see them
-    <em>everywhere.</em>
+    <em>everywhere.</em> Don't be alarmed. This isn't an excuse to reject all
+    modern science and return to bloodletting and leeches <mdash/> it's a call
+    to improve the science we rely on.
   </p>
+
+  <section xml:id="sec-changes">
+    <title>Changes</title>
+
+    <p>
+      Updated January 2013 with a relevant example of the base-rate fallacy:
+      survey estimates of gun usage.
+    </p>
+
+    <p>
+      Updated April 2013 with more details on the interaction of truth inflation
+      and early stopping rules, researcher freedom in neuroscience, poor
+      statistical power in neuroscience, how to control the false discovery rate,
+      publication bias and poor reporting, underpowered studies and right turn on
+      red, the misuses of confidence intervals, the impact of all these errors,
+      what can be done to save statistics, and additional references and details
+      in many other places.
+    </p>
+  </section>
+
+  <section xml:id="sec-contact">
+    <title>Contact</title>
+
+    <p>
+      I've tried my best, but inevitably this guide will contain errors and
+      omissions. If you spot an error, have a question, or know a common fallacy
+      I've missed, email me at alex at refsmmat dot com.
+    </p>
+  </section>
+
+  <section xml:id="sec-acknowledgements">
+    <title>Acknowledgements</title>
+
+    <p>
+      Thanks to Dr. James Scott, whose statistics course gave me the background
+      necessary to write this; to Matthew Watson and CharonY, who gave invaluable
+      feedback and suggestions as I wrote my drafts; to my parents, who gave
+      suggestions and feedback; to Dr. Brent Iverson, whose seminar first
+      motivated me to learn about statistical abuse; and to all the scientists
+      and statisticians who have broken the rules and given me a reason to write.
+    </p>
+
+    <p>
+      Any errors in explanations are my own.
+    </p>
+  </section>
+
+  <section xml:id="sec-copyright-note">
+    <title>Copyright note</title>
+
+    <p>
+      This work is licensed under a
+      <url href="http://creativecommons.org/licenses/by/3.0/"
+        visual="creativecommons.org/licenses/by/3.0/">Creative Commons
+      Attribution 3.0 Unported License</url>. You're free to print it, copy it,
+      translate it, rewrite it, set it to music, slice it, dice it, or whatever,
+      so long as you attribute the original to me, Alex Reinhart, and provide a
+      link back to this site. (If you do translate it, please let me know! I'd
+      happily provide a link to your translation.) Hit the link to the license
+      for more details.
+    </p>
+
+    <p>
+      The xkcd cartoon used inside is available under the
+      <url href="http://creativecommons.org/licenses/by-nc/2.5/"
+        visual="creativecommons.org/licenses/by-nc/2.5/">Creative Commons
+      Attribution-NonCommercial 2.5 License</url>, and may not be used
+      commercially without permission from the author.
+      <url href="http://xkcd.com/license.html" visual="xkcd.com/license.html">More
+      details.</url>
+    </p>
+  </section>
 
 </chapter>

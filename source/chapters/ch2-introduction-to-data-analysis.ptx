@@ -20,8 +20,120 @@
   </p>
 
   <p>
-    We will explore what these methods mean and how to use them correctly,
-    along with the common pitfalls that await the unwary scientist.
+    Suppose you're testing cold medicines. Your new medicine promises to cut
+    the duration of cold symptoms by a day. To prove this, you find twenty
+    patients with colds and give half of them your new medicine and half a
+    placebo. Then you track the length of their colds and find out what the
+    average cold length was with and without the medicine.
   </p>
+
+  <p>
+    But all colds aren't identical. Perhaps the average cold lasts a week,
+    but some last only a few days, and others drag on for two weeks or more,
+    straining the household Kleenex supply. It's possible that the group of
+    ten patients receiving genuine medicine will be the unlucky types to get
+    two-week colds, and so you'll falsely conclude that the medicine makes
+    things worse. How can you tell if you've proven your medicine works,
+    rather than just proving that some patients are unlucky?
+  </p>
+
+  <section xml:id="sec-p-values">
+    <title>The power of <em>p</em> values</title>
+
+    <p>
+      Statistics provides the answer. If we know the <em>distribution</em> of
+      typical cold cases <mdash/> roughly how many patients tend to have short
+      colds, or long colds, or average colds <mdash/> we can tell how likely it
+      is for a random sample of cold patients to have cold lengths all shorter
+      than average, or longer than average, or exactly average. By performing a
+      statistical test, we can answer the question <q>If my medication were
+      completely ineffective, what are the chances I'd see data like what I
+      saw?</q>
+    </p>
+
+    <p>
+      That's a bit tricky, so read it again.
+    </p>
+
+    <p>
+      Intuitively, we can see how this might work. If I only test the medication
+      on one person, it's unsurprising if he has a shorter cold than average
+      <mdash/> about half of patients have colds shorter than average. If I test
+      the medication on ten million patients, it's pretty damn unlikely that
+      <em>all</em> of them will have shorter colds than average, <em>unless my
+      medication works.</em>
+    </p>
+
+    <p>
+      The common statistical tests used by scientists produce a number called the
+      <em>p</em> value that quantifies this. Here's how it's defined:
+    </p>
+
+    <blockquote>
+      <p>
+        The P value is defined as the probability, under the assumption of no
+        effect or no difference (the null hypothesis), of obtaining a result
+        equal to or more extreme than what was actually
+        observed.<xref ref="goodman-1999tx"/>
+      </p>
+    </blockquote>
+
+    <p>
+      So if I give my medication to 100 patients and find that their colds are
+      a day shorter on average, the <em>p</em> value of this result is the chance
+      that, if my medication didn't do anything at all, my 100 patients would
+      randomly have, on average, day-or-more-shorter colds. Obviously, the
+      <em>p</em> value depends on the size of the effect <mdash/> colds shorter
+      by four days are less likely than colds shorter by one day <mdash/> and
+      the number of patients I test the medication on.
+    </p>
+
+    <p>
+      That's a tricky concept to wrap your head around. A <em>p</em> value is not
+      a measure of how right you are, or how significant the difference is; it's
+      a measure of <em>how surprised you should be</em> if there is no actual
+      difference between the groups, but you got data suggesting there is. A
+      bigger difference, or one backed up by more data, suggests more surprise
+      and a smaller <em>p</em> value.
+    </p>
+
+    <p>
+      It's not easy to translate that into an answer to the question <q>is there
+      really a difference?</q> Most scientists use a simple rule of thumb: if
+      <em>p</em> is less than 0.05, there's only a 5% chance of obtaining this
+      data unless the medication really works, so we will call the difference
+      between medication and placebo <q>significant.</q> If <em>p</em> is larger,
+      we'll call the difference insignificant.
+    </p>
+
+    <p>
+      But there are limitations. The <em>p</em> value is a measure of surprise,
+      not a measure of the size of the effect. I can get a tiny <em>p</em> value
+      by either measuring a huge effect <mdash/> <q>this medicine makes people
+      live four times longer</q> <mdash/> or by measuring a tiny effect with
+      great certainty. Statistical significance does not mean your result has any
+      <em>practical</em> significance.
+    </p>
+
+    <p>
+      Similarly, statistical <em>in</em>significance is hard to interpret. I
+      could have a perfectly good medicine, but if I test it on ten people, I'd
+      be hard-pressed to tell the difference between a real improvement in the
+      patients and plain good luck. Alternately, I might test it on thousands of
+      people, but the medication only shortens colds by three minutes, and so I'm
+      simply incapable of detecting the difference. A statistically insignificant
+      difference does not mean there is no difference at all.
+    </p>
+
+    <p>
+      There's no mathematical tool to tell you if your hypothesis is true; you
+      can only see whether it is consistent with the data, and if the data is
+      sparse or unclear, your conclusions are uncertain.
+    </p>
+
+    <p>
+      But we can't let that stop us.
+    </p>
+  </section>
 
 </chapter>
