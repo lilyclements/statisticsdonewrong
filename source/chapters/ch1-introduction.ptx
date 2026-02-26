@@ -6,7 +6,7 @@
     In the final chapter of his famous book <em>How to Lie with Statistics</em>,
     Darrell Huff tells us that <q>anything smacking of the medical profession</q>
     or published by scientific laboratories and universities is worthy of our
-    trust <mdash/> not unconditional trust, but certainly more trust than we'd
+    trust <ndash/> not unconditional trust, but certainly more trust than we'd
     afford the media or shifty politicians. After all, Huff filled an entire
     book with the misleading statistical trickery used in politics and the
     media, but few people complain about statistics done by trained professional
@@ -33,12 +33,12 @@
   <p>
     Since the 1980s, researchers have described numerous statistical fallacies
     and misconceptions in the popular peer-reviewed scientific literature, and
-    have found that many scientific papers <mdash/> perhaps more than half
-    <mdash/> fall prey to these errors. Inadequate statistical power renders
+    have found that many scientific papers <ndash/> perhaps more than half
+    <ndash/> fall prey to these errors. Inadequate statistical power renders
     many studies incapable of finding what they're looking for; multiple
     comparisons and misinterpreted <em>p</em> values cause numerous false
     positives; flexible data analysis makes it easy to find a correlation where
-    none exists. The problem isn't fraud but poor statistical education <mdash/>
+    none exists. The problem isn't fraud but poor statistical education <ndash/>
     poor enough that some scientists conclude that most published research
     findings are probably false.<xref ref="ioannidis-2005bw"/>
   </p>
@@ -49,7 +49,7 @@
     statistical methods, since many scientists receive no formal statistical
     training. And be warned: once you learn the fallacies, you will see them
     <em>everywhere.</em> Don't be alarmed. This isn't an excuse to reject all
-    modern science and return to bloodletting and leeches <mdash/> it's a call
+    modern science and return to bloodletting and leeches <ndash/> it's a call
     to improve the science we rely on.
   </p>
 
@@ -58,17 +58,22 @@
 
     <p>
       Updated January 2013 with a relevant example of the base-rate fallacy:
-      survey estimates of gun usage.
+      survey estimates of gun usage (<xref ref="ch-p-value"/>).
     </p>
 
     <p>
       Updated April 2013 with more details on the interaction of truth inflation
-      and early stopping rules, researcher freedom in neuroscience, poor
-      statistical power in neuroscience, how to control the false discovery rate,
-      publication bias and poor reporting, underpowered studies and right turn on
-      red, the misuses of confidence intervals, the impact of all these errors,
-      what can be done to save statistics, and additional references and details
-      in many other places.
+      and early stopping rules (<xref ref="ch-regression"/>), researcher freedom
+      in neuroscience (<xref ref="ch-p-value"/>),
+      <xref ref="sec-power-underpowered">poor statistical power in
+      neuroscience</xref>, how to control the false discovery rate
+      (<xref ref="ch-p-value"/>), publication bias and poor reporting
+      (<xref ref="ch-hiding"/>),
+      <xref ref="sec-rtor">underpowered studies and right turn on red</xref>,
+      the misuses of confidence intervals (<xref ref="ch-significant-differences"/>),
+      the impact of all these errors (<xref ref="ch-results"/>), what can be
+      done to save statistics (<xref ref="ch-what-next"/>), and additional
+      references and details in many other places.
     </p>
   </section>
 

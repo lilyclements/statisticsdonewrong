@@ -42,8 +42,8 @@
 
     <p>
       Statistics provides the answer. If we know the <em>distribution</em> of
-      typical cold cases <mdash/> roughly how many patients tend to have short
-      colds, or long colds, or average colds <mdash/> we can tell how likely it
+      typical cold cases <ndash/> roughly how many patients tend to have short
+      colds, or long colds, or average colds <ndash/> we can tell how likely it
       is for a random sample of cold patients to have cold lengths all shorter
       than average, or longer than average, or exactly average. By performing a
       statistical test, we can answer the question <q>If my medication were
@@ -58,7 +58,7 @@
     <p>
       Intuitively, we can see how this might work. If I only test the medication
       on one person, it's unsurprising if he has a shorter cold than average
-      <mdash/> about half of patients have colds shorter than average. If I test
+      <ndash/> about half of patients have colds shorter than average. If I test
       the medication on ten million patients, it's pretty damn unlikely that
       <em>all</em> of them will have shorter colds than average, <em>unless my
       medication works.</em>
@@ -83,8 +83,8 @@
       a day shorter on average, the <em>p</em> value of this result is the chance
       that, if my medication didn't do anything at all, my 100 patients would
       randomly have, on average, day-or-more-shorter colds. Obviously, the
-      <em>p</em> value depends on the size of the effect <mdash/> colds shorter
-      by four days are less likely than colds shorter by one day <mdash/> and
+      <em>p</em> value depends on the size of the effect <ndash/> colds shorter
+      by four days are less likely than colds shorter by one day <ndash/> and
       the number of patients I test the medication on.
     </p>
 
@@ -109,8 +109,8 @@
     <p>
       But there are limitations. The <em>p</em> value is a measure of surprise,
       not a measure of the size of the effect. I can get a tiny <em>p</em> value
-      by either measuring a huge effect <mdash/> <q>this medicine makes people
-      live four times longer</q> <mdash/> or by measuring a tiny effect with
+      by either measuring a huge effect <ndash/> <q>this medicine makes people
+      live four times longer</q> <ndash/> or by measuring a tiny effect with
       great certainty. Statistical significance does not mean your result has any
       <em>practical</em> significance.
     </p>
