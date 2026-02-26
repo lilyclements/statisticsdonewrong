@@ -38,6 +38,12 @@
     <journal>Nature</journal>, 483:531<ndash/>533, 2012.
   </biblio>
 
+  <biblio type="raw" xml:id="belia-2005dg">
+    S. Belia, F. Fidler, J. Williams, G. Cumming.
+    <title>Researchers misunderstand confidence intervals and standard error bars</title>.
+    <journal>Psychological methods</journal>, 10:389<ndash/>396, 2005.
+  </biblio>
+
   <biblio type="raw" xml:id="benjamini-1995ws">
     Y. Benjamini, Y. Hochberg.
     <title>Controlling the false discovery rate: a practical and powerful
@@ -434,11 +440,4 @@
     reanalysis</title>.
     <journal>American Psychologist</journal>, 61:726<ndash/>728, 2006.
   </biblio>
-
-  <biblio type="raw" xml:id="belia-2005dg">
-    S. Belia, F. Fidler, J. Williams, G. Cumming.
-    <title>Researchers misunderstand confidence intervals and standard error bars</title>.
-    <journal>Psychological methods</journal>, 10:389<ndash/>396, 2005.
-  </biblio>
-
 </references>
