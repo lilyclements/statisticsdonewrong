@@ -32,6 +32,94 @@
           </shortlicense>
         </copyright>
       </colophon>
+
+      <preface xml:id="preface">
+        <title>Preface</title>
+
+        <p>
+          <em>Statistics Done Wrong</em> was written by
+          <url href="https://www.refsmmat.com/">Alex Reinhart</url> and
+          originally published at
+          <url href="https://www.statisticsdonewrong.com/"
+            visual="statisticsdonewrong.com">statisticsdonewrong.com</url>.
+          This is a
+          <url href="https://pretextbook.org/" visual="pretextbook.org">PreTeXt</url>
+          conversion of that work. The source for this PreTeXt edition is
+          available on
+          <url href="https://github.com/PreTeXtBooks/statisticsdonewrong"
+            visual="github.com/PreTeXtBooks/statisticsdonewrong">GitHub</url>.
+        </p>
+
+        <p>
+          The revised and expanded <em>Statistics Done Wrong</em>, with three
+          times as many statistical errors and examples, is
+          <url href="https://www.nostarch.com/statsdonewrong">available in
+          print and eBook</url>! An essential book for any scientist, data
+          scientist, or statistician.
+        </p>
+
+        <p>
+          If you're a practicing scientist, you probably use statistics to
+          analyze your data. From basic <em>t</em> tests and standard error
+          calculations to Cox proportional hazards models and propensity score
+          matching, we rely on statistics to give answers to scientific
+          problems.
+        </p>
+
+        <p>
+          This is unfortunate, because statistical errors are rife.
+        </p>
+
+        <p>
+          <em>Statistics Done Wrong</em> is a guide to the most popular
+          statistical errors and slip-ups committed by scientists every day,
+          in the lab and in peer-reviewed journals. Many of the errors are
+          prevalent in vast swaths of the published literature, casting doubt
+          on the findings of thousands of papers. <em>Statistics Done
+          Wrong</em> assumes no prior knowledge of statistics, so you can
+          read it before your first statistics course or after thirty years of
+          scientific practice.
+        </p>
+
+        <p>
+          If you find any errors or typos, or want to suggest other popular
+          misconceptions,
+          <url href="https://www.statisticsdonewrong.com/introduction.html#contact">contact
+          the original author</url>. If you find this website useful, consider
+          buying <url href="https://www.nostarch.com/statsdonewrong">the
+          book</url>! Or find it in
+          <url href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html">Deutsch</url>,
+          <url href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803">한국어</url>,
+          <url href="https://www.amazon.it/dp/885180284X/">Italiano</url>,
+          中文 (<url href="https://www.amazon.cn/dp/B01LY7GFOD">简体</url>
+          and <url href="https://www.cite.com.tw/book?id=75600">繁體</url>),
+          or <url href="https://www.keisoshobo.co.jp/book/b272873.html">日本語</url>.
+        </p>
+
+        <blockquote>
+          <p>
+            <q>Of all the books that tackle these issues, Reinhart's is the
+            most succinct, accessible and accurate assessment of the
+            statistical flaws that render many scientific studies
+            suspect<ellipsis/> It should be required reading for all
+            scientists.</q>
+          </p>
+          <attribution>
+            <url href="https://www.sciencenews.org/article/research-cant-be-right-statistics-done-wrong">Science News</url>
+          </attribution>
+        </blockquote>
+
+        <blockquote>
+          <p>
+            <q>If you analyze data with any regularity but aren't sure if
+            you're doing it correctly, get this book.</q>
+          </p>
+          <attribution>
+            <url href="https://flowingdata.com/2015/04/23/book-statistics-done-wrong/">FlowingData</url>
+          </attribution>
+        </blockquote>
+
+      </preface>
     </frontmatter>
 
     <xi:include href="chapters/ch1-introduction.ptx"/>
