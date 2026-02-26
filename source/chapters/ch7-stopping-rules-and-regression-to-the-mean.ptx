@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xml:id="ch-regression" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Stopping Rules and Regression to the Mean</title>
-
+<introduction>
   <p>
     Medical trials are expensive. Supplying dozens of patients with
     experimental medications and tracking their symptoms over the course of
@@ -81,6 +81,7 @@
     researchers have the freedom to use whatever methods they feel
     appropriate, there may be false positive demons lurking.
   </p>
+</introduction>
 
   <section xml:id="sec-truth-inflation">
     <title>Truth Inflation</title>
