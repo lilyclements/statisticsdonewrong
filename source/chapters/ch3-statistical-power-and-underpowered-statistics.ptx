@@ -2,6 +2,7 @@
 <chapter xml:id="ch-power" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Statistical Power and Underpowered Statistics</title>
 
+<introduction>
   <p>
     We've seen that it's possible to miss a real effect simply by not taking
     enough data. In most cases, this is a problem: we might miss a viable
@@ -118,6 +119,7 @@
     heads 60% of the time. It's just overwhelmingly unlikely that I could flip
     a fair coin 1,000 times and get more than 600 heads.
   </p>
+</introduction>
 
   <section xml:id="sec-power-underpowered">
     <title>The power of being underpowered</title>
