@@ -1,0 +1,219 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from www.statisticsdonewrong.com/introduction.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:50 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Introduction &#8212; Statistics Done Wrong</title>
+    <link rel="stylesheet" href="_static/book.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0th',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="canonical" href="introduction.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="An introduction to data analysis" href="data-analysis.html" />
+    <link rel="prev" title="Statistics Done Wrong" href="index-2.html" />
+ 
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>In the final chapter of his famous book <em>How to Lie with Statistics</em>, Darrell
+Huff tells us that “anything smacking of the medical profession” or published by
+scientific laboratories and universities is worthy of our trust – not
+unconditional trust, but certainly more trust than we’d afford the media or
+shifty politicians. After all, Huff filled an entire book with the misleading
+statistical trickery used in politics and the media, but few people complain
+about statistics done by trained professional scientists. Scientists seek
+understanding, not ammunition to use against political opponents.</p>
+<p>Statistical data analysis is fundamental to science. Open a random page in your
+favorite medical journal and you’ll be deluged with statistics: <em>t</em> tests, <em>p</em>
+values, proportional hazards models, risk ratios, logistic regressions,
+least-squares fits, and confidence intervals.  Statisticians have provided
+scientists with tools of enormous power to find order and meaning in the most
+complex of datasets, and scientists have embraced them with glee.</p>
+<p>They have not, however, embraced statistics <em>education</em>, and many undergraduate
+programs in the sciences require no statistical training whatsoever.</p>
+<p>Since the 1980s, researchers have described numerous statistical fallacies and
+misconceptions in the popular peer-reviewed scientific literature, and have
+found that many scientific papers – perhaps more than half – fall prey to
+these errors. Inadequate statistical power renders many studies incapable of
+finding what they’re looking for; multiple comparisons and misinterpreted <em>p</em>
+values cause numerous false positives; flexible data analysis makes it easy to
+find a correlation where none exists. The problem isn’t fraud but poor
+statistical education – poor enough that some scientists conclude that most
+published research findings are probably false.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-ioannidis-2005bw">31</a></sup></span></p>
+<p>What follows is a list of the more egregious statistical fallacies regularly
+committed in the name of science. It assumes no knowledge of statistical
+methods, since many scientists receive no formal statistical training. And be
+warned: once you learn the fallacies, you will see them <em>everywhere.</em> Don’t be
+alarmed. This isn’t an excuse to reject all modern science and return to
+bloodletting and leeches – it’s a call to improve the science we rely on.</p>
+<div class="section" id="changes">
+<span id="changelog"></span><h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
+<p>Updated January 2013 with a relevant example of the base-rate fallacy:
+<a class="reference internal" href="p-value.html#base-rate-gun"><span class="std std-ref">survey estimates of gun usage</span></a>.</p>
+<p>Updated April 2013 with more details on <a class="reference internal" href="regression.html#truth-inflation"><span class="std std-ref">the interaction of truth inflation
+and early stopping rules</span></a>, <a class="reference internal" href="p-value.html#red-herrings"><span class="std std-ref">researcher freedom in
+neuroscience</span></a>, <a class="reference internal" href="power.html#power-underpowered"><span class="std std-ref">poor statistical power in neuroscience</span></a>, <a class="reference internal" href="p-value.html#false-discovery"><span class="std std-ref">how to control the false discovery rate</span></a>, <a class="reference internal" href="hiding.html#hiding-data"><span class="std std-ref">publication bias and poor reporting</span></a>,
+<a class="reference internal" href="power.html#rtor"><span class="std std-ref">underpowered studies and right turn on red</span></a>, <a class="reference internal" href="significant-differences.html#confidence-intervals"><span class="std std-ref">the misuses of
+confidence intervals</span></a>, <a class="reference internal" href="results.html#wrought"><span class="std std-ref">the impact of all these
+errors</span></a>, <a class="reference internal" href="what-next.html#what-next"><span class="std std-ref">what can be done to save statistics</span></a>, and
+additional references and details in many other places.</p>
+</div>
+<div class="section" id="contact">
+<span id="id1"></span><h2>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h2>
+<p>I’ve tried my best, but inevitably this guide will contain errors and
+omissions. If you spot an error, have a question, or know a common fallacy I’ve
+missed, email me at alex at refsmmat dot com.</p>
+</div>
+<div class="section" id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<p>Thanks to Dr. James Scott, whose statistics course gave me the background
+necessary to write this; to Matthew Watson and CharonY, who gave invaluable
+feedback and suggestions as I wrote my drafts; to my parents, who gave
+suggestions and feedback; to Dr. Brent Iverson, whose seminar first motivated me
+to learn about statistical abuse; and to all the scientists and statisticians
+who have broken the rules and given me a reason to write.</p>
+<p>Any errors in explanations are my own.</p>
+</div>
+<div class="section" id="copyright-note">
+<h2>Copyright note<a class="headerlink" href="#copyright-note" title="Permalink to this headline">¶</a></h2>
+<p>This work is licensed under a <a class="reference external" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>. You’re free to print it, copy
+it, translate it, rewrite it, set it to music, slice it, dice it, or whatever,
+so long as you attribute the original to me, Alex Reinhart, and provide a link
+back to this site. (If you do translate it, please let me know! I’d happily
+provide a link to your translation.) Hit the link to the license for more
+details.</p>
+<p>The xkcd cartoon used inside is available under the <a class="reference external" href="http://creativecommons.org/licenses/by-nc/2.5/">Creative Commons
+Attribution-NonCommercial 2.5 License</a>, and may not be used
+commercially without permission from the author. <a class="reference external" href="http://xkcd.com/license.html">More
+details.</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo"><a href="index-2.html">
+  <img class="logo" width="220" height="330" 
+       src="_static/cover.png" alt="Logo"/>
+</a></p>
+<div id="book_ad">
+  <h3>There's a book!</h3>
+    <p class="topless">
+      The revised and expanded <cite>Statistics Done Wrong</cite>, with three times as
+      many statistical errors and examples, is
+      <a href="http://www.nostarch.com/statsdonewrong">available in print and
+        eBook!</a> An essential book for any scientist, data scientist, or statistician.
+    </p>
+    <p><a class="button" href="http://www.nostarch.com/statsdonewrong">Buy it!</a></p>
+    <p>(or use <a href="http://www.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/">Amazon</a>,
+      <a href="http://www.indiebound.org/book/9781593276201">IndieBound</a>, <a href="http://www.bookdepository.com/Statistics-Done-Wrong-Alex-Reinhart/9781593276201">Book Depository</a>,
+      or <a href="http://www.barnesandnoble.com/w/statistics-done-wrong-alex-reinhart/1120359162?ean=9781593276201">BN</a>.)</p>
+    <p>(or <a href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html">Deutsch</a>,
+    <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803">한국어</a>,
+    <a href="https://www.amazon.it/dp/885180284X/">Italiano</a>,
+    <a href="https://www.amazon.cn/dp/B01LY7GFOD/">中文 (简体)</a>,
+    <a href="http://www.cite.com.tw/book?id=75600">中文 (繁體)</a>,
+    <a href="http://www.keisoshobo.co.jp/book/b272873.html">日本語</a>.)
+    </p>
+</div>
+
+<h3><a href="index-2.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#changes">Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contact">Contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copyright-note">Copyright note</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-analysis.html">An introduction to data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Statistical power and underpowered statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pseudoreplication.html">Pseudoreplication: choose your data wisely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p-value.html">The <em>p</em> value and the base rate fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significant-differences.html">When differences in significance aren’t significant differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">Stopping rules and regression to the mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="freedom.html">Researcher freedom: good vibrations?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mistakes.html">Everybody makes mistakes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hiding.html">Hiding the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">What have we wrought?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-next.html">What can be done?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="https://www.statisticsdonewrong.com/search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    
+    <li><a href="index-2.html">Previous</a></li>
+    
+    
+    <li class="right">Next chapter: <a href="data-analysis.html">An introduction to data analysis</a></li>
+
+  </ul>
+</div>
+
+  <div class="footer">
+    <a rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/"><img
+    alt="Creative Commons License" style="border-width:0"
+    src="../licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span
+    style="font-style:italic" xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Statistics Done Wrong</span> by <a xmlns:cc="http://creativecommons.org/ns#"
+    property="cc:attributionName" href="https://www.refsmmat.com/">Alex Reinhart</a> is licensed under a <a
+    rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/">Creative
+    Commons Attribution 4.0 International License</a>.
+  </div>
+  
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+
+  </body>
+
+<!-- Mirrored from www.statisticsdonewrong.com/introduction.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:50 GMT -->
+</html>

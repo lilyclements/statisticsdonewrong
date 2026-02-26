@@ -1,0 +1,285 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from www.statisticsdonewrong.com/hiding.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:53 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hiding the data &#8212; Statistics Done Wrong</title>
+    <link rel="stylesheet" href="_static/book.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0th',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="canonical" href="hiding.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="What have we wrought?" href="results.html" />
+    <link rel="prev" title="Everybody makes mistakes" href="mistakes.html" />
+ 
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="hiding-the-data">
+<span id="hiding-data"></span><span id="index-0"></span><h1>Hiding the data<a class="headerlink" href="#hiding-the-data" title="Permalink to this headline">¶</a></h1>
+<blockquote class="epigraph">
+<div><p>“Given enough eyeballs, all bugs are shallow.”</p>
+<p class="attribution">&mdash;Eric S. Raymond</p>
+</div></blockquote>
+<p>We’ve talked about the <a class="reference internal" href="mistakes.html#mistakes"><span class="std std-ref">common mistakes</span></a> made by scientists, and
+how the best way to spot them is a bit of outside scrutiny. Peer review provides
+some of this scrutiny, but a peer reviewer doesn’t have the time to extensively
+re-analyze data and read code for typos – reviewers can only check that the
+methodology makes good sense. Sometimes they spot obvious errors, but subtle
+problems are usually missed.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-schroter-2008hw">52</a></sup></span></p>
+<p>This is why many journals and professional societies require researchers to make
+their data available to other scientists on request. Full datasets are usually
+too large to print in the pages of a journal, so authors report their results
+and send the complete data to other scientists if they ask for a copy. Perhaps
+they will find an error or a pattern the original scientists missed.</p>
+<p>Or so it goes in theory. In 2005, Jelte Wicherts and colleagues at the
+University of Amsterdam decided to analyze every recent article in several
+prominent journals of the American Psychological Association to learn about
+their statistical methods. They chose the APA partly because it requires authors
+to agree to share their data with other psychologists seeking to verify their
+claims.</p>
+<p>Of the 249 studies they sought data for, they had only received data for 64 six
+months later. Almost three quarters of study authors never sent their data.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-wicherts-2006jg">61</a></sup></span></p>
+<p>Of course, scientists are busy people, and perhaps they simply didn’t have the
+time to compile their datasets, produce documents describing what each variable
+means and how it was measured, and so on.</p>
+<p id="index-1">Wicherts and his colleagues decided they’d test this. They trawled through all
+the studies looking for common errors which could be spotted by reading the
+paper, such as inconsistent statistical results, misuse of various statistical
+tests, and ordinary typos. At least half of the papers had an error, usually
+minor, but 15% reported at least one statistically significant result which was
+only significant because of an error.</p>
+<p>Next, they looked for a correlation between these errors and an unwillingness to
+share data. There was a clear relationship. Authors who refused to share their
+data were more likely to have committed an error in their paper, and their
+statistical evidence tended to be weaker.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-wicherts-2011fp">60</a></sup></span> Because
+most authors refused to share their data, Wicherts could not dig for deeper
+statistical errors, and many more may be lurking.</p>
+<p>This is certainly not proof that authors hid their data out of fear their errors
+may be uncovered, or even that the authors knew about the errors at
+all. Correlation doesn’t imply causation, but it does waggle its eyebrows
+suggestively and gesture furtively while mouthing “look over there.”<a class="footnote-reference" href="#xkcd" id="id1">[1]</a></p>
+<div class="section" id="just-leave-out-the-details">
+<span id="omit-details"></span><h2>Just leave out the details<a class="headerlink" href="#just-leave-out-the-details" title="Permalink to this headline">¶</a></h2>
+<p>Nitpicking statisticians getting you down by pointing out flaws in your paper?
+There’s one clear solution: don’t publish as much detail! They can’t find the
+errors if you don’t say how you evaluated your data.</p>
+<p>I don’t mean to seriously suggest that evil scientists do this intentionally,
+although perhaps some do. More frequently, details are left out because authors
+simply forgot to include them, or because journal space limits force their
+omission.</p>
+<p>It’s possible to evaluate studies to see what they left out. Scientists leading
+medical trials are required to provide detailed study plans to ethical review
+boards before starting a trial, so one group of researchers obtained a
+collection of these plans from a review board. The plans specify which outcomes
+the study will measure: for instance, a study might monitor various symptoms to
+see if any are influenced by the treatment. The researchers then found the
+published results of these studies and looked for how well these outcomes were
+reported.</p>
+<p>Roughly half of the outcomes never appeared in the scientific journal papers at
+all. Many of these were statistically insignificant results which were swept
+under the rug.<a class="footnote-reference" href="#rug" id="id2">[2]</a> Another large chunk of results were not reported in
+sufficient detail for scientists to use the results for further meta-analysis.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-chan-2004gm">14</a></sup></span></p>
+<p id="index-2">Other reviews have found similar problems. A review of medical trials found that
+most studies omit important methodological details, such as <a class="reference internal" href="regression.html#stopping-rules"><span class="std std-ref">stopping rules</span></a> and <a class="reference internal" href="power.html#power"><span class="std std-ref">power calculations</span></a>, with studies in small
+specialist journals faring worse than those in large general medicine journals.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-huwilermuntener-2002ij">29</a></sup></span></p>
+<p>Medical journals have begun to combat this problem with standards for reporting
+of results, such as the <a class="reference external" href="http://www.consort-statement.org/">CONSORT checklist</a>. Authors are required to follow the
+checklist’s requirements before submitting their studies, and editors check to
+make sure all relevant details are included. The checklist seems to work;
+studies published in journals which follow the guidelines tend to report more
+essential detail, although not all of it.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-plint-2006uj">46</a></sup></span> Unfortunately
+the standards are inconsistently applied and studies often slip through with
+missing details nonetheless.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-mills-2005ei">42</a></sup></span> Journal editors will need
+to make a greater effort to enforce reporting standards.</p>
+<p>We see that published papers aren’t faring very well. What about <em>unpublished</em>
+studies?</p>
+</div>
+<div class="section" id="science-in-a-filing-cabinet">
+<h2>Science in a filing cabinet<a class="headerlink" href="#science-in-a-filing-cabinet" title="Permalink to this headline">¶</a></h2>
+<p>Earlier we saw the impact of <a class="reference internal" href="p-value.html#multiple-comparisons"><span class="std std-ref">multiple comparisons</span></a>
+and <a class="reference internal" href="regression.html#truth-inflation"><span class="std std-ref">truth inflation</span></a> on study results. These problems
+arise when studies make numerous comparisons with low statistical power, giving
+a high rate of false positives and inflated estimates of effect sizes, and they
+appear everywhere in published research.</p>
+<p>But not every study is published. We only ever see a fraction of medical
+research, for instance, because few scientists bother publishing “We tried this
+medicine and it didn’t seem to work.”</p>
+<p>Consider an example: studies of the tumor suppressor protein TP53 and its effect
+on head and neck cancer. A number of studies suggested that measurements of TP53
+could be used to predict cancer mortality rates, since it serves to regulate
+cell growth and development and hence must function correctly to prevent
+cancer. When all 18 published studies on TP53 and cancer were analyzed together,
+the result was a highly statistically significant correlation: TP53 could
+clearly be measured to tell how likely a tumor is to kill you.</p>
+<p>But then suppose we dig up <em>unpublished</em> results on TP53: data that had been
+mentioned in other studies but not published or analyzed. Add this data to the
+mix and the statistically significant effect vanishes.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-kyzas-2005ep">36</a></sup></span>
+After all, few authors bothered to publish data showing no correlation, so the
+meta-analysis could only use a biased sample.</p>
+<p>A similar study looked at reboxetine, an antidepressant sold by Pfizer. Several
+published studies have suggested that it is effective compared to placebo,
+leading several European countries to approve it for prescription to depressed
+patients. The German Institute for Quality and Efficiency in Health Care,
+responsible for assessing medical treatments, managed to get unpublished trial
+data from Pfizer – three times more data than had ever been published – and
+carefully analyzed it. The result: reboxetine is not effective. Pfizer had only
+convinced the public that it’s effective by neglecting to mention the studies
+proving it isn’t.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-eyding-2010bx">18</a></sup></span></p>
+<p>This problem is commonly known as publication bias or the file-drawer problem:
+many studies sit in a file drawer for years, never published, despite the
+valuable data they could contribute.</p>
+<p>The problem isn’t simply the bias on published results. Unpublished studies lead
+to a duplication of effort – if other scientists don’t know you’ve done a
+study, they may well do it again, wasting money and effort.</p>
+<p>Regulators and scientific journals have attempted to halt this problem. The Food
+and Drug Administration requires certain kinds of clinical trials to be
+registered through their website ClinicalTrials.gov before the trials begin, and
+requires the publication of results within a year of the end of the
+trial. Similarly, the International Committee of Medical Journal Editors
+announced in 2005 that they would not publish studies which had not been
+pre-registered.</p>
+<p>Unfortunately, a review of 738 registered clinical trials found that only 22%
+met the legal requirement to publish.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-prayle-2011cs">47</a></sup></span> The FDA has not
+fined any drug companies for noncompliance, and journals have not consistently
+enforced the requirement to register trials. Most studies simply vanish.</p>
+<table class="docutils footnote" frame="void" id="xkcd" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Joke shamelessly stolen from the alternate text of <a class="reference external" href="http://xkcd.com/552/">http://xkcd.com/552/</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="rug" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Why do we always say “swept under the rug”? Whose rug is it? And why don’t
+they use a vacuum cleaner instead of a broom?</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo"><a href="index-2.html">
+  <img class="logo" width="220" height="330" 
+       src="_static/cover.png" alt="Logo"/>
+</a></p>
+<div id="book_ad">
+  <h3>There's a book!</h3>
+    <p class="topless">
+      The revised and expanded <cite>Statistics Done Wrong</cite>, with three times as
+      many statistical errors and examples, is
+      <a href="http://www.nostarch.com/statsdonewrong">available in print and
+        eBook!</a> An essential book for any scientist, data scientist, or statistician.
+    </p>
+    <p><a class="button" href="http://www.nostarch.com/statsdonewrong">Buy it!</a></p>
+    <p>(or use <a href="http://www.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/">Amazon</a>,
+      <a href="http://www.indiebound.org/book/9781593276201">IndieBound</a>, <a href="http://www.bookdepository.com/Statistics-Done-Wrong-Alex-Reinhart/9781593276201">Book Depository</a>,
+      or <a href="http://www.barnesandnoble.com/w/statistics-done-wrong-alex-reinhart/1120359162?ean=9781593276201">BN</a>.)</p>
+    <p>(or <a href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html">Deutsch</a>,
+    <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803">한국어</a>,
+    <a href="https://www.amazon.it/dp/885180284X/">Italiano</a>,
+    <a href="https://www.amazon.cn/dp/B01LY7GFOD/">中文 (简体)</a>,
+    <a href="http://www.cite.com.tw/book?id=75600">中文 (繁體)</a>,
+    <a href="http://www.keisoshobo.co.jp/book/b272873.html">日本語</a>.)
+    </p>
+</div>
+
+<h3><a href="index-2.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-analysis.html">An introduction to data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Statistical power and underpowered statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pseudoreplication.html">Pseudoreplication: choose your data wisely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p-value.html">The <em>p</em> value and the base rate fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significant-differences.html">When differences in significance aren’t significant differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">Stopping rules and regression to the mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="freedom.html">Researcher freedom: good vibrations?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mistakes.html">Everybody makes mistakes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hiding the data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#just-leave-out-the-details">Just leave out the details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#science-in-a-filing-cabinet">Science in a filing cabinet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">What have we wrought?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-next.html">What can be done?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="https://www.statisticsdonewrong.com/search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    
+    <li><a href="mistakes.html">Previous</a></li>
+    
+    
+    <li class="right">Next chapter: <a href="results.html">What have we wrought?</a></li>
+
+  </ul>
+</div>
+
+  <div class="footer">
+    <a rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/"><img
+    alt="Creative Commons License" style="border-width:0"
+    src="../licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span
+    style="font-style:italic" xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Statistics Done Wrong</span> by <a xmlns:cc="http://creativecommons.org/ns#"
+    property="cc:attributionName" href="https://www.refsmmat.com/">Alex Reinhart</a> is licensed under a <a
+    rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/">Creative
+    Commons Attribution 4.0 International License</a>.
+  </div>
+  
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+
+  </body>
+
+<!-- Mirrored from www.statisticsdonewrong.com/hiding.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:53 GMT -->
+</html>

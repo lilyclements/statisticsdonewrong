@@ -1,0 +1,274 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from www.statisticsdonewrong.com/power.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:50 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Statistical power and underpowered statistics &#8212; Statistics Done Wrong</title>
+    <link rel="stylesheet" href="_static/book.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0th',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="canonical" href="power.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pseudoreplication: choose your data wisely" href="pseudoreplication.html" />
+    <link rel="prev" title="An introduction to data analysis" href="data-analysis.html" />
+ 
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="statistical-power-and-underpowered-statistics">
+<span id="power"></span><span id="index-0"></span><h1>Statistical power and underpowered statistics<a class="headerlink" href="#statistical-power-and-underpowered-statistics" title="Permalink to this headline">¶</a></h1>
+<p>We’ve seen that it’s possible to miss a real effect simply by not taking enough
+data. In most cases, this is a problem: we might miss a viable medicine or fail
+to notice an important side-effect. How do we know how much data to collect?</p>
+<p>Statisticians provide the answer in the form of “statistical power.” The power
+of a study is the likelihood that it will distinguish an effect of a certain
+size from pure luck. A study might easily detect a huge benefit from a
+medication, but detecting a subtle difference is much less likely. Let’s try a
+simple example.</p>
+<p>Suppose a gambler is convinced that an opponent has an unfair coin: rather than
+getting heads half the time and tails half the time, the proportion is
+different, and the opponent is using this to cheat at incredibly boring
+coin-flipping games. How to prove it?</p>
+<p>You can’t just flip the coin a hundred times and count the heads. Even with a
+perfectly fair coin, you don’t always get fifty heads:</p>
+<div class="figure" id="id1">
+<img alt="_images/binomial.png" src="_images/binomial.png" />
+<p class="caption"><span class="caption-text">This shows the likelihood of getting different numbers of heads, if you flip a
+coin a hundred times.</span></p>
+</div>
+<p>You can see that 50 heads is the most likely option, but it’s also reasonably
+likely to get 45 or 57. So if you get 57 heads, the coin might be rigged, but
+you might just be lucky.</p>
+<p>Let’s work out the math. Let’s say we look for a <em>p</em> value of 0.05 or less, as
+scientists typically do. That is, if I count up the number of heads after 10 or
+100 trials and find a deviation from what I’d expect – half heads, half tails
+– I call the coin unfair if there’s only a 5% chance of getting a deviation
+that size or larger with a fair coin. Otherwise, I can conclude nothing: the
+coin may be fair, or it may be only a little unfair. I can’t tell.</p>
+<p>So, what happens if I flip a coin ten times and apply these criteria?</p>
+<div class="figure" id="index-1">
+<img alt="_images/power-curve-10.png" src="_images/power-curve-10.png" />
+</div>
+<p>This is called a <em>power curve.</em> Along the horizontal axis, we have the different
+possibilities for the coin’s true probability of getting heads, corresponding to
+different levels of unfairness. On the vertical axis is the probability that I
+will conclude the coin is rigged after ten tosses, based on the <em>p</em> value of the
+result.</p>
+<p>You can see that if the coin is rigged to give heads 60% of the time, and I flip
+the coin 10 times, I only have a 20% chance of concluding that it’s
+rigged. There’s just too little data to separate rigging from random
+variation. The coin would have to be incredibly biased for me to always notice.</p>
+<p>But what if I flip the coin 100 times?</p>
+<div class="figure">
+<img alt="_images/power-curve-100.png" src="_images/power-curve-100.png" />
+</div>
+<p>Or 1,000 times?</p>
+<div class="figure">
+<img alt="_images/power-curve-1000.png" src="_images/power-curve-1000.png" />
+</div>
+<p>With one thousand flips, I can easily tell if the coin is rigged to give heads
+60% of the time. It’s just overwhelmingly unlikely that I could flip a fair coin
+1,000 times and get more than 600 heads.</p>
+<div class="section" id="the-power-of-being-underpowered">
+<span id="power-underpowered"></span><h2>The power of being underpowered<a class="headerlink" href="#the-power-of-being-underpowered" title="Permalink to this headline">¶</a></h2>
+<p>After hearing all this, you might think calculations of statistical power are
+essential to medical trials. A scientist might want to know how many patients
+are needed to test if a new medication improves survival by more than 10%, and a
+quick calculation of statistical power would provide the answer. Scientists are
+usually satisfied when the statistical power is 0.8 or higher, corresponding to
+an 80% chance of concluding there’s a real effect.</p>
+<p>However, few scientists ever perform this calculation, and few journal articles
+ever mention the statistical power of their tests.</p>
+<p>Consider a trial testing two different treatments for the same condition. You
+might want to know which medicine is safer, but unfortunately, side effects are
+rare. You can test each medicine on a hundred patients, but only a few in each
+group suffer serious side effects.</p>
+<p>Obviously, you won’t have terribly much data to compare side effect rates. If
+four people have serious side effects in one group, and three in the other, you
+can’t tell if that’s the medication’s fault.</p>
+<p>Unfortunately, many trials conclude with “There was no statistically significant
+difference in adverse effects between groups” without noting that there was
+insufficient data to detect any but the largest
+differences.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-tsang-2009iw">57</a></sup></span> And so doctors erroneously think the
+medications are equally safe, when one could well be much more dangerous than
+the other.</p>
+<p>You might think this is only a problem when the medication only has a weak
+effect. But no: in one sample of studies published between 1975 and 1990 in
+prestigious medical journals, 27% of randomized controlled trials gave negative
+results, but 64% of these didn’t collect enough data to detect a 50% difference
+in <em>primary outcome</em> between treatment groups. Fifty percent! Even if one
+medication decreases symptoms by 50% more than the other medication, there’s
+insufficient data to conclude it’s more effective. And 84% of the negative
+trials didn’t have the power to detect a 25% difference.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-moher-1994">17</a></sup><sup>, </sup><sup><a class="reference internal" href="zbibliography.html#citation-bedard-2007dy">4</a></sup><sup>, </sup><sup><a class="reference internal" href="zbibliography.html#citation-brown-1987uu">11</a></sup><sup>, </sup><sup><a class="reference internal" href="zbibliography.html#citation-chung-1998ku">16</a></sup></span></p>
+<p>In neuroscience the problem is even worse. Suppose we aggregate the data
+collected by numerous neuroscience papers investigating one particular effect
+and arrive at a strong estimate of the effect’s size. The median study has only
+a 20% chance of being able to detect that effect. Only after many studies were
+aggregated could the effect be discerned. Similar problems arise in neuroscience
+studies using animal models – which raises a significant ethical concern. If
+each individual study is underpowered, the true effect will only likely be
+discovered after many studies using many animals have been completed and
+analyzed, using far more animal subjects than if the study had been done
+properly the first time.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-button-2013dz">12</a></sup></span></p>
+<p>That’s not to say scientists are lying when they state they detected no
+significant difference between groups. You’re just misleading yourself when you
+assume this means there is no <em>real</em> difference. There may be a difference, but
+the study was too small to notice it.</p>
+<p>Let’s consider an example we see every day.</p>
+</div>
+<div class="section" id="the-wrong-turn-on-red">
+<span id="rtor"></span><span id="index-2"></span><h2>The wrong turn on red<a class="headerlink" href="#the-wrong-turn-on-red" title="Permalink to this headline">¶</a></h2>
+<p>In the 1970s, many parts of the United States began to allow drivers to turn
+right at a red light. For many years prior, road designers and civil engineers
+argued that allowing right turns on a red light would be a safety hazard,
+causing many additional crashes and pedestrian deaths. But the 1973 oil crisis
+and its fallout spurred politicians to consider allowing right turn on red to
+save fuel wasted by commuters waiting at red lights.</p>
+<p>Several studies were conducted to consider the safety impact of the change. For
+example, a consultant for the Virginia Department of Highways and Transportation
+conducted a before-and-after study of twenty intersections which began to allow
+right turns on red. Before the change there were 308 accidents at the
+intersections; after, there were 337 in a similar length of time. However, this
+difference was not statistically significant, and so the consultant concluded
+there was no safety impact.</p>
+<p>Several subsequent studies had similar findings: small increases in the number
+of crashes, but not enough data to conclude these increases were significant. As
+one report concluded,</p>
+<blockquote>
+<div>There is no reason to suspect that pedestrian accidents involving RT
+operations (right turns) have increased after the adoption of [right turn on
+red]…</div></blockquote>
+<p>Based on this data, more cities and states began to allow right turns at red
+lights. The problem, of course, is that these studies were underpowered. More
+pedestrians were being run over and more cars were involved in collisions, but
+nobody collected enough data to show this conclusively until several years
+later, when studies arrived clearly showing the results: significant increases
+in collisions and pedestrian accidents (sometimes up to 100% increases).<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-hauer-2004fz">27</a></sup><sup>, </sup><sup><a class="reference internal" href="zbibliography.html#citation-preusser-1982gp">48</a></sup></span> The misinterpretation of underpowered
+studies cost lives.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo"><a href="index-2.html">
+  <img class="logo" width="220" height="330" 
+       src="_static/cover.png" alt="Logo"/>
+</a></p>
+<div id="book_ad">
+  <h3>There's a book!</h3>
+    <p class="topless">
+      The revised and expanded <cite>Statistics Done Wrong</cite>, with three times as
+      many statistical errors and examples, is
+      <a href="http://www.nostarch.com/statsdonewrong">available in print and
+        eBook!</a> An essential book for any scientist, data scientist, or statistician.
+    </p>
+    <p><a class="button" href="http://www.nostarch.com/statsdonewrong">Buy it!</a></p>
+    <p>(or use <a href="http://www.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/">Amazon</a>,
+      <a href="http://www.indiebound.org/book/9781593276201">IndieBound</a>, <a href="http://www.bookdepository.com/Statistics-Done-Wrong-Alex-Reinhart/9781593276201">Book Depository</a>,
+      or <a href="http://www.barnesandnoble.com/w/statistics-done-wrong-alex-reinhart/1120359162?ean=9781593276201">BN</a>.)</p>
+    <p>(or <a href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html">Deutsch</a>,
+    <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803">한국어</a>,
+    <a href="https://www.amazon.it/dp/885180284X/">Italiano</a>,
+    <a href="https://www.amazon.cn/dp/B01LY7GFOD/">中文 (简体)</a>,
+    <a href="http://www.cite.com.tw/book?id=75600">中文 (繁體)</a>,
+    <a href="http://www.keisoshobo.co.jp/book/b272873.html">日本語</a>.)
+    </p>
+</div>
+
+<h3><a href="index-2.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-analysis.html">An introduction to data analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Statistical power and underpowered statistics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-power-of-being-underpowered">The power of being underpowered</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-wrong-turn-on-red">The wrong turn on red</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pseudoreplication.html">Pseudoreplication: choose your data wisely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p-value.html">The <em>p</em> value and the base rate fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significant-differences.html">When differences in significance aren’t significant differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">Stopping rules and regression to the mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="freedom.html">Researcher freedom: good vibrations?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mistakes.html">Everybody makes mistakes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hiding.html">Hiding the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">What have we wrought?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-next.html">What can be done?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="https://www.statisticsdonewrong.com/search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    
+    <li><a href="data-analysis.html">Previous</a></li>
+    
+    
+    <li class="right">Next chapter: <a href="pseudoreplication.html">Pseudoreplication: choose your data wisely</a></li>
+
+  </ul>
+</div>
+
+  <div class="footer">
+    <a rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/"><img
+    alt="Creative Commons License" style="border-width:0"
+    src="../licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span
+    style="font-style:italic" xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Statistics Done Wrong</span> by <a xmlns:cc="http://creativecommons.org/ns#"
+    property="cc:attributionName" href="https://www.refsmmat.com/">Alex Reinhart</a> is licensed under a <a
+    rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/">Creative
+    Commons Attribution 4.0 International License</a>.
+  </div>
+  
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+
+  </body>
+
+<!-- Mirrored from www.statisticsdonewrong.com/power.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:51 GMT -->
+</html>

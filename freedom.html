@@ -1,0 +1,207 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from www.statisticsdonewrong.com/freedom.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:53 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Researcher freedom: good vibrations? &#8212; Statistics Done Wrong</title>
+    <link rel="stylesheet" href="_static/book.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0th',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="canonical" href="freedom.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Everybody makes mistakes" href="mistakes.html" />
+    <link rel="prev" title="Stopping rules and regression to the mean" href="regression.html" />
+ 
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="researcher-freedom-good-vibrations">
+<span id="freedom"></span><span id="index-0"></span><h1>Researcher freedom: good vibrations?<a class="headerlink" href="#researcher-freedom-good-vibrations" title="Permalink to this headline">¶</a></h1>
+<p>There’s a common misconception that statistics is boring and monotonous. Collect
+lots of data, plug the numbers into Excel or SPSS or R, and beat the software
+with a stick until it produces some colorful charts and graphs. Done! All the
+statistician must do is read off the results.</p>
+<p>But one must choose <em>which</em> commands to use. Two researchers attempting to
+answer the same question may perform different statistical analyses entirely.
+There are many decisions to make:</p>
+<ol class="arabic simple">
+<li>Which variables do I adjust for? In a medical trial, for instance,
+you might control for patient age, gender, weight, BMI, previous
+medical history, smoking, drug use, or for the results of medical
+tests done before the start of the study. Which of these factors are
+important, and which can be ignored?</li>
+<li>Which cases do I exclude? If I’m testing diet plans, maybe I want to
+exclude test subjects who came down with uncontrollable diarrhea
+during the trial, since their results will be abnormal.</li>
+<li>What do I do with outliers? There will always be some results which
+are out of the ordinary, for reasons known or unknown, and I may want
+to exclude them or analyze them specially. Which cases count as
+outliers, and what do I do with them?</li>
+<li>How do I define groups? For example, I may want to split patients
+into “overweight”, “normal”, and “underweight” groups. Where do I
+draw the lines? What do I do with a muscular bodybuilder whose BMI is
+in the “overweight” range?</li>
+<li>What about missing data? Perhaps I’m testing cancer remission rates
+with a new drug. I run the trial for five years, but some patients
+will have tumors reappear after six years, or eight years. My data
+does not include their recurrence. How do I account for this when
+measuring the effectiveness of the drug?</li>
+<li>How much data should I collect? Should I stop when I have a
+definitive result, or continue as planned until I’ve collected all
+the data?</li>
+<li>How do I measure my outcomes? A medication could be evaluated with
+subjective patient surveys, medical test results, prevalence of a
+certain symptom, or measures such as duration of illness.</li>
+</ol>
+<p>Producing results can take hours of exploration and analysis to see
+which procedures are most appropriate. Papers usually explain the
+statistical analysis performed, but don’t always explain why the
+researchers chose one method over another, or explain what the results
+would be had the researchers chosen a different method. Researchers are
+free to choose whatever methods they feel appropriate – and while they
+may make the right choices, what would happen if they analyzed the data
+differently?</p>
+<p>In simulations, it’s possible to get effect sizes different by a factor of two
+simply by adjusting for different variables, excluding different sets of cases,
+and handling outliers differently.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-ioannidis-2008dy">30</a></sup></span> The effect size
+is that all-important number which tells you how much of a difference your
+medication makes. So apparently, being free to analyze how you want gives you
+enormous control over your results!</p>
+<p>The most concerning consequence of this statistical freedom is that researchers
+may choose the statistical analysis most favorable to them, arbitrarily
+producing statistically significant results by playing with the data until
+something emerges. Simulation suggests that false positive rates can jump to
+over 50% for a given dataset just by letting researchers try different
+statistical analyses until one works.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-simmons-2011iw">53</a></sup></span></p>
+<p>Medical researchers have devised ways of preventing this. Researchers are often
+required to draft a <span class="target" id="index-1"></span>clinical trial protocol, explaining how the data
+will be collected and analyzed. Since the protocol is drafted before the
+researchers see any data, they can’t possibly craft their analysis to be most
+favorable to them.  Unfortunately, many studies depart from their protocols and
+perform different analysis, allowing for researcher bias to creep in.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-chan-2008bb">15</a></sup><sup>, </sup><sup><a class="reference internal" href="zbibliography.html#citation-chan-2004gm">14</a></sup></span> Many other scientific fields have no protocol
+publication requirement at all.</p>
+<p>The proliferation of statistical techniques has given us many useful tools, but
+it seems they have been put to use as blunt objects. One must simply beat the
+data until it confesses.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo"><a href="index-2.html">
+  <img class="logo" width="220" height="330" 
+       src="_static/cover.png" alt="Logo"/>
+</a></p>
+<div id="book_ad">
+  <h3>There's a book!</h3>
+    <p class="topless">
+      The revised and expanded <cite>Statistics Done Wrong</cite>, with three times as
+      many statistical errors and examples, is
+      <a href="http://www.nostarch.com/statsdonewrong">available in print and
+        eBook!</a> An essential book for any scientist, data scientist, or statistician.
+    </p>
+    <p><a class="button" href="http://www.nostarch.com/statsdonewrong">Buy it!</a></p>
+    <p>(or use <a href="http://www.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/">Amazon</a>,
+      <a href="http://www.indiebound.org/book/9781593276201">IndieBound</a>, <a href="http://www.bookdepository.com/Statistics-Done-Wrong-Alex-Reinhart/9781593276201">Book Depository</a>,
+      or <a href="http://www.barnesandnoble.com/w/statistics-done-wrong-alex-reinhart/1120359162?ean=9781593276201">BN</a>.)</p>
+    <p>(or <a href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html">Deutsch</a>,
+    <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803">한국어</a>,
+    <a href="https://www.amazon.it/dp/885180284X/">Italiano</a>,
+    <a href="https://www.amazon.cn/dp/B01LY7GFOD/">中文 (简体)</a>,
+    <a href="http://www.cite.com.tw/book?id=75600">中文 (繁體)</a>,
+    <a href="http://www.keisoshobo.co.jp/book/b272873.html">日本語</a>.)
+    </p>
+</div>
+
+<h3><a href="index-2.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-analysis.html">An introduction to data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Statistical power and underpowered statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pseudoreplication.html">Pseudoreplication: choose your data wisely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p-value.html">The <em>p</em> value and the base rate fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significant-differences.html">When differences in significance aren’t significant differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">Stopping rules and regression to the mean</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Researcher freedom: good vibrations?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mistakes.html">Everybody makes mistakes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hiding.html">Hiding the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">What have we wrought?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-next.html">What can be done?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="https://www.statisticsdonewrong.com/search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    
+    <li><a href="regression.html">Previous</a></li>
+    
+    
+    <li class="right">Next chapter: <a href="mistakes.html">Everybody makes mistakes</a></li>
+
+  </ul>
+</div>
+
+  <div class="footer">
+    <a rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/"><img
+    alt="Creative Commons License" style="border-width:0"
+    src="../licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span
+    style="font-style:italic" xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Statistics Done Wrong</span> by <a xmlns:cc="http://creativecommons.org/ns#"
+    property="cc:attributionName" href="https://www.refsmmat.com/">Alex Reinhart</a> is licensed under a <a
+    rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/">Creative
+    Commons Attribution 4.0 International License</a>.
+  </div>
+  
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+
+  </body>
+
+<!-- Mirrored from www.statisticsdonewrong.com/freedom.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:53 GMT -->
+</html>

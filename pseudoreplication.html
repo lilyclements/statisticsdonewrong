@@ -1,0 +1,193 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from www.statisticsdonewrong.com/pseudoreplication.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:51 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Pseudoreplication: choose your data wisely &#8212; Statistics Done Wrong</title>
+    <link rel="stylesheet" href="_static/book.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0th',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="canonical" href="pseudoreplication.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The p value and the base rate fallacy" href="p-value.html" />
+    <link rel="prev" title="Statistical power and underpowered statistics" href="power.html" />
+ 
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pseudoreplication-choose-your-data-wisely">
+<span id="index-0"></span><h1>Pseudoreplication: choose your data wisely<a class="headerlink" href="#pseudoreplication-choose-your-data-wisely" title="Permalink to this headline">¶</a></h1>
+<p>Many studies strive to collect more data through replication: by repeating their
+measurements with additional patients or samples, they can be more certain of
+their numbers and discover subtle relationships that aren’t obvious at first
+glance. We’ve seen the value of additional data for improving statistical power
+and detecting small differences. But what exactly counts as a replication?</p>
+<p>Let’s return to a medical example. I have two groups of 100 patients taking
+different medications, and I seek to establish which medication lowers blood
+pressure more. I have each group take the medication for a month to allow it to
+take effect, and then I follow each group for ten days, each day testing their
+blood pressure. I now have ten data points per patient and 1,000 data points per
+group.</p>
+<p>Brilliant! 1,000 data points is quite a lot, and I can fairly easily establish
+whether one group has lower blood pressure than the other. When I do
+calculations for statistical significance I find significant results very
+easily.</p>
+<p>But wait: we expect that taking a patient’s blood pressure ten times will yield
+ten very similar results. If one patient is genetically predisposed to low blood
+pressure, I have counted his genetics ten times. Had I collected data from 1,000
+independent patients instead of repeatedly testing 100, I would be more
+confident that differences between groups came from the medicines and not from
+genetics and luck. I claimed a large sample size, giving me statistically
+significant results and high statistical power, but my claim is unjustified.</p>
+<p>This problem is known as pseudoreplication, and it is quite common.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-lazic-2010fc">38</a></sup></span> After testing cells from a culture, a biologist might
+“replicate” his results by testing more cells from the same
+culture. Neuroscientists will test multiple neurons from the same animal,
+incorrectly claiming they have a large sample size because they tested hundreds
+of neurons from just two rats.</p>
+<p>In statistical terms, pseudoreplication occurs when individual observations are
+heavily dependent on each other. Your measurement of a patient’s blood pressure
+will be highly related to his blood pressure yesterday, and your measurement of
+soil composition here will be highly correlated with your measurement five feet
+away. There are several ways to account for this dependence while performing
+your statistical analysis:</p>
+<ol class="arabic simple">
+<li>Average the dependent data points. For example, average all the blood
+pressure measurements taken from a single person. This isn’t perfect, though;
+if you measured some patients more frequently than others, this won’t be
+reflected in the averaged number. You want a method that somehow counts
+measurements as more reliable as more are taken.</li>
+<li>Analyze each dependent data point separately. You could perform an analysis
+of every patient’s blood pressure on day 5, giving you only one data point per
+person. But be careful, because if you do this for every day, you’ll have
+problems with <a class="reference internal" href="p-value.html#multiple-comparisons"><span class="std std-ref">multiple comparisons</span></a>, which we
+will discuss in the next chapter.</li>
+<li>Use a statistical model which accounts for the dependence, like a
+hierarchical model or random effects model.</li>
+</ol>
+<p>It’s important to consider each approach before analyzing your data, as each
+method is suited to different situations. Pseudoreplication makes it easy to
+achieve significance, even though it gives you little additional information on
+the test subjects. Researchers must be careful not to artificially inflate their
+sample sizes when they retest samples.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo"><a href="index-2.html">
+  <img class="logo" width="220" height="330" 
+       src="_static/cover.png" alt="Logo"/>
+</a></p>
+<div id="book_ad">
+  <h3>There's a book!</h3>
+    <p class="topless">
+      The revised and expanded <cite>Statistics Done Wrong</cite>, with three times as
+      many statistical errors and examples, is
+      <a href="http://www.nostarch.com/statsdonewrong">available in print and
+        eBook!</a> An essential book for any scientist, data scientist, or statistician.
+    </p>
+    <p><a class="button" href="http://www.nostarch.com/statsdonewrong">Buy it!</a></p>
+    <p>(or use <a href="http://www.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/">Amazon</a>,
+      <a href="http://www.indiebound.org/book/9781593276201">IndieBound</a>, <a href="http://www.bookdepository.com/Statistics-Done-Wrong-Alex-Reinhart/9781593276201">Book Depository</a>,
+      or <a href="http://www.barnesandnoble.com/w/statistics-done-wrong-alex-reinhart/1120359162?ean=9781593276201">BN</a>.)</p>
+    <p>(or <a href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html">Deutsch</a>,
+    <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803">한국어</a>,
+    <a href="https://www.amazon.it/dp/885180284X/">Italiano</a>,
+    <a href="https://www.amazon.cn/dp/B01LY7GFOD/">中文 (简体)</a>,
+    <a href="http://www.cite.com.tw/book?id=75600">中文 (繁體)</a>,
+    <a href="http://www.keisoshobo.co.jp/book/b272873.html">日本語</a>.)
+    </p>
+</div>
+
+<h3><a href="index-2.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-analysis.html">An introduction to data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Statistical power and underpowered statistics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pseudoreplication: choose your data wisely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p-value.html">The <em>p</em> value and the base rate fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significant-differences.html">When differences in significance aren’t significant differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">Stopping rules and regression to the mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="freedom.html">Researcher freedom: good vibrations?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mistakes.html">Everybody makes mistakes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hiding.html">Hiding the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">What have we wrought?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-next.html">What can be done?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="https://www.statisticsdonewrong.com/search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    
+    <li><a href="power.html">Previous</a></li>
+    
+    
+    <li class="right">Next chapter: <a href="p-value.html">The <em>p</em> value and the base rate fallacy</a></li>
+
+  </ul>
+</div>
+
+  <div class="footer">
+    <a rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/"><img
+    alt="Creative Commons License" style="border-width:0"
+    src="../licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span
+    style="font-style:italic" xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Statistics Done Wrong</span> by <a xmlns:cc="http://creativecommons.org/ns#"
+    property="cc:attributionName" href="https://www.refsmmat.com/">Alex Reinhart</a> is licensed under a <a
+    rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/">Creative
+    Commons Attribution 4.0 International License</a>.
+  </div>
+  
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+
+  </body>
+
+<!-- Mirrored from www.statisticsdonewrong.com/pseudoreplication.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:51 GMT -->
+</html>

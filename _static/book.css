@@ -1,0 +1,228 @@
+/* Fonts */
+h1, h2, h3, h4, p, blockquote, .footer, a, td, li, label {
+    font-family: "Source Sans Pro", helvetica, sans-serif;
+}
+
+/* Structure */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.document {
+    width: 940px;
+    margin: 0 auto;
+}
+
+.clearer {
+    clear: both;
+}
+
+.body {
+    padding: 0 3em 0 0.5em;
+}
+
+p.attribution {
+    text-align: right;
+    margin-top: -1em;
+}
+
+.related {
+    padding: 1em;
+    border-color: #ccc;
+    border-width: 1px 0;
+    border-style: solid;
+    margin: 1em 0;
+    overflow: hidden;
+}
+
+.related ul {
+    margin: 0;
+}
+
+.related h3 {
+    display: none;
+}
+
+.related li {
+    display: inline;
+}
+
+.related .right {
+    float: right;
+}
+
+/* Text */
+p, .body li {
+    line-height: 155%;
+}
+
+a {
+    color: #0645AD;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.headerlink {
+    visibility: hidden;
+}
+
+sup, .footnote-reference {
+    line-height: 90%;
+}
+
+.footnote-reference {
+    vertical-align: super;
+    font-size: 80%;
+}
+
+blockquote {
+    border-left: 4px solid #8AA4CC;
+    margin: 0 0 0 -5px;
+    padding: 0 0 0 3em;
+    font-size: 90%;
+}
+
+.caption {
+    font-size: 85%;
+}
+
+h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink,
+h4:hover .headerlink, h5:hover .headerlink, h6:hover .headerlink {
+    color: #ccc;
+    font-size: 80%;
+    visibility: visible;
+    padding-left: 3pt;
+}
+
+.figure {
+    text-align: center;
+}
+
+.body h2, .body h3, .body h4, .body h5, .body h6 {
+    font-weight: normal;
+    border-top: 1px solid #ccc;
+    margin-left: -1em;
+    margin-top: 2em;
+}
+
+#statistics-done-wrong h2 {
+    margin: 0;
+    border: none;
+}
+
+.section:target > h2, .section:target > h3, .section:target > h4 {
+    background-color: #FBE54E;
+}
+
+.footnote {
+    font-size: 80%;
+}
+
+.indextable dl {
+    margin: 0;
+}
+
+.epigraph {
+    border-left: none;
+}
+
+.epigraph .attribution {
+    text-align: right;
+    font-style: italic;
+}
+
+.epigraph .attribution em {
+    font-style: normal;
+}
+
+/* Admonitions */
+.admonition {
+    background-color: #F7F7F7;
+    border: 1px solid #86989B;
+    border-radius: 2px;
+    padding: 0 1em;
+}
+
+.admonition-title {
+    font-weight: bold;
+}
+
+/* Have bibliography entries show up highlighted when linked to */
+tr.footnote:target {
+    background-color: #FBE54E;
+}
+
+/* Tables */
+table, td {
+    border: none;
+}
+
+/* Sidebar */
+.sphinxsidebar {
+    float: right;
+    width: 220px;
+    margin-right: -100%;
+    font-size: 90%;
+}
+
+.sphinxsidebar h3, .sphinxsidebar h4 {
+    margin: 0
+}
+
+.bodywrapper {
+    margin-right: 220px;
+}
+
+.documentwrapper {
+    float: right;
+    width: 100%;
+}
+
+.sphinxsidebar ul {
+    margin-left: -1em;
+}
+
+a.current {
+    font-weight: bold;
+}
+
+#book_ad {
+    background-color: #EEFFCC;
+    border: 1px solid #AACC99;
+    padding: 0.5em 0.5em 0 0.5em;
+    margin-bottom: 1em;
+}
+
+#book_ad .button {
+    background-color: #50733E;
+    color: #fff;
+    border-radius: 4px;
+    border: 0 none;
+    font-weight: bold;
+    font-size: 120%;
+    padding: 6px 22px;
+}
+
+#book_ad a.button:hover  {
+    text-decoration: none;
+}
+
+#book_ad p {
+    font-size: 90%;
+}
+
+p.topless {
+    margin-top: 0;
+}
+
+/* Footer */
+.footer {
+    font-size: 80%;
+    text-align: center;
+    padding: 0.5em;
+    clear: both;
+}

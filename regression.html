@@ -1,0 +1,272 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from www.statisticsdonewrong.com/regression.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:52 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Stopping rules and regression to the mean &#8212; Statistics Done Wrong</title>
+    <link rel="stylesheet" href="_static/book.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0th',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="canonical" href="regression.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Researcher freedom: good vibrations?" href="freedom.html" />
+    <link rel="prev" title="When differences in significance aren’t significant differences" href="significant-differences.html" />
+ 
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="stopping-rules-and-regression-to-the-mean">
+<span id="stopping-rules"></span><span id="index-0"></span><h1>Stopping rules and regression to the mean<a class="headerlink" href="#stopping-rules-and-regression-to-the-mean" title="Permalink to this headline">¶</a></h1>
+<p>Medical trials are expensive. Supplying dozens of patients with experimental
+medications and tracking their symptoms over the course of months takes
+significant resources, and so many pharmaceutical companies develop “stopping
+rules,” which allow investigators to end a study early if it’s clear the
+experimental drug has a substantial effect. For example, if the trial is only
+half complete but there’s already a statistically significant difference in
+symptoms with the new medication, the researchers may terminate the study,
+rather than gathering more data to reinforce the conclusion.</p>
+<p>When poorly done, however, this can lead to numerous false positives.</p>
+<p>For example, suppose we’re comparing two groups of patients, one with a
+medication and one with a placebo. We measure the level of some protein in their
+bloodstreams as a way of seeing if the medication is working.  In this case,
+though, the medication causes no difference whatsoever: patients in both groups
+have the same average protein levels, although of course individuals have levels
+which vary slightly.</p>
+<p>We start with ten patients in each group, and gradually collect more data from
+more patients. As we go along, we do a <em>t</em> test to compare the two groups and
+see if there is a statistically significant difference between average protein
+levels. We might see a result like this simulation:</p>
+<div class="figure">
+<img alt="" src="_images/sample-size.png" />
+</div>
+<p>This plot shows the <em>p</em> value of the difference between groups as we collect
+more data, with the horizontal line indicating the <span class="math">\(p = 0.05\)</span> level of
+significance. At first, there appears to be no significant difference. Then we
+collect more data and conclude there is.  If we were to stop, we’d be misled:
+we’d believe there is a significant difference between groups when there is
+none. As we collect yet more data, we realize we were mistaken – but then a bit
+of luck leads us back to a false positive.</p>
+<p>You’d expect that the <em>p</em> value dip shouldn’t happen, since there’s no real
+difference between groups. After all, taking more data shouldn’t make our
+conclusions worse, right? And it’s true that if we run the trial again we might
+find that the groups start out with no significant difference and stay that way
+as we collect more data, or start with a huge difference and quickly regress to
+having none. But if we wait long enough and test after every data point, we will
+eventually cross <em>any</em> arbitrary line of statistical significance, even if
+there’s no real difference at all. We can’t usually collect infinite samples, so
+in practice this doesn’t always happen, but poorly implemented stopping rules
+still increase false positive rates significantly.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-simmons-2011iw">53</a></sup></span></p>
+<p>Modern clinical trials are often required to register their statistical
+protocols in advance, and generally pre-select only a few evaluation points at
+which they test their evidence, rather than testing after every
+observation. This causes only a small increase in the false positive rate, which
+can be adjusted for by carefully choosing the required significance levels and
+using more advanced statistical techniques.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-todd-2001hg">56</a></sup></span> But in fields
+where protocols are not registered and researchers have the freedom to use
+whatever methods they feel appropriate, there may be false positive demons
+lurking.</p>
+<div class="section" id="truth-inflation">
+<span id="index-1"></span><span id="id1"></span><h2>Truth inflation<a class="headerlink" href="#truth-inflation" title="Permalink to this headline">¶</a></h2>
+<p>Medical trials also tend to have inadequate statistical power to detect moderate
+differences between medications. So they want to stop as soon as they detect an
+effect, but they don’t have the power to detect effects.</p>
+<p>Suppose a medication reduces symptoms by 20% over a placebo, but the trial
+you’re using to test it does not have adequate statistical power to detect this
+difference. We know that small trials tend to have varying results: it’s easy to
+get ten lucky patients who have shorter colds than usual, but much harder to get
+ten thousand who all do.</p>
+<p>Now imagine running many copies of this trial. Sometimes you get unlucky
+patients, and so you don’t notice any statistically significant improvement from
+your drug. Sometimes your patients are exactly average, and the treatment group
+has their symptoms reduced by 20% – but you don’t have enough data to call this
+a statistically significant increase, so you ignore it. Sometimes the patients
+are lucky and have their symptoms reduced by much more than 20%, and so you stop
+the trial and say “Look! It works!”</p>
+<p>You’ve correctly concluded that your medication is effective, but you’ve
+inflated the size of its effect. You falsely believe it is much more effective
+than it really is.</p>
+<p>This effect occurs in pharmacological trials, epidemiological studies, gene
+association studies (“gene A causes condition B”), psychological studies, and in
+some of the most-cited papers in the medical literature.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-ioannidis-2008dy">30</a></sup><sup>, </sup><sup><a class="reference internal" href="zbibliography.html#citation-ioannidis-2005gy">32</a></sup></span> In fields where trials can be
+conducted quickly by many independent researchers (such as gene association
+studies), the earliest published results are often wildly contradictory, because
+small trials and a demand for statistical significance cause only the most
+extreme results to be published.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-ioannidis-2005bj">33</a></sup></span></p>
+<p>As a bonus, truth inflation can combine forces with early stopping rules. If
+most drugs in clinical trials are not quite so effective to warrant stopping the
+trial early, then many trials stopped early will be the result of lucky
+patients, not brilliant drugs – and by stopping the trial we have deprived
+ourselves of the extra data needed to tell the difference. Reviews have compared
+trials stopped early with other studies addressing the same question which did
+not stop early; in most cases, the trials stopped early exaggerated the effects
+of their tested treatments by an average of 29%.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-bassler-2010ds">3</a></sup></span></p>
+<p>Of course, we do not know The Truth about any drug being studied, so we cannot
+tell if a particular study stopped early due to luck or a particularly good
+drug. Many studies do not even publish the original intended sample size or the
+stopping rule which was used to justify terminating the study.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-montori-2005bo">43</a></sup></span> A trial’s early stoppage is not automatic evidence that
+its results are biased, but it <em>is</em> a suggestive detail.</p>
+</div>
+<div class="section" id="little-extremes">
+<span id="index-2"></span><h2>Little extremes<a class="headerlink" href="#little-extremes" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you’re in charge of public school reform. As part of your research into
+the best teaching methods, you look at the effect of school size on standardized
+test scores. Do smaller schools perform better than larger schools? Should you
+try to build many small schools or a few large schools?</p>
+<p>To answer this question, you compile a list of the highest-performing schools
+you have. The average school has about 1,000 students, but the top-scoring five
+or ten schools are almost all smaller than that. It seems that small schools do
+the best, perhaps because of their personal atmosphere where teachers can get to
+know students and help them individually.</p>
+<p>Then you take a look at the worst-performing schools, expecting them to be large
+urban schools with thousands of students and overworked teachers. Surprise!
+They’re all small schools too.</p>
+<p>What’s going on? Well, take a look at a plot of test scores vs. school size:</p>
+<div class="figure">
+<img alt="" src="_images/school-size.png" />
+</div>
+<p>Smaller schools have more widely varying average test scores, entirely because
+they have fewer students. With fewer students, there are fewer data points to
+establish the “true” performance of the teachers, and so the average scores vary
+widely. As schools get larger, test scores vary less, and in fact <em>increase</em> on
+average.</p>
+<p>This example used simulated data, but it’s based on real (and surprising)
+observations of Pennsylvania public schools.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-wainer-2007wr">59</a></sup></span></p>
+<p>Another example: In the United States, counties with the lowest rates of
+<span class="target" id="index-3"></span>kidney cancer tend to be Midwestern, Southern and Western rural
+counties. How could this be? You can think of many explanations: rural people
+get more exercise, inhale less polluted air, and perhaps lead less stressful
+lives. Perhaps these factors lower their cancer rates.</p>
+<p>On the other hand, counties with the highest rates of kidney cancer tend to be
+Midwestern, Southern and Western rural counties.</p>
+<p>The problem, of course, is that rural counties have the smallest populations. A
+single kidney cancer patient in a county with ten residents gives that county
+the highest kidney cancer rate in the nation. Small counties hence have vastly
+more variable kidney cancer rates, simply because they have so few
+residents.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-gelman-1999gi">21</a></sup></span></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo"><a href="index-2.html">
+  <img class="logo" width="220" height="330" 
+       src="_static/cover.png" alt="Logo"/>
+</a></p>
+<div id="book_ad">
+  <h3>There's a book!</h3>
+    <p class="topless">
+      The revised and expanded <cite>Statistics Done Wrong</cite>, with three times as
+      many statistical errors and examples, is
+      <a href="http://www.nostarch.com/statsdonewrong">available in print and
+        eBook!</a> An essential book for any scientist, data scientist, or statistician.
+    </p>
+    <p><a class="button" href="http://www.nostarch.com/statsdonewrong">Buy it!</a></p>
+    <p>(or use <a href="http://www.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/">Amazon</a>,
+      <a href="http://www.indiebound.org/book/9781593276201">IndieBound</a>, <a href="http://www.bookdepository.com/Statistics-Done-Wrong-Alex-Reinhart/9781593276201">Book Depository</a>,
+      or <a href="http://www.barnesandnoble.com/w/statistics-done-wrong-alex-reinhart/1120359162?ean=9781593276201">BN</a>.)</p>
+    <p>(or <a href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html">Deutsch</a>,
+    <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803">한국어</a>,
+    <a href="https://www.amazon.it/dp/885180284X/">Italiano</a>,
+    <a href="https://www.amazon.cn/dp/B01LY7GFOD/">中文 (简体)</a>,
+    <a href="http://www.cite.com.tw/book?id=75600">中文 (繁體)</a>,
+    <a href="http://www.keisoshobo.co.jp/book/b272873.html">日本語</a>.)
+    </p>
+</div>
+
+<h3><a href="index-2.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-analysis.html">An introduction to data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Statistical power and underpowered statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pseudoreplication.html">Pseudoreplication: choose your data wisely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p-value.html">The <em>p</em> value and the base rate fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significant-differences.html">When differences in significance aren’t significant differences</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Stopping rules and regression to the mean</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#truth-inflation">Truth inflation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#little-extremes">Little extremes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="freedom.html">Researcher freedom: good vibrations?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mistakes.html">Everybody makes mistakes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hiding.html">Hiding the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">What have we wrought?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-next.html">What can be done?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="https://www.statisticsdonewrong.com/search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    
+    <li><a href="significant-differences.html">Previous</a></li>
+    
+    
+    <li class="right">Next chapter: <a href="freedom.html">Researcher freedom: good vibrations?</a></li>
+
+  </ul>
+</div>
+
+  <div class="footer">
+    <a rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/"><img
+    alt="Creative Commons License" style="border-width:0"
+    src="../licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span
+    style="font-style:italic" xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Statistics Done Wrong</span> by <a xmlns:cc="http://creativecommons.org/ns#"
+    property="cc:attributionName" href="https://www.refsmmat.com/">Alex Reinhart</a> is licensed under a <a
+    rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/">Creative
+    Commons Attribution 4.0 International License</a>.
+  </div>
+  
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+
+  </body>
+
+<!-- Mirrored from www.statisticsdonewrong.com/regression.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:52 GMT -->
+</html>

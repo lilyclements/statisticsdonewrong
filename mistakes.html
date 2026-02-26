@@ -1,0 +1,207 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from www.statisticsdonewrong.com/mistakes.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:53 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Everybody makes mistakes &#8212; Statistics Done Wrong</title>
+    <link rel="stylesheet" href="_static/book.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0th',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="canonical" href="mistakes.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hiding the data" href="hiding.html" />
+    <link rel="prev" title="Researcher freedom: good vibrations?" href="freedom.html" />
+ 
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="everybody-makes-mistakes">
+<span id="mistakes"></span><h1>Everybody makes mistakes<a class="headerlink" href="#everybody-makes-mistakes" title="Permalink to this headline">¶</a></h1>
+<p>Until now, I have presumed that scientists are capable of making statistical
+computations with perfect accuracy, and only err in their choice of appropriate
+numbers to compute. Scientists may misuse the results of statistical tests or
+fail to make relevant computations, but they can at least calculate a <em>p</em> value,
+right?</p>
+<p>Perhaps not.</p>
+<p id="index-0">Surveys of statistically significant results reported in medical and
+psychological trials suggest that many <em>p</em> values are wrong, and some
+statistically insignificant results are actually significant when computed
+correctly.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-gotzsche-2006du">25</a></sup><sup>, </sup><sup><a class="reference internal" href="zbibliography.html#citation-bakker-2011ja">2</a></sup></span> Other reviews find examples
+of misclassified data, erroneous duplication of data, inclusion of the wrong
+dataset entirely, and other mixups, all concealed by papers which did not
+describe their analysis in enough detail for the errors to be easily noticed.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-baggerly-2009gk">1</a></sup><sup>, </sup><sup><a class="reference internal" href="zbibliography.html#citation-gotzsche-1989uy">26</a></sup></span></p>
+<p>Sunshine is the best disinfectant, and many scientists have called for
+experimental data to be made available through the Internet. In some fields,
+this is now commonplace: there exist gene sequencing databases, protein
+structure databanks, astronomical observation databases, and earth observation
+collections containing the contributions of thousands of scientists. Many other
+fields, however, can’t share their data due to impracticality (particle physics
+data can include many terabytes of information), privacy issues (in medical
+trials), a lack of funding or technological support, or just a desire to keep
+proprietary control of the data and all the discoveries which result from
+it. And even if the data were all available, would anyone analyze it all to spot
+errors?</p>
+<p id="index-1">Similarly, scientists in some fields have pushed towards making their
+statistical analyses available through clever technological tools. A tool called
+Sweave, for instance, makes it easy to embed statistical analyses performed
+using the popular R programming language inside papers written in LaTeX, the
+standard for scientific and mathematical publications. The result looks just
+like any scientific paper, but another scientist reading the paper and curious
+about its methods can download the source code, which shows exactly how all the
+numbers were calculated. But would scientists avail themselves of the
+opportunity?  Nobody gets scientific glory by checking code for typos.</p>
+<p>Another solution might be <span class="target" id="index-2"></span>replication. If scientists carefully recreate
+the experiments of other scientists and validate their results, it is much
+easier to rule out the possibility of a typo causing an errant
+result. Replication also weeds out fluke false positives. Many scientists claim
+that experimental replication is the heart of science: no new idea is accepted
+until it has been independently tested and retested around the world and found
+to hold water.</p>
+<p>That’s not entirely true; scientists often take previous studies for granted,
+though occasionally scientists decide to systematically re-test earlier
+works. One new project, for example, aims to reproduce papers in major
+psychology journals to determine just how many papers hold up over time – and
+what attributes of a paper predict how likely it is to stand up to
+retesting.<a class="footnote-reference" href="#reproducibility" id="id1">[1]</a> In another example, cancer researchers at Amgen
+retested 53 landmark preclinical studies in cancer research. (By “preclinical” I
+mean the studies did not involve human patients, as they were testing new and
+unproven ideas.) Despite working in collaboration with the authors of the
+original papers, the Amgen researchers could only reproduce six of the studies.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-begley-2012">5</a></sup></span> Bayer researchers have reported similar difficulties when
+testing potential new drugs found in published papers.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-prinz-2011gb">49</a></sup></span></p>
+<p>This is worrisome. Does the trend hold true for less speculative kinds of
+medical research? Apparently so: of the top-cited research articles in medicine,
+a quarter have gone untested after their publication, and a third have been
+found to be exaggerated or wrong by later research.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-ioannidis-2005gy">32</a></sup></span>
+That’s not as extreme as the Amgen result, but it makes you wonder what
+important errors still lurk unnoticed in important research. Replication is not
+as prevalent as we would like it to be, and the results are not always
+favorable.</p>
+<table class="docutils footnote" frame="void" id="reproducibility" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The Reproducibility Project, at
+<a class="reference external" href="http://openscienceframework.org/reproducibility/">http://openscienceframework.org/reproducibility/</a></td></tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo"><a href="index-2.html">
+  <img class="logo" width="220" height="330" 
+       src="_static/cover.png" alt="Logo"/>
+</a></p>
+<div id="book_ad">
+  <h3>There's a book!</h3>
+    <p class="topless">
+      The revised and expanded <cite>Statistics Done Wrong</cite>, with three times as
+      many statistical errors and examples, is
+      <a href="http://www.nostarch.com/statsdonewrong">available in print and
+        eBook!</a> An essential book for any scientist, data scientist, or statistician.
+    </p>
+    <p><a class="button" href="http://www.nostarch.com/statsdonewrong">Buy it!</a></p>
+    <p>(or use <a href="http://www.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/">Amazon</a>,
+      <a href="http://www.indiebound.org/book/9781593276201">IndieBound</a>, <a href="http://www.bookdepository.com/Statistics-Done-Wrong-Alex-Reinhart/9781593276201">Book Depository</a>,
+      or <a href="http://www.barnesandnoble.com/w/statistics-done-wrong-alex-reinhart/1120359162?ean=9781593276201">BN</a>.)</p>
+    <p>(or <a href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html">Deutsch</a>,
+    <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803">한국어</a>,
+    <a href="https://www.amazon.it/dp/885180284X/">Italiano</a>,
+    <a href="https://www.amazon.cn/dp/B01LY7GFOD/">中文 (简体)</a>,
+    <a href="http://www.cite.com.tw/book?id=75600">中文 (繁體)</a>,
+    <a href="http://www.keisoshobo.co.jp/book/b272873.html">日本語</a>.)
+    </p>
+</div>
+
+<h3><a href="index-2.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-analysis.html">An introduction to data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Statistical power and underpowered statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pseudoreplication.html">Pseudoreplication: choose your data wisely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p-value.html">The <em>p</em> value and the base rate fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significant-differences.html">When differences in significance aren’t significant differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">Stopping rules and regression to the mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="freedom.html">Researcher freedom: good vibrations?</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Everybody makes mistakes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hiding.html">Hiding the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">What have we wrought?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-next.html">What can be done?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="https://www.statisticsdonewrong.com/search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    
+    <li><a href="freedom.html">Previous</a></li>
+    
+    
+    <li class="right">Next chapter: <a href="hiding.html">Hiding the data</a></li>
+
+  </ul>
+</div>
+
+  <div class="footer">
+    <a rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/"><img
+    alt="Creative Commons License" style="border-width:0"
+    src="../licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span
+    style="font-style:italic" xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Statistics Done Wrong</span> by <a xmlns:cc="http://creativecommons.org/ns#"
+    property="cc:attributionName" href="https://www.refsmmat.com/">Alex Reinhart</a> is licensed under a <a
+    rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/">Creative
+    Commons Attribution 4.0 International License</a>.
+  </div>
+  
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+
+  </body>
+
+<!-- Mirrored from www.statisticsdonewrong.com/mistakes.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:53 GMT -->
+</html>

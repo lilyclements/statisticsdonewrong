@@ -1,0 +1,427 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from www.statisticsdonewrong.com/p-value.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:51 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The p value and the base rate fallacy &#8212; Statistics Done Wrong</title>
+    <link rel="stylesheet" href="_static/book.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0th',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="canonical" href="p-value.html" />
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="When differences in significance aren’t significant differences" href="significant-differences.html" />
+    <link rel="prev" title="Pseudoreplication: choose your data wisely" href="pseudoreplication.html" />
+ 
+  </head>
+  <body>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-p-value-and-the-base-rate-fallacy">
+<span id="index-0"></span><h1>The <em>p</em> value and the base rate fallacy<a class="headerlink" href="#the-p-value-and-the-base-rate-fallacy" title="Permalink to this headline">¶</a></h1>
+<p>You’ve already seen that <em>p</em> values are hard to interpret. Getting a
+statistically insignificant result doesn’t mean there’s no difference. What
+about getting a significant result?</p>
+<p>Let’s try an example. Suppose I am testing a hundred potential cancer
+medications. Only ten of these drugs actually work, but I don’t know which; I
+must perform experiments to find them. In these experiments, I’ll look for
+<span class="math">\(p&lt;0.05\)</span> gains over a placebo, demonstrating that the drug has a
+significant benefit.</p>
+<p>To illustrate, each square in this grid represents one drug. The blue squares
+are the drugs that work:</p>
+<div class="figure">
+<img alt="_images/drug-grids-1.png" src="_images/drug-grids-1.png" />
+</div>
+<p>As we saw, most trials can’t perfectly detect every good medication. We’ll
+assume my tests have a statistical power of 0.8. Of the ten good drugs, I will
+correctly detect around eight of them, shown in purple:</p>
+<div class="figure">
+<img alt="_images/drug-grids-2.png" src="_images/drug-grids-2.png" />
+</div>
+<p>Of the ninety ineffectual drugs, I will conclude that about 5 have significant
+effects. Why? Remember that <em>p</em> values are calculated under the assumption of no
+effect, so <span class="math">\(p = 0.05\)</span> means a 5% chance of falsely concluding that an
+ineffectual drug works.</p>
+<p>So I perform my experiments and conclude there are 13 working drugs: 8 good
+drugs and 5 I’ve included erroneously, shown in red:</p>
+<div class="figure">
+<img alt="_images/drug-grids-3.png" src="_images/drug-grids-3.png" />
+</div>
+<p>The chance of any given “working” drug being truly effectual is only 62%. If I
+were to randomly select a drug out of the lot of 100, run it through my tests,
+and discover a <span class="math">\(p &lt; 0.05\)</span> statistically significant benefit, there is only
+a 62% chance that the drug is actually effective. In statistical terms, my false
+discovery rate – the fraction of statistically significant results which are
+really false positives – is 38%.</p>
+<p>Because the <em>base rate</em> of effective cancer drugs is so low – only 10% of our
+hundred trial drugs actually work – most of the tested drugs do not work, and
+we have many opportunities for false positives. If I had the bad fortune of
+possessing a truckload of completely ineffective medicines, giving a base rate
+of 0%, there is a 0% chance that any statistically significant result is
+true. Nevertheless, I will get a <span class="math">\(p &lt; 0.05\)</span> result for 5% of the drugs in
+the truck.</p>
+<p id="index-1">You often hear people quoting <em>p</em> values as a sign that error is
+unlikely. “There’s only a 1 in 10,000 chance this result arose as a statistical
+fluke,” they say, because they got <span class="math">\(p = 0.0001\)</span>. No! This ignores the base
+rate, and is called the <em>base rate fallacy</em>. Remember how <em>p</em> values are defined:</p>
+<blockquote>
+<div>The P value is defined as the probability, under the assumption of no effect
+or no difference (the null hypothesis), of obtaining a result equal to or more
+extreme than what was actually observed.</div></blockquote>
+<p>A <em>p</em> value is calculated under the assumption that the medication <em>does not
+work</em> and tells us the probability of obtaining the data we did, or data more
+extreme than it. It does <em>not</em> tell us the chance the medication is effective.</p>
+<p>When someone uses their <em>p</em> values to say they’re probably right, remember
+this. Their study’s probability of error is almost certainly much higher. In
+fields where most tested hypotheses are false, like early drug trials (most
+early drugs don’t make it through trials), it’s likely that <em>most</em>
+“statistically significant” results with <span class="math">\(p &lt; 0.05\)</span> are actually flukes.</p>
+<p>One good example is medical diagnostic tests.</p>
+<div class="section" id="the-base-rate-fallacy-in-medical-testing">
+<span id="index-2"></span><h2>The base rate fallacy in medical testing<a class="headerlink" href="#the-base-rate-fallacy-in-medical-testing" title="Permalink to this headline">¶</a></h2>
+<p>There has been some controversy over the use of mammograms in screening breast
+cancer. Some argue that the dangers of false positive results, such as
+unnecessary biopsies, surgery and chemotherapy, outweigh the benefits of early
+cancer detection. This is a statistical question. Let’s evaluate it.</p>
+<p>Suppose 0.8% of women who get mammograms have breast cancer. In 90% of women
+with breast cancer, the mammogram will correctly detect it. (That’s the
+statistical power of the test. This is an estimate, since it’s hard to tell how
+many cancers are missed if we don’t know they’re there.) However, among women
+with no breast cancer at all, about 7% will get a positive reading on the
+mammogram, leading to further tests and biopsies and so on. If you get a
+positive mammogram result, what are the chances you have breast cancer?</p>
+<p>Ignoring the chance that you, the reader, are male,<a class="footnote-reference" href="#male" id="id1">[1]</a> the answer is
+9%.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-kramer-2005in">35</a></sup></span></p>
+<p>Despite the test only giving false positives for 7% of cancer-free women,
+analogous to testing for <span class="math">\(p &lt; 0.07\)</span>, 91% of positive tests are false
+positives.</p>
+<p>How did I calculate this? It’s the same method as the cancer drug
+example. Imagine 1,000 randomly selected women who choose to get
+mammograms. Eight of them (0.8%) have breast cancer. The mammogram correctly
+detects 90% of breast cancer cases, so about seven of the eight women will have
+their cancer discovered. However, there are 992 women without breast cancer, and
+7% will get a false positive reading on their mammograms, giving us 70 women
+incorrectly told they have cancer.</p>
+<p>In total, we have 77 women with positive mammograms, 7 of whom actually have
+breast cancer. Only 9% of women with positive mammograms have breast cancer.</p>
+<p>If you administer questions like this one to statistics students and scientific
+methodology instructors, more than a third fail.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-kramer-2005in">35</a></sup></span> If you
+ask doctors, two thirds fail.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-bramwell-2006er">10</a></sup></span> They erroneously
+conclude that a <span class="math">\(p &lt; 0.05\)</span> result implies a 95% chance that the result is
+true – but as you can see in these examples, the likelihood of a positive
+result being true depends on <em>what proportion of hypotheses tested are
+true</em>. And we are very fortunate that only a small proportion of women have
+breast cancer at any given time.</p>
+<p>Examine introductory statistical textbooks and you will often find the same
+error. <em>P</em> values are counterintuitive, and the base rate fallacy is everywhere.</p>
+</div>
+<div class="section" id="taking-up-arms-against-the-base-rate-fallacy">
+<span id="base-rate-gun"></span><span id="index-3"></span><h2>Taking up arms against the base rate fallacy<a class="headerlink" href="#taking-up-arms-against-the-base-rate-fallacy" title="Permalink to this headline">¶</a></h2>
+<p>You don’t have to be performing advanced cancer research or early cancer
+screenings to run into the base rate fallacy. What if you’re doing social
+research? You’d like to survey Americans to find out how often they use guns in
+self-defense. Gun control arguments, after all, center on the right to
+self-defense, so it’s important to determine whether guns are commonly used for
+defense and whether that use outweighs the downsides, such as homicides.</p>
+<p>One way to gather this data would be through a survey. You could ask a
+representative sample of Americans whether they own guns and, if so, whether
+they’ve used the guns to defend their homes in burglaries or defend themselves
+from being mugged. You could compare these numbers to law enforcement statistics
+of gun use in homicides and make an informed decision about whether the benefits
+outweigh the downsides.</p>
+<p>Such surveys have been done, with interesting results. One 1992 telephone survey
+estimated that American civilians use guns in self-defense up to 2.5 million
+times every year – that is, about 1% of American adults have defended
+themselves with firearms. Now, 34% of these cases were in burglaries, giving us
+845,000 burglaries stymied by gun owners. But in 1992, there were only 1.3
+million burglaries committed while someone was at home. Two thirds of these
+occurred while the homeowners were asleep and were discovered only after the
+burglar had left. That leaves 430,000 burglaries involving homeowners who were
+at home and awake to confront the burglar – 845,000 of which, we are led to
+believe, were stymied by gun-toting residents.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-hemenway-1997up">28</a></sup></span></p>
+<p>Whoops.</p>
+<p>What happened? Why did the survey overestimate the use of guns in self-defense?
+Well, for the same reason that mammograms overestimate the incidence of breast
+cancer: there are far more opportunities for false positives than false
+negatives. If 99.9% of people have never used a gun in self-defense, but 1% of
+those people will answer “yes” to any question for fun, and 1% want to look
+manlier, and 1% misunderstand the question, then you’ll end up <em>vastly</em>
+overestimating the use of guns in self-defense.</p>
+<p>What about false negatives? Could this effect be balanced by people who say “no”
+even though they gunned down a mugger last week? No. If very few people
+genuinely use a gun in self-defense, then there are very few opportunities for
+false negatives. They’re overwhelmed by the false positives.</p>
+<p>This is exactly analogous to the cancer drug example earlier. Here, <em>p</em> is the
+probability that someone will falsely claim they’ve used a gun in
+self-defense. Even if <em>p</em> is small, your final answer will be wildly wrong.</p>
+<p>To lower <em>p</em>, criminologists make use of more detailed surveys. The National
+Crime Victimization surveys, for instance, use detailed sit-down interviews with
+researchers where respondents are asked for details about crimes and their use
+of guns in self-defense. With far greater detail in the survey, researchers can
+better judge whether the incident meets their criteria for self-defense. The
+results are far smaller – something like 65,000 incidents per year, not
+millions.  There’s a chance that survey respondents underreport such incidents,
+but a much smaller chance of massive overestimation.</p>
+</div>
+<div class="section" id="if-at-first-you-don-t-succeed-try-try-again">
+<span id="multiple-comparisons"></span><span id="index-4"></span><h2>If at first you don’t succeed, try, try again<a class="headerlink" href="#if-at-first-you-don-t-succeed-try-try-again" title="Permalink to this headline">¶</a></h2>
+<p>The base rate fallacy shows us that false positives are much more likely than
+you’d expect from a <span class="math">\(p &lt; 0.05\)</span> criterion for significance. Most modern
+research doesn’t make one significance test, however; modern studies compare the
+effects of a variety of factors, seeking to find those with the most significant
+effects.</p>
+<p>For example, imagine testing whether jelly beans cause acne by testing the
+effect of every single jelly bean color on acne:</p>
+<div class="figure" id="id2">
+<img alt="_images/xkcd-significant.png" src="_images/xkcd-significant.png" />
+<p class="caption"><span class="caption-text">Cartoon from xkcd, by Randall Munroe. <a class="reference external" href="http://xkcd.com/882/">http://xkcd.com/882/</a></span></p>
+</div>
+<p>As you can see, making multiple comparisons means multiple chances for a false
+positive. For example, if I test 20 jelly bean flavors which do not cause acne
+at all, and look for a correlation at <span class="math">\(p &lt; 0.05\)</span> significance, I have a
+64% chance of a false positive result.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-smith-1987uz">54</a></sup></span> If I test 45
+materials, the chance of false positive is as high as 90%.</p>
+<p>It’s easy to make multiple comparisons, and it doesn’t have to be as obvious as
+testing twenty potential medicines. Track the symptoms of a dozen patients for a
+dozen weeks and test for significant benefits during any of those weeks: bam,
+that’s twelve comparisons. Check for the occurrence of twenty-three potential
+dangerous side effects: alas, you have sinned. Send out a ten-page survey asking
+about nuclear power plant proximity, milk consumption, age, number of male
+cousins, favorite pizza topping, current sock color, and a few dozen other
+factors for good measure, and you’ll find that <em>something</em> causes cancer. Ask
+enough questions and it’s inevitable.</p>
+<p>A survey of medical trials in the 1980s found that the average trial made 30
+therapeutic comparisons. In more than half of the trials, the researchers had
+made so many comparisons that a false positive was highly likely, and the
+statistically significant results they did report were cast into doubt: they may
+have found a statistically significant effect, but it could just have easily
+been a false positive.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-smith-1987uz">54</a></sup></span></p>
+<p>There exist techniques to correct for multiple comparisons. For example, the
+Bonferroni correction method says that if you make <span class="math">\(n\)</span> comparisons in the
+trial, your criterion for significance should be <span class="math">\(p &lt; 0.05/n\)</span>. This lowers
+the chances of a false positive to what you’d see from making only one
+comparison at <span class="math">\(p &lt; 0.05\)</span>. However, as you can imagine, this reduces
+statistical power, since you’re demanding much stronger correlations before you
+conclude they’re statistically significant. It’s a difficult tradeoff, and
+tragically few papers even consider it.</p>
+</div>
+<div class="section" id="red-herrings-in-brain-imaging">
+<span id="red-herrings"></span><span id="index-5"></span><h2>Red herrings in brain imaging<a class="headerlink" href="#red-herrings-in-brain-imaging" title="Permalink to this headline">¶</a></h2>
+<p>Neuroscientists do massive numbers of comparisons regularly. They often perform
+fMRI studies, where a three-dimensional image of the brain is taken before and
+after the subject performs some task. The images show blood flow in the brain,
+revealing which parts of the brain are most active when a person performs
+different tasks.</p>
+<p>But how do you decide which regions of the brain are active during the task? A
+simple method is to divide the brain image into small cubes called voxels. A
+voxel in the “before” image is compared to the voxel in the “after” image, and
+if the difference in blood flow is significant, you conclude that part of the
+brain was involved in the task. Trouble is, there are thousands of voxels to
+compare and many opportunities for false positives.</p>
+<p>One study, for instance, tested the effects of an “open-ended mentalizing task”
+on participants. Subjects were shown “a series of photographs depicting human
+individuals in social situations with a specified emotional valence,” and asked
+to “determine what emotion the individual in the photo must have been
+experiencing.” You can imagine how various emotional and logical centers of the
+brain would light up during this test.</p>
+<p>The data was analyzed, and certain brain regions found to change activity during
+the task. Comparison of images made before and after the mentalizing task showed
+a <span class="math">\(p = 0.001\)</span> difference in a <span class="math">\(81 \text{mm}^3\)</span> cluster in the brain.</p>
+<p>The study participants? Not college undergraduates paid $10 for their time, as
+is usual. No, the test subject was one 3.8-pound Atlantic salmon, which “was not
+alive at the time of scanning.”<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-bennett-2010uh">8</a></sup></span></p>
+<p>Of course, most neuroscience studies are more sophisticated than this; there are
+methods of looking for clusters of voxels which all change together, along with
+techniques for controlling the rate of false positives even when thousands of
+statistical tests are made. These methods are now widespread in the neuroscience
+literature, and few papers make such simple errors as I
+described. Unfortunately, almost every paper tackles the problem differently; a
+review of 241 fMRI studies found that they performed 223 unique analysis
+strategies, which, as we will discuss later, <a class="reference internal" href="freedom.html#freedom"><span class="std std-ref">gives the researchers great
+flexibility</span></a> to achieve statistically significant results.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-carp-2012ba">13</a></sup></span></p>
+</div>
+<div class="section" id="controlling-the-false-discovery-rate">
+<span id="false-discovery"></span><span id="index-6"></span><h2>Controlling the false discovery rate<a class="headerlink" href="#controlling-the-false-discovery-rate" title="Permalink to this headline">¶</a></h2>
+<p>I mentioned earlier that techniques exist to correct for multiple
+comparisons. The Bonferroni procedure, for instance, says that you can get the
+right false positive rate by looking for <span class="math">\(p &lt; 0.05/n\)</span>, where <span class="math">\(n\)</span> is
+the number of statistical tests you’re performing. If you perform a study which
+makes twenty comparisons, you can use a threshold of <span class="math">\(p &lt; 0.0025\)</span> to be
+assured that there is only a 5% chance you will falsely decide a nonexistent
+effect is statistically significant.</p>
+<p>This has drawbacks. By lowering the <em>p</em> threshold required to declare a result
+statistically significant, you decrease your statistical power greatly, and fail
+to detect true effects as well as false ones. There are more sophisticated
+procedures than the Bonferroni correction which take advantage of certain
+statistical properties of the problem to improve the statistical power, but they
+are not magic solutions.</p>
+<p>Worse, they don’t spare you from the base rate fallacy. You can still be misled
+by your <em>p</em> threshold and falsely claim there’s “only a 5% chance I’m wrong” –
+you just eliminate some of the false positives. A scientist is more interested
+in the false discovery rate: what fraction of my statistically significant
+results are false positives? Is there a statistical test that will let me
+control this fraction?</p>
+<p>For many years the answer was simply “no.” As you saw in the section on the base
+rate fallacy, we can compute the false discovery rate if we make an assumption
+about how many of our tested hypotheses are true – but we’d rather find that
+out from the data, rather than guessing.</p>
+<p>In 1995, Benjamini and Hochberg provided a better answer. They devised an
+exceptionally simple procedure which tells you which <em>p</em> values to consider
+statistically significant. I’ve been saving you from mathematical details so
+far, but to illustrate just how simple the procedure is, here it is:</p>
+<ol class="arabic simple">
+<li>Perform your statistical tests and get the <em>p</em> value for each. Make a list
+and sort it in ascending order.</li>
+<li>Choose a false-discovery rate and call it <em>q</em>. Call the number of statistical
+tests <em>m</em>.</li>
+<li>Find the largest <em>p</em> value such that <span class="math">\(p \leq i q/m\)</span>, where <em>i</em> is the
+<em>p</em> value’s place in the sorted list.</li>
+<li>Call that <em>p</em> value and all smaller than it statistically significant.</li>
+</ol>
+<p>You’re done! The procedure guarantees that out of all statistically significant
+results, no more than <em>q</em> percent will be false positives.<span class="citation"><sup><a class="reference internal" href="zbibliography.html#citation-benjamini-1995ws">7</a></sup></span></p>
+<p>The Benjamini-Hochberg procedure is fast and effective, and it has been widely
+adopted by statisticians and scientists in certain fields. It usually provides
+better statistical power than the Bonferroni correction and friends while giving
+more intuitive results. It can be applied in many different situations, and
+variations on the procedure provide better statistical power when testing
+certain kinds of data.</p>
+<p>Of course, it’s not perfect. In certain strange situations, the
+Benjamini-Hochberg procedure gives silly results, and it has been mathematically
+shown that it is always possible to beat it in controlling the false discovery
+rate. But it’s a start, and it’s much better than nothing.</p>
+<table class="docutils footnote" frame="void" id="male" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Interestingly, being male doesn’t exclude you from getting breast
+cancer; it just makes it exceedingly unlikely.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo"><a href="index-2.html">
+  <img class="logo" width="220" height="330" 
+       src="_static/cover.png" alt="Logo"/>
+</a></p>
+<div id="book_ad">
+  <h3>There's a book!</h3>
+    <p class="topless">
+      The revised and expanded <cite>Statistics Done Wrong</cite>, with three times as
+      many statistical errors and examples, is
+      <a href="http://www.nostarch.com/statsdonewrong">available in print and
+        eBook!</a> An essential book for any scientist, data scientist, or statistician.
+    </p>
+    <p><a class="button" href="http://www.nostarch.com/statsdonewrong">Buy it!</a></p>
+    <p>(or use <a href="http://www.amazon.com/Statistics-Done-Wrong-Woefully-Complete/dp/1593276206/">Amazon</a>,
+      <a href="http://www.indiebound.org/book/9781593276201">IndieBound</a>, <a href="http://www.bookdepository.com/Statistics-Done-Wrong-Alex-Reinhart/9781593276201">Book Depository</a>,
+      or <a href="http://www.barnesandnoble.com/w/statistics-done-wrong-alex-reinhart/1120359162?ean=9781593276201">BN</a>.)</p>
+    <p>(or <a href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html">Deutsch</a>,
+    <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803">한국어</a>,
+    <a href="https://www.amazon.it/dp/885180284X/">Italiano</a>,
+    <a href="https://www.amazon.cn/dp/B01LY7GFOD/">中文 (简体)</a>,
+    <a href="http://www.cite.com.tw/book?id=75600">中文 (繁體)</a>,
+    <a href="http://www.keisoshobo.co.jp/book/b272873.html">日本語</a>.)
+    </p>
+</div>
+
+<h3><a href="index-2.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-analysis.html">An introduction to data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Statistical power and underpowered statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pseudoreplication.html">Pseudoreplication: choose your data wisely</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The <em>p</em> value and the base rate fallacy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-base-rate-fallacy-in-medical-testing">The base rate fallacy in medical testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#taking-up-arms-against-the-base-rate-fallacy">Taking up arms against the base rate fallacy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#if-at-first-you-don-t-succeed-try-try-again">If at first you don’t succeed, try, try again</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#red-herrings-in-brain-imaging">Red herrings in brain imaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controlling-the-false-discovery-rate">Controlling the false discovery rate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="significant-differences.html">When differences in significance aren’t significant differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">Stopping rules and regression to the mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="freedom.html">Researcher freedom: good vibrations?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mistakes.html">Everybody makes mistakes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hiding.html">Hiding the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">What have we wrought?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-next.html">What can be done?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="https://www.statisticsdonewrong.com/search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    
+    <li><a href="pseudoreplication.html">Previous</a></li>
+    
+    
+    <li class="right">Next chapter: <a href="significant-differences.html">When differences in significance aren’t significant differences</a></li>
+
+  </ul>
+</div>
+
+  <div class="footer">
+    <a rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/"><img
+    alt="Creative Commons License" style="border-width:0"
+    src="../licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span
+    style="font-style:italic" xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Statistics Done Wrong</span> by <a xmlns:cc="http://creativecommons.org/ns#"
+    property="cc:attributionName" href="https://www.refsmmat.com/">Alex Reinhart</a> is licensed under a <a
+    rel="license"
+    href="https://creativecommons.org/licenses/by/4.0/">Creative
+    Commons Attribution 4.0 International License</a>.
+  </div>
+  
+    <div class="footer" role="contentinfo">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+
+  </body>
+
+<!-- Mirrored from www.statisticsdonewrong.com/p-value.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 Feb 2026 14:54:52 GMT -->
+</html>

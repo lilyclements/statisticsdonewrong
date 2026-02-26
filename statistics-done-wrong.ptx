@@ -1,0 +1,2932 @@
+<pretext xml:lang="en">
+  <book xml:id="statistics-done-wrong">
+    <title>Statistics Done Wrong</title>
+    <author>
+      <personname>
+        <firstname>Alex</firstname>
+        <surname>Reinhart</surname>
+      </personname>
+    </author>
+
+    <chapter xml:id="ch-statistics-done-wrong">
+      <title>Statistics Done Wrong (Online Edition)</title>
+      <p>Adapted from the online version of <c>Statistics Done Wrong</c> by Alex Reinhart, licensed under CC-BY 4.0. Original available at <url href="https://www.statisticsdonewrong.com/">https://www.statisticsdonewrong.com/</url>.</p>
+
+      <section xml:id="sec-conclusion">
+        <title>Conclusion<a href="#conclusion" class="headerlink"</title>
+        <p>title="Permalink to this headline">¶</a></p>
+        <p>Beware false confidence. You may soon develop a smug sense of
+satisfaction that <em>your</em> work doesn’t screw up like everyone else’s. But
+I have not given you a thorough introduction to the mathematics of data
+analysis. There are many ways to foul up statistics beyond these simple
+conceptual errors.</p>
+        <p>Errors will occur often, because somehow, few undergraduate science
+degrees or medical schools require courses in statistics and
+experimental design – and some introductory statistics courses skip over
+issues of statistical power and multiple inference. This is seen as
+acceptable despite the paramount role of data and statistical analysis
+in the pursuit of modern science; we wouldn’t accept doctors who have no
+experience with prescription medication, so why do we accept scientists
+with no training in statistics? Scientists need formal statistical
+training and advice. To quote:</p>
+        <p>> “To consult the statistician after an experiment is finished is often
+> merely to ask him to conduct a post mortem examination. He can perhaps
+> say what the experiment died of.”
+>
+> —R. A. Fisher, popularizer of the <em>p</em> value</p>
+        <p>Journals may choose to reject research with poor-quality statistical
+analyses, and new guidelines and protocols may eliminate some problems,
+but until we have scientists adequately trained in the principles of
+statistics, experimental design and data analysis will not be improved.
+The all-consuming quest for statistical significance will only continue.</p>
+        <p>Change will not be easy. Rigorous statistical standards don’t come free:
+if scientists start routinely performing statistical power computations,
+for example, they’ll soon discover they need vastly larger sample sizes
+to reach solid conclusions. Clinical trials are not free, and more
+expensive research means fewer published trials. You might object that
+scientific progress will be slowed needlessly – but isn’t it worse to
+build our progress on a foundation of unsound results?</p>
+        <p>To any science students: invest in a statistics course or two while you
+have the chance. To researchers: invest in training, a good book, and
+statistical advice. And please, the next time you hear someone say “The
+result was significant with <span class="math">\\p &lt; 0.05\\</span>,
+so there’s only a 1 in 20 chance it’s a fluke!”, please beat them over
+the head with a statistics textbook for me.</p>
+        <p><em>Disclaimer:</em> The advice in this guide cannot substitute for the
+advice of a trained statistical professional. If you think you’re
+suffering from any serious statistical error, please consult a
+statistician immediately. I shall not have any liability from any injury
+to your dignity, statistical error or misconception suffered as a result
+of your use of this website.</p>
+        <p>Use of this guide to justify rejecting the results of a scientific study
+without reviewing the evidence in any detail whatsoever is grounds for
+being slapped upside the head with a very large statistics textbook.
+This guide should help you find statistical errors, not allow you to
+selectively ignore science you don’t like.</p>
+      </section>
+
+      <section xml:id="sec-data-analysis">
+        <title>An introduction to data analysis<a href="#an-introduction-to-data-analysis" class="headerlink"</title>
+        <p>title="Permalink to this headline">¶</a></p>
+        <p>Much of experimental science comes down to measuring changes. Does one
+medicine work better than another? Do cells with one version of a gene
+synthesize more of an enzyme than cells with another version? Does one
+kind of signal processing algorithm detect pulsars better than another?
+Is one catalyst more effective at speeding a chemical reaction than
+another?</p>
+        <p>Much of statistics, then, comes down to making judgments about these
+kinds of differences. We talk about “statistically significant
+differences” because statisticians have devised ways of telling if the
+difference between two measurements is really big enough to ascribe to
+anything but chance.</p>
+        <p>Suppose you’re testing cold medicines. Your new medicine promises to cut
+the duration of cold symptoms by a day. To prove this, you find twenty
+patients with colds and give half of them your new medicine and half a
+placebo. Then you track the length of their colds and find out what the
+average cold length was with and without the medicine.</p>
+        <p>But all colds aren’t identical. Perhaps the average cold lasts a week,
+but some last only a few days, and others drag on for two weeks or more,
+straining the household Kleenex supply. It’s possible that the group of
+ten patients receiving genuine medicine will be the unlucky types to get
+two-week colds, and so you’ll falsely conclude that the medicine makes
+things worse. How can you tell if you’ve proven your medicine works,
+rather than just proving that some patients are unlucky?</p>
+        <p><span id="p-values"></span><span id="index-0"></span></p>
+        <p><p><em>The power of <em>p</em> values<a href="#the-power-of-p-values" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Statistics provides the answer. If we know the <em>distribution</em> of typical
+cold cases – roughly how many patients tend to have short colds, or long
+colds, or average colds – we can tell how likely it is for a random
+sample of cold patients to have cold lengths all shorter than average,
+or longer than average, or exactly average. By performing a statistical
+test, we can answer the question “If my medication were completely
+ineffective, what are the chances I’d see data like what I saw?”</p>
+        <p>That’s a bit tricky, so read it again.</p>
+        <p>Intuitively, we can see how this might work. If I only test the
+medication on one person, it’s unsurprising if he has a shorter cold
+than average – about half of patients have colds shorter than average.
+If I test the medication on ten million patients, it’s pretty damn
+unlikely that <em>all</em> of them will have shorter colds than average,
+<em>unless my medication works.</em></p>
+        <p>The common statistical tests used by scientists produce a number called
+the <em>p</em> value that quantifies this. Here’s how it’s defined:</p>
+        <p>> The P value is defined as the probability, under the assumption of no
+> effect or no difference (the null hypothesis), of obtaining a result
+> equal to or more extreme than what was actually
+> observed.<span class="citation"><sup><a href="zbibliography.html#citation-goodman-1999tx"
+> class="reference internal">24</a></sup></span></p>
+        <p>So if I give my medication to 100 patients and find that their colds are
+a day shorter on average, the <em>p</em> value of this result is the chance
+that, if my medication didn’t do anything at all, my 100 patients would
+randomly have, on average, day-or-more-shorter colds. Obviously, the <em>p</em>
+value depends on the size of the effect – colds shorter by four days are
+less likely than colds shorter by one day – and the number of patients I
+test the medication on.</p>
+        <p>That’s a tricky concept to wrap your head around. A <em>p</em> value is not a
+measure of how right you are, or how significant the difference is; it’s
+a measure of <em>how surprised you should be</em> if there is no actual
+difference between the groups, but you got data suggesting there is. A
+bigger difference, or one backed up by more data, suggests more surprise
+and a smaller <em>p</em> value.</p>
+        <p>It’s not easy to translate that into an answer to the question “is there
+really a difference?” Most scientists use a simple rule of thumb: if <em>p</em>
+is less than 0.05, there’s only a 5% chance of obtaining this data
+unless the medication really works, so we will call the difference
+between medication and placebo “significant.” If <em>p</em> is larger, we’ll
+call the difference insignificant.</p>
+        <p>But there are limitations. The <em>p</em> value is a measure of surprise, not a
+measure of the size of the effect. I can get a tiny <em>p</em> value by either
+measuring a huge effect – “this medicine makes people live four times
+longer” – or by measuring a tiny effect with great certainty.
+Statistical significance does not mean your result has any <em>practical</em>
+significance.</p>
+        <p>Similarly, statistical <em>in</em>significance is hard to interpret. I could
+have a perfectly good medicine, but if I test it on ten people, I’d be
+hard-pressed to tell the difference between a real improvement in the
+patients and plain good luck. Alternately, I might test it on thousands
+of people, but the medication only shortens colds by three minutes, and
+so I’m simply incapable of detecting the difference. A statistically
+insignificant difference does not mean there is no difference at all.</p>
+        <p>There’s no mathematical tool to tell you if your hypothesis is true; you
+can only see whether it is consistent with the data, and if the data is
+sparse or unclear, your conclusions are uncertain.</p>
+        <p>But we can’t let that stop us.</p>
+      </section>
+
+      <section xml:id="sec-freedom">
+        <title>freedom</title>
+        <p><span id="freedom"></span><span id="index-0"></span></p>
+        <p># Researcher freedom: good vibrations?<a href="#researcher-freedom-good-vibrations" class="headerlink"
+title="Permalink to this headline">¶</a></p>
+        <p>There’s a common misconception that statistics is boring and monotonous.
+Collect lots of data, plug the numbers into Excel or SPSS or R, and beat
+the software with a stick until it produces some colorful charts and
+graphs. Done! All the statistician must do is read off the results.</p>
+        <p>But one must choose <em>which</em> commands to use. Two researchers attempting
+to answer the same question may perform different statistical analyses
+entirely. There are many decisions to make:</p>
+        <p>1.  Which variables do I adjust for? In a medical trial, for instance,
+    you might control for patient age, gender, weight, BMI, previous
+    medical history, smoking, drug use, or for the results of medical
+    tests done before the start of the study. Which of these factors are
+    important, and which can be ignored?
+2.  Which cases do I exclude? If I’m testing diet plans, maybe I want to
+    exclude test subjects who came down with uncontrollable diarrhea
+    during the trial, since their results will be abnormal.
+3.  What do I do with outliers? There will always be some results which
+    are out of the ordinary, for reasons known or unknown, and I may
+    want to exclude them or analyze them specially. Which cases count as
+    outliers, and what do I do with them?
+4.  How do I define groups? For example, I may want to split patients
+    into “overweight”, “normal”, and “underweight” groups. Where do I
+    draw the lines? What do I do with a muscular bodybuilder whose BMI
+    is in the “overweight” range?
+5.  What about missing data? Perhaps I’m testing cancer remission rates
+    with a new drug. I run the trial for five years, but some patients
+    will have tumors reappear after six years, or eight years. My data
+    does not include their recurrence. How do I account for this when
+    measuring the effectiveness of the drug?
+6.  How much data should I collect? Should I stop when I have a
+    definitive result, or continue as planned until I’ve collected all
+    the data?
+7.  How do I measure my outcomes? A medication could be evaluated with
+    subjective patient surveys, medical test results, prevalence of a
+    certain symptom, or measures such as duration of illness.</p>
+        <p>Producing results can take hours of exploration and analysis to see
+which procedures are most appropriate. Papers usually explain the
+statistical analysis performed, but don’t always explain why the
+researchers chose one method over another, or explain what the results
+would be had the researchers chosen a different method. Researchers are
+free to choose whatever methods they feel appropriate – and while they
+may make the right choices, what would happen if they analyzed the data
+differently?</p>
+        <p>In simulations, it’s possible to get effect sizes different by a factor
+of two simply by adjusting for different variables, excluding different
+sets of cases, and handling outliers
+differently.<span class="citation"><sup><a href="zbibliography.html#citation-ioannidis-2008dy"
+class="reference internal">30</a></sup></span> The effect size is that
+all-important number which tells you how much of a difference your
+medication makes. So apparently, being free to analyze how you want
+gives you enormous control over your results!</p>
+        <p>The most concerning consequence of this statistical freedom is that
+researchers may choose the statistical analysis most favorable to them,
+arbitrarily producing statistically significant results by playing with
+the data until something emerges. Simulation suggests that false
+positive rates can jump to over 50% for a given dataset just by letting
+researchers try different statistical analyses until one
+works.<span class="citation"><sup><a href="zbibliography.html#citation-simmons-2011iw"
+class="reference internal">53</a></sup></span></p>
+        <p>Medical researchers have devised ways of preventing this. Researchers
+are often required to draft a <span id="index-1"
+class="target"></span>clinical trial protocol, explaining how the data
+will be collected and analyzed. Since the protocol is drafted before the
+researchers see any data, they can’t possibly craft their analysis to be
+most favorable to them. Unfortunately, many studies depart from their
+protocols and perform different analysis, allowing for researcher bias
+to creep
+in.<span class="citation"><sup><a href="zbibliography.html#citation-chan-2008bb"
+class="reference internal">15</a>,</sup>
+<sup><a href="zbibliography.html#citation-chan-2004gm"
+class="reference internal">14</a></sup></span> Many other scientific
+fields have no protocol publication requirement at all.</p>
+        <p>The proliferation of statistical techniques has given us many useful
+tools, but it seems they have been put to use as blunt objects. One must
+simply beat the data until it confesses.</p>
+      </section>
+
+      <section xml:id="sec-genindex">
+        <title>Index</title>
+        <p>[<em>B</em>](#B) | [<em>C</em>](#C) | [<em>D</em>](#D) | [<em>F</em>](#F) | [<em>K</em>](#K) |
+[<em>M</em>](#M) | [<em>O</em>](#O) | [<em>P</em>](#P) | [<em>R</em>](#R) | [<em>S</em>](#S) |
+[<em>T</em>](#T) | [<em>V</em>](#V) | [<em>W</em>](#W)</p>
+        <p><em>B</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="p-value.html#index-1">base rate fallacy</a>
+<ul>
+<li><a href="p-value.html#index-3">gun use</a></li>
+<li><a href="p-value.html#index-2">mammograms</a></li>
+</ul></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>C</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="freedom.html#index-1">clinical trial protocol</a></li>
+</ul></td>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="results.html#index-3">confidence interval</a>, <a
+href="significant-differences.html#index-0">[1]</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>D</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="regression.html#index-2">de Moivre's equation</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>F</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="p-value.html#index-6">false discovery rate</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>K</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="regression.html#index-3">kidney cancer</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>M</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="p-value.html#index-2">mammograms</a></li>
+<li><a href="results.html#index-2">meta-analyses</a></li>
+</ul></td>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="p-value.html#index-4">multiple comparisons</a>
+<ul>
+<li><a href="p-value.html#index-5">Atlantic salmon</a></li>
+<li><a href="p-value.html#index-6">false discovery rate</a></li>
+</ul></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>O</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="results.html#index-0">oncological ontology</a></li>
+</ul></td>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="hiding.html#index-0">open data</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>P</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="data-analysis.html#index-0"><strong>p value</strong></a>
+<ul>
+<li><a href="p-value.html#index-0">base rate fallacy</a></li>
+<li><a href="hiding.html#index-1">errors in calculation</a>, <a
+href="mistakes.html#index-0">[1]</a></li>
+<li><a href="regression.html#index-0">in stopping rules</a></li>
+</ul></li>
+<li><a href="power.html#index-0">power</a>
+<ul>
+<li><a href="power.html#index-1">coin flip</a></li>
+<li><a href="results.html#index-3">psychic powers</a></li>
+<li><a href="power.html#index-2">right turn on red</a></li>
+<li><a href="regression.html#index-1">truth inflation</a></li>
+</ul></li>
+</ul></td>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="power.html#index-1">power curve</a></li>
+<li><a href="pseudoreplication.html#index-0">pseudoreplication</a></li>
+<li><a href="results.html#index-3">psychic powers</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>R</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="mistakes.html#index-2">replication</a></li>
+<li><a href="mistakes.html#index-1">reproducible research</a></li>
+</ul></td>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="freedom.html#index-0">researcher freedom</a></li>
+<li><a href="power.html#index-2">right turn on red</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>S</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="regression.html#index-2">sample size</a></li>
+<li><a href="results.html#index-1">schizophrenia</a></li>
+<li><a href="significant-differences.html#index-0">standard
+deviation</a></li>
+<li><a href="significant-differences.html#index-0">standard
+error</a></li>
+</ul></td>
+<td style="width: 33%; vertical-align: top"><ul>
+<li>statistical power
+<ul>
+<li>see power</li>
+</ul></li>
+<li><a href="regression.html#index-0">stopping rules</a>
+<ul>
+<li><a href="hiding.html#index-2">omitted</a></li>
+</ul></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>T</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="regression.html#index-1">truth inflation</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>V</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li><a href="freedom.html#index-0">vibration of effects</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+        <p><em>W</em></p>
+        <p><table class="indextable genindextable" style="width: 100%">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="width: 33%; vertical-align: top"><ul>
+<li>winner's curse
+<ul>
+<li>see truth inflation</li>
+</ul></li>
+</ul></td>
+</tr>
+</tbody>
+</table></p>
+      </section>
+
+      <section xml:id="sec-hiding">
+        <title>hiding</title>
+        <p><span id="hiding-data"></span><span id="index-0"></span></p>
+        <p># Hiding the data<a href="#hiding-the-data" class="headerlink"
+title="Permalink to this headline">¶</a></p>
+        <p>> “Given enough eyeballs, all bugs are shallow.”
+>
+> —Eric S. Raymond</p>
+        <p>We’ve talked about the
+<a href="mistakes.html#mistakes" class="reference internal"><span
+class="std std-ref">common mistakes</span></a> made by scientists, and
+how the best way to spot them is a bit of outside scrutiny. Peer review
+provides some of this scrutiny, but a peer reviewer doesn’t have the
+time to extensively re-analyze data and read code for typos – reviewers
+can only check that the methodology makes good sense. Sometimes they
+spot obvious errors, but subtle problems are usually
+missed.<span class="citation"><sup><a href="zbibliography.html#citation-schroter-2008hw"
+class="reference internal">52</a></sup></span></p>
+        <p>This is why many journals and professional societies require researchers
+to make their data available to other scientists on request. Full
+datasets are usually too large to print in the pages of a journal, so
+authors report their results and send the complete data to other
+scientists if they ask for a copy. Perhaps they will find an error or a
+pattern the original scientists missed.</p>
+        <p>Or so it goes in theory. In 2005, Jelte Wicherts and colleagues at the
+University of Amsterdam decided to analyze every recent article in
+several prominent journals of the American Psychological Association to
+learn about their statistical methods. They chose the APA partly because
+it requires authors to agree to share their data with other
+psychologists seeking to verify their claims.</p>
+        <p>Of the 249 studies they sought data for, they had only received data for
+64 six months later. Almost three quarters of study authors never sent
+their
+data.<span class="citation"><sup><a href="zbibliography.html#citation-wicherts-2006jg"
+class="reference internal">61</a></sup></span></p>
+        <p>Of course, scientists are busy people, and perhaps they simply didn’t
+have the time to compile their datasets, produce documents describing
+what each variable means and how it was measured, and so on.</p>
+        <p>Wicherts and his colleagues decided they’d test this. They trawled
+through all the studies looking for common errors which could be spotted
+by reading the paper, such as inconsistent statistical results, misuse
+of various statistical tests, and ordinary typos. At least half of the
+papers had an error, usually minor, but 15% reported at least one
+statistically significant result which was only significant because of
+an error.</p>
+        <p>Next, they looked for a correlation between these errors and an
+unwillingness to share data. There was a clear relationship. Authors who
+refused to share their data were more likely to have committed an error
+in their paper, and their statistical evidence tended to be
+weaker.<span class="citation"><sup><a href="zbibliography.html#citation-wicherts-2011fp"
+class="reference internal">60</a></sup></span> Because most authors
+refused to share their data, Wicherts could not dig for deeper
+statistical errors, and many more may be lurking.</p>
+        <p>This is certainly not proof that authors hid their data out of fear
+their errors may be uncovered, or even that the authors knew about the
+errors at all. Correlation doesn’t imply causation, but it does waggle
+its eyebrows suggestively and gesture furtively while mouthing “look
+over there.”<a href="#xkcd" id="id1" class="footnote-reference">[1]</a></p>
+        <p><span id="omit-details"></span></p>
+        <p><p><em>Just leave out the details<a href="#just-leave-out-the-details" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Nitpicking statisticians getting you down by pointing out flaws in your
+paper? There’s one clear solution: don’t publish as much detail! They
+can’t find the errors if you don’t say how you evaluated your data.</p>
+        <p>I don’t mean to seriously suggest that evil scientists do this
+intentionally, although perhaps some do. More frequently, details are
+left out because authors simply forgot to include them, or because
+journal space limits force their omission.</p>
+        <p>It’s possible to evaluate studies to see what they left out. Scientists
+leading medical trials are required to provide detailed study plans to
+ethical review boards before starting a trial, so one group of
+researchers obtained a collection of these plans from a review board.
+The plans specify which outcomes the study will measure: for instance, a
+study might monitor various symptoms to see if any are influenced by the
+treatment. The researchers then found the published results of these
+studies and looked for how well these outcomes were reported.</p>
+        <p>Roughly half of the outcomes never appeared in the scientific journal
+papers at all. Many of these were statistically insignificant results
+which were swept under the
+rug.<a href="#rug" id="id2" class="footnote-reference">[2]</a> Another
+large chunk of results were not reported in sufficient detail for
+scientists to use the results for further
+meta-analysis.<span class="citation"><sup><a href="zbibliography.html#citation-chan-2004gm"
+class="reference internal">14</a></sup></span></p>
+        <p>Other reviews have found similar problems. A review of medical trials
+found that most studies omit important methodological details, such as
+<a href="regression.html#stopping-rules"
+class="reference internal"><span class="std std-ref">stopping
+rules</span></a> and
+<a href="power.html#power" class="reference internal"><span
+class="std std-ref">power calculations</span></a>, with studies in small
+specialist journals faring worse than those in large general medicine
+journals.<span class="citation"><sup><a href="zbibliography.html#citation-huwilermuntener-2002ij"
+class="reference internal">29</a></sup></span></p>
+        <p>Medical journals have begun to combat this problem with standards for
+reporting of results, such as the
+<a href="http://www.consort-statement.org/"
+class="reference external">CONSORT checklist</a>. Authors are required
+to follow the checklist’s requirements before submitting their studies,
+and editors check to make sure all relevant details are included. The
+checklist seems to work; studies published in journals which follow the
+guidelines tend to report more essential detail, although not all of
+it.<span class="citation"><sup><a href="zbibliography.html#citation-plint-2006uj"
+class="reference internal">46</a></sup></span> Unfortunately the
+standards are inconsistently applied and studies often slip through with
+missing details
+nonetheless.<span class="citation"><sup><a href="zbibliography.html#citation-mills-2005ei"
+class="reference internal">42</a></sup></span> Journal editors will need
+to make a greater effort to enforce reporting standards.</p>
+        <p>We see that published papers aren’t faring very well. What about
+<em>unpublished</em> studies?</p>
+        <p><p><em>Science in a filing cabinet<a href="#science-in-a-filing-cabinet" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Earlier we saw the impact of <a href="p-value.html#multiple-comparisons"
+class="reference internal"><span class="std std-ref">multiple
+comparisons</span></a> and <a href="regression.html#truth-inflation"
+class="reference internal"><span class="std std-ref">truth
+inflation</span></a> on study results. These problems arise when studies
+make numerous comparisons with low statistical power, giving a high rate
+of false positives and inflated estimates of effect sizes, and they
+appear everywhere in published research.</p>
+        <p>But not every study is published. We only ever see a fraction of medical
+research, for instance, because few scientists bother publishing “We
+tried this medicine and it didn’t seem to work.”</p>
+        <p>Consider an example: studies of the tumor suppressor protein TP53 and
+its effect on head and neck cancer. A number of studies suggested that
+measurements of TP53 could be used to predict cancer mortality rates,
+since it serves to regulate cell growth and development and hence must
+function correctly to prevent cancer. When all 18 published studies on
+TP53 and cancer were analyzed together, the result was a highly
+statistically significant correlation: TP53 could clearly be measured to
+tell how likely a tumor is to kill you.</p>
+        <p>But then suppose we dig up <em>unpublished</em> results on TP53: data that had
+been mentioned in other studies but not published or analyzed. Add this
+data to the mix and the statistically significant effect
+vanishes.<span class="citation"><sup><a href="zbibliography.html#citation-kyzas-2005ep"
+class="reference internal">36</a></sup></span> After all, few authors
+bothered to publish data showing no correlation, so the meta-analysis
+could only use a biased sample.</p>
+        <p>A similar study looked at reboxetine, an antidepressant sold by Pfizer.
+Several published studies have suggested that it is effective compared
+to placebo, leading several European countries to approve it for
+prescription to depressed patients. The German Institute for Quality and
+Efficiency in Health Care, responsible for assessing medical treatments,
+managed to get unpublished trial data from Pfizer – three times more
+data than had ever been published – and carefully analyzed it. The
+result: reboxetine is not effective. Pfizer had only convinced the
+public that it’s effective by neglecting to mention the studies proving
+it
+isn’t.<span class="citation"><sup><a href="zbibliography.html#citation-eyding-2010bx"
+class="reference internal">18</a></sup></span></p>
+        <p>This problem is commonly known as publication bias or the file-drawer
+problem: many studies sit in a file drawer for years, never published,
+despite the valuable data they could contribute.</p>
+        <p>The problem isn’t simply the bias on published results. Unpublished
+studies lead to a duplication of effort – if other scientists don’t know
+you’ve done a study, they may well do it again, wasting money and
+effort.</p>
+        <p>Regulators and scientific journals have attempted to halt this problem.
+The Food and Drug Administration requires certain kinds of clinical
+trials to be registered through their website ClinicalTrials.gov before
+the trials begin, and requires the publication of results within a year
+of the end of the trial. Similarly, the International Committee of
+Medical Journal Editors announced in 2005 that they would not publish
+studies which had not been pre-registered.</p>
+        <p>Unfortunately, a review of 738 registered clinical trials found that
+only 22% met the legal requirement to
+publish.<span class="citation"><sup><a href="zbibliography.html#citation-prayle-2011cs"
+class="reference internal">47</a></sup></span> The FDA has not fined any
+drug companies for noncompliance, and journals have not consistently
+enforced the requirement to register trials. Most studies simply vanish.</p>
+        <p><table id="xkcd" class="docutils footnote" data-frame="void"
+data-rules="none">
+<tbody data-valign="top">
+<tr>
+<td class="label"><a href="#id1" class="fn-backref">[1]</a></td>
+<td>Joke shamelessly stolen from the alternate text of <a
+href="http://xkcd.com/552/"
+class="reference external">http://xkcd.com/552/</a>.</td>
+</tr>
+</tbody>
+</table></p>
+        <p><table id="rug" class="docutils footnote" data-frame="void"
+data-rules="none">
+<tbody data-valign="top">
+<tr>
+<td class="label"><a href="#id2" class="fn-backref">[2]</a></td>
+<td>Why do we always say “swept under the rug”? Whose rug is it? And why
+don’t they use a vacuum cleaner instead of a broom?</td>
+</tr>
+</tbody>
+</table></p>
+      </section>
+
+      <section xml:id="sec-index-2">
+        <title>Statistics Done Wrong<a href="#statistics-done-wrong" class="headerlink"</title>
+        <p>title="Permalink to this headline">¶</a></p>
+        <p><p><em>The woefully complete guide<a href="#the-woefully-complete-guide" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p><em>by</em> <a href="https://www.refsmmat.com/" class="reference external">Alex
+Reinhart</a></p>
+        <p>If you’re a practicing scientist, you probably use statistics to analyze
+your data. From basic <em>t</em> tests and standard error calculations to Cox
+proportional hazards models and propensity score matching, we rely on
+statistics to give answers to scientific problems.</p>
+        <p>This is unfortunate, because statistical errors are rife.</p>
+        <p><em>Statistics Done Wrong</em> is a guide to the most popular statistical
+errors and slip-ups committed by scientists every day, in the lab and in
+peer-reviewed journals. Many of the errors are prevalent in vast swaths
+of the published literature, casting doubt on the findings of thousands
+of papers. <em>Statistics Done Wrong</em> assumes no prior knowledge of
+statistics, so you can read it before your first statistics course or
+after thirty years of scientific practice.</p>
+        <p>If you find any errors or typos, or want to suggest other popular
+misconceptions,
+<a href="introduction.html#contact" class="reference internal"><span
+class="std std-ref">contact me</span></a>. If you find this website
+useful, consider buying <a href="http://www.nostarch.com/statsdonewrong"
+class="reference external">the book</a>! Or find it in <a
+href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html"
+class="reference external">Deutsch</a>,
+<a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803"
+class="reference external">한국어</a>,
+<a href="https://www.amazon.it/dp/885180284X/"
+class="reference external">Italiano</a>, 中文
+(<a href="https://www.amazon.cn/dp/B01LY7GFOD"
+class="reference external">简体</a> and
+<a href="http://www.cite.com.tw/book?id=75600"
+class="reference external">繁體</a>), or
+<a href="http://www.keisoshobo.co.jp/book/b272873.html"
+class="reference external">日本語</a>.</p>
+        <p>> “Of all the books that tackle these issues, Reinhart’s is the most
+> succinct, accessible and accurate assessment of the statistical flaws
+> that render many scientific studies suspect… It should be required
+> reading for all scientists”
+>
+> —<a
+> href="https://www.sciencenews.org/article/research-cant-be-right-statistics-done-wrong"
+> class="reference external">Science News</a></p>
+        <p>> “If you analyze data with any regularity but aren’t sure if you’re
+> doing it correctly, get this book.”
+>
+> —<a href="http://flowingdata.com/2015/04/23/book-statistics-done-wrong/"
+> class="reference external">FlowingData</a></p>
+        <p><p><em>Contents<a href="#contents" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>- <a href="introduction.html" class="reference internal">Introduction</a>
+  - <a href="introduction.html#changes"
+    class="reference internal">Changes</a>
+  - <a href="introduction.html#contact"
+    class="reference internal">Contact</a>
+  - <a href="introduction.html#acknowledgements"
+    class="reference internal">Acknowledgements</a>
+  - <a href="introduction.html#copyright-note"
+    class="reference internal">Copyright note</a>
+- <a href="data-analysis.html" class="reference internal">An introduction
+  to data analysis</a>
+  - <a href="data-analysis.html#the-power-of-p-values"
+    class="reference internal">The power of <em>p</em> values</a>
+- <a href="power.html" class="reference internal">Statistical power and
+  underpowered statistics</a>
+  - <a href="power.html#the-power-of-being-underpowered"
+    class="reference internal">The power of being underpowered</a>
+  - <a href="power.html#the-wrong-turn-on-red"
+    class="reference internal">The wrong turn on red</a>
+- <a href="pseudoreplication.html"
+  class="reference internal">Pseudoreplication: choose your data
+  wisely</a>
+- <a href="p-value.html" class="reference internal">The <em>p</em> value
+  and the base rate fallacy</a>
+  - <a href="p-value.html#the-base-rate-fallacy-in-medical-testing"
+    class="reference internal">The base rate fallacy in medical testing</a>
+  - <a href="p-value.html#taking-up-arms-against-the-base-rate-fallacy"
+    class="reference internal">Taking up arms against the base rate
+    fallacy</a>
+  - <a href="p-value.html#if-at-first-you-don-t-succeed-try-try-again"
+    class="reference internal">If at first you don’t succeed, try, try
+    again</a>
+  - <a href="p-value.html#red-herrings-in-brain-imaging"
+    class="reference internal">Red herrings in brain imaging</a>
+  - <a href="p-value.html#controlling-the-false-discovery-rate"
+    class="reference internal">Controlling the false discovery rate</a>
+- <a href="significant-differences.html" class="reference internal">When
+  differences in significance aren’t significant differences</a>
+  - <a
+    href="significant-differences.html#when-significant-differences-are-missed"
+    class="reference internal">When significant differences are missed</a>
+- <a href="regression.html" class="reference internal">Stopping rules and
+  regression to the mean</a>
+  - <a href="regression.html#truth-inflation"
+    class="reference internal">Truth inflation</a>
+  - <a href="regression.html#little-extremes"
+    class="reference internal">Little extremes</a>
+- <a href="freedom.html" class="reference internal">Researcher freedom:
+  good vibrations?</a>
+- <a href="mistakes.html" class="reference internal">Everybody makes
+  mistakes</a>
+- <a href="hiding.html" class="reference internal">Hiding the data</a>
+  - <a href="hiding.html#just-leave-out-the-details"
+    class="reference internal">Just leave out the details</a>
+  - <a href="hiding.html#science-in-a-filing-cabinet"
+    class="reference internal">Science in a filing cabinet</a>
+- <a href="results.html" class="reference internal">What have we
+  wrought?</a>
+- <a href="what-next.html" class="reference internal">What can be
+  done?</a>
+  - <a href="what-next.html#statistical-education"
+    class="reference internal">Statistical education</a>
+  - <a href="what-next.html#scientific-publishing"
+    class="reference internal">Scientific publishing</a>
+  - <a href="what-next.html#your-job" class="reference internal">Your
+    job</a>
+- <a href="conclusion.html" class="reference internal">Conclusion</a>
+- <a href="zbibliography.html" class="reference internal">Bibliography</a></p>
+        <p><a href="genindex.html" class="reference internal"><span
+class="std std-ref">Index</span></a></p>
+      </section>
+
+      <section xml:id="sec-index">
+        <title>Statistics Done Wrong<a href="#statistics-done-wrong" class="headerlink"</title>
+        <p>title="Permalink to this headline">¶</a></p>
+        <p><p><em>The woefully complete guide<a href="#the-woefully-complete-guide" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p><em>by</em> <a href="https://www.refsmmat.com/" class="reference external">Alex
+Reinhart</a></p>
+        <p>If you’re a practicing scientist, you probably use statistics to analyze
+your data. From basic <em>t</em> tests and standard error calculations to Cox
+proportional hazards models and propensity score matching, we rely on
+statistics to give answers to scientific problems.</p>
+        <p>This is unfortunate, because statistical errors are rife.</p>
+        <p><em>Statistics Done Wrong</em> is a guide to the most popular statistical
+errors and slip-ups committed by scientists every day, in the lab and in
+peer-reviewed journals. Many of the errors are prevalent in vast swaths
+of the published literature, casting doubt on the findings of thousands
+of papers. <em>Statistics Done Wrong</em> assumes no prior knowledge of
+statistics, so you can read it before your first statistics course or
+after thirty years of scientific practice.</p>
+        <p>If you find any errors or typos, or want to suggest other popular
+misconceptions,
+<a href="introduction.html#contact" class="reference internal"><span
+class="std std-ref">contact me</span></a>. If you find this website
+useful, consider buying <a href="http://www.nostarch.com/statsdonewrong"
+class="reference external">the book</a>! Or find it in <a
+href="https://mitp.de/IT-WEB/Statistik/Statistics-Done-Wrong-Deutsche-Ausgabe.html"
+class="reference external">Deutsch</a>,
+<a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=64707803"
+class="reference external">한국어</a>,
+<a href="https://www.amazon.it/dp/885180284X/"
+class="reference external">Italiano</a>, 中文
+(<a href="https://www.amazon.cn/dp/B01LY7GFOD"
+class="reference external">简体</a> and
+<a href="http://www.cite.com.tw/book?id=75600"
+class="reference external">繁體</a>), or
+<a href="http://www.keisoshobo.co.jp/book/b272873.html"
+class="reference external">日本語</a>.</p>
+        <p>> “Of all the books that tackle these issues, Reinhart’s is the most
+> succinct, accessible and accurate assessment of the statistical flaws
+> that render many scientific studies suspect… It should be required
+> reading for all scientists”
+>
+> —<a
+> href="https://www.sciencenews.org/article/research-cant-be-right-statistics-done-wrong"
+> class="reference external">Science News</a></p>
+        <p>> “If you analyze data with any regularity but aren’t sure if you’re
+> doing it correctly, get this book.”
+>
+> —<a href="http://flowingdata.com/2015/04/23/book-statistics-done-wrong/"
+> class="reference external">FlowingData</a></p>
+        <p><p><em>Contents<a href="#contents" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>- <a href="introduction.html" class="reference internal">Introduction</a>
+  - <a href="introduction.html#changes"
+    class="reference internal">Changes</a>
+  - <a href="introduction.html#contact"
+    class="reference internal">Contact</a>
+  - <a href="introduction.html#acknowledgements"
+    class="reference internal">Acknowledgements</a>
+  - <a href="introduction.html#copyright-note"
+    class="reference internal">Copyright note</a>
+- <a href="data-analysis.html" class="reference internal">An introduction
+  to data analysis</a>
+  - <a href="data-analysis.html#the-power-of-p-values"
+    class="reference internal">The power of <em>p</em> values</a>
+- <a href="power.html" class="reference internal">Statistical power and
+  underpowered statistics</a>
+  - <a href="power.html#the-power-of-being-underpowered"
+    class="reference internal">The power of being underpowered</a>
+  - <a href="power.html#the-wrong-turn-on-red"
+    class="reference internal">The wrong turn on red</a>
+- <a href="pseudoreplication.html"
+  class="reference internal">Pseudoreplication: choose your data
+  wisely</a>
+- <a href="p-value.html" class="reference internal">The <em>p</em> value
+  and the base rate fallacy</a>
+  - <a href="p-value.html#the-base-rate-fallacy-in-medical-testing"
+    class="reference internal">The base rate fallacy in medical testing</a>
+  - <a href="p-value.html#taking-up-arms-against-the-base-rate-fallacy"
+    class="reference internal">Taking up arms against the base rate
+    fallacy</a>
+  - <a href="p-value.html#if-at-first-you-don-t-succeed-try-try-again"
+    class="reference internal">If at first you don’t succeed, try, try
+    again</a>
+  - <a href="p-value.html#red-herrings-in-brain-imaging"
+    class="reference internal">Red herrings in brain imaging</a>
+  - <a href="p-value.html#controlling-the-false-discovery-rate"
+    class="reference internal">Controlling the false discovery rate</a>
+- <a href="significant-differences.html" class="reference internal">When
+  differences in significance aren’t significant differences</a>
+  - <a
+    href="significant-differences.html#when-significant-differences-are-missed"
+    class="reference internal">When significant differences are missed</a>
+- <a href="regression.html" class="reference internal">Stopping rules and
+  regression to the mean</a>
+  - <a href="regression.html#truth-inflation"
+    class="reference internal">Truth inflation</a>
+  - <a href="regression.html#little-extremes"
+    class="reference internal">Little extremes</a>
+- <a href="freedom.html" class="reference internal">Researcher freedom:
+  good vibrations?</a>
+- <a href="mistakes.html" class="reference internal">Everybody makes
+  mistakes</a>
+- <a href="hiding.html" class="reference internal">Hiding the data</a>
+  - <a href="hiding.html#just-leave-out-the-details"
+    class="reference internal">Just leave out the details</a>
+  - <a href="hiding.html#science-in-a-filing-cabinet"
+    class="reference internal">Science in a filing cabinet</a>
+- <a href="results.html" class="reference internal">What have we
+  wrought?</a>
+- <a href="what-next.html" class="reference internal">What can be
+  done?</a>
+  - <a href="what-next.html#statistical-education"
+    class="reference internal">Statistical education</a>
+  - <a href="what-next.html#scientific-publishing"
+    class="reference internal">Scientific publishing</a>
+  - <a href="what-next.html#your-job" class="reference internal">Your
+    job</a>
+- <a href="conclusion.html" class="reference internal">Conclusion</a>
+- <a href="zbibliography.html" class="reference internal">Bibliography</a></p>
+        <p><a href="genindex.html" class="reference internal"><span
+class="std std-ref">Index</span></a></p>
+      </section>
+
+      <section xml:id="sec-introduction">
+        <title>Introduction<a href="#introduction" class="headerlink"</title>
+        <p>title="Permalink to this headline">¶</a></p>
+        <p>In the final chapter of his famous book <em>How to Lie with Statistics</em>,
+Darrell Huff tells us that “anything smacking of the medical profession”
+or published by scientific laboratories and universities is worthy of
+our trust – not unconditional trust, but certainly more trust than we’d
+afford the media or shifty politicians. After all, Huff filled an entire
+book with the misleading statistical trickery used in politics and the
+media, but few people complain about statistics done by trained
+professional scientists. Scientists seek understanding, not ammunition
+to use against political opponents.</p>
+        <p>Statistical data analysis is fundamental to science. Open a random page
+in your favorite medical journal and you’ll be deluged with statistics:
+<em>t</em> tests, <em>p</em> values, proportional hazards models, risk ratios,
+logistic regressions, least-squares fits, and confidence intervals.
+Statisticians have provided scientists with tools of enormous power to
+find order and meaning in the most complex of datasets, and scientists
+have embraced them with glee.</p>
+        <p>They have not, however, embraced statistics <em>education</em>, and many
+undergraduate programs in the sciences require no statistical training
+whatsoever.</p>
+        <p>Since the 1980s, researchers have described numerous statistical
+fallacies and misconceptions in the popular peer-reviewed scientific
+literature, and have found that many scientific papers – perhaps more
+than half – fall prey to these errors. Inadequate statistical power
+renders many studies incapable of finding what they’re looking for;
+multiple comparisons and misinterpreted <em>p</em> values cause numerous false
+positives; flexible data analysis makes it easy to find a correlation
+where none exists. The problem isn’t fraud but poor statistical
+education – poor enough that some scientists conclude that most
+published research findings are probably
+false.<span class="citation"><sup><a href="zbibliography.html#citation-ioannidis-2005bw"
+class="reference internal">31</a></sup></span></p>
+        <p>What follows is a list of the more egregious statistical fallacies
+regularly committed in the name of science. It assumes no knowledge of
+statistical methods, since many scientists receive no formal statistical
+training. And be warned: once you learn the fallacies, you will see them
+<em>everywhere.</em> Don’t be alarmed. This isn’t an excuse to reject all
+modern science and return to bloodletting and leeches – it’s a call to
+improve the science we rely on.</p>
+        <p><span id="changelog"></span></p>
+        <p><p><em>Changes<a href="#changes" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Updated January 2013 with a relevant example of the base-rate fallacy:
+<a href="p-value.html#base-rate-gun" class="reference internal"><span
+class="std std-ref">survey estimates of gun usage</span></a>.</p>
+        <p>Updated April 2013 with more details on
+<a href="regression.html#truth-inflation"
+class="reference internal"><span class="std std-ref">the interaction of
+truth inflation and early stopping rules</span></a>,
+<a href="p-value.html#red-herrings" class="reference internal"><span
+class="std std-ref">researcher freedom in neuroscience</span></a>,
+<a href="power.html#power-underpowered" class="reference internal"><span
+class="std std-ref">poor statistical power in neuroscience</span></a>,
+<a href="p-value.html#false-discovery" class="reference internal"><span
+class="std std-ref">how to control the false discovery rate</span></a>,
+<a href="hiding.html#hiding-data" class="reference internal"><span
+class="std std-ref">publication bias and poor reporting</span></a>,
+<a href="power.html#rtor" class="reference internal"><span
+class="std std-ref">underpowered studies and right turn on
+red</span></a>,
+<a href="significant-differences.html#confidence-intervals"
+class="reference internal"><span class="std std-ref">the misuses of
+confidence intervals</span></a>,
+<a href="results.html#wrought" class="reference internal"><span
+class="std std-ref">the impact of all these errors</span></a>,
+<a href="what-next.html#what-next" class="reference internal"><span
+class="std std-ref">what can be done to save statistics</span></a>, and
+additional references and details in many other places.</p>
+        <p><span id="id1"></span></p>
+        <p><p><em>Contact<a href="#contact" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>I’ve tried my best, but inevitably this guide will contain errors and
+omissions. If you spot an error, have a question, or know a common
+fallacy I’ve missed, email me at alex at refsmmat dot com.</p>
+        <p><p><em>Acknowledgements<a href="#acknowledgements" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Thanks to Dr. James Scott, whose statistics course gave me the
+background necessary to write this; to Matthew Watson and CharonY, who
+gave invaluable feedback and suggestions as I wrote my drafts; to my
+parents, who gave suggestions and feedback; to Dr. Brent Iverson, whose
+seminar first motivated me to learn about statistical abuse; and to all
+the scientists and statisticians who have broken the rules and given me
+a reason to write.</p>
+        <p>Any errors in explanations are my own.</p>
+        <p><p><em>Copyright note<a href="#copyright-note" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>This work is licensed under a
+<a href="http://creativecommons.org/licenses/by/3.0/"
+class="reference external">Creative Commons Attribution 3.0 Unported
+License</a>. You’re free to print it, copy it, translate it, rewrite it,
+set it to music, slice it, dice it, or whatever, so long as you
+attribute the original to me, Alex Reinhart, and provide a link back to
+this site. (If you do translate it, please let me know! I’d happily
+provide a link to your translation.) Hit the link to the license for
+more details.</p>
+        <p>The xkcd cartoon used inside is available under the
+<a href="http://creativecommons.org/licenses/by-nc/2.5/"
+class="reference external">Creative Commons Attribution-NonCommercial
+2.5 License</a>, and may not be used commercially without permission
+from the author.
+<a href="http://xkcd.com/license.html" class="reference external">More
+details.</a></p>
+      </section>
+
+      <section xml:id="sec-mistakes">
+        <title>mistakes</title>
+        <p><span id="mistakes"></span></p>
+        <p># Everybody makes mistakes<a href="#everybody-makes-mistakes" class="headerlink"
+title="Permalink to this headline">¶</a></p>
+        <p>Until now, I have presumed that scientists are capable of making
+statistical computations with perfect accuracy, and only err in their
+choice of appropriate numbers to compute. Scientists may misuse the
+results of statistical tests or fail to make relevant computations, but
+they can at least calculate a <em>p</em> value, right?</p>
+        <p>Perhaps not.</p>
+        <p>Surveys of statistically significant results reported in medical and
+psychological trials suggest that many <em>p</em> values are wrong, and some
+statistically insignificant results are actually significant when
+computed
+correctly.<span class="citation"><sup><a href="zbibliography.html#citation-gotzsche-2006du"
+class="reference internal">25</a>,</sup>
+<sup><a href="zbibliography.html#citation-bakker-2011ja"
+class="reference internal">2</a></sup></span> Other reviews find
+examples of misclassified data, erroneous duplication of data, inclusion
+of the wrong dataset entirely, and other mixups, all concealed by papers
+which did not describe their analysis in enough detail for the errors to
+be easily
+noticed.<span class="citation"><sup><a href="zbibliography.html#citation-baggerly-2009gk"
+class="reference internal">1</a>,</sup>
+<sup><a href="zbibliography.html#citation-gotzsche-1989uy"
+class="reference internal">26</a></sup></span></p>
+        <p>Sunshine is the best disinfectant, and many scientists have called for
+experimental data to be made available through the Internet. In some
+fields, this is now commonplace: there exist gene sequencing databases,
+protein structure databanks, astronomical observation databases, and
+earth observation collections containing the contributions of thousands
+of scientists. Many other fields, however, can’t share their data due to
+impracticality (particle physics data can include many terabytes of
+information), privacy issues (in medical trials), a lack of funding or
+technological support, or just a desire to keep proprietary control of
+the data and all the discoveries which result from it. And even if the
+data were all available, would anyone analyze it all to spot errors?</p>
+        <p>Similarly, scientists in some fields have pushed towards making their
+statistical analyses available through clever technological tools. A
+tool called Sweave, for instance, makes it easy to embed statistical
+analyses performed using the popular R programming language inside
+papers written in LaTeX, the standard for scientific and mathematical
+publications. The result looks just like any scientific paper, but
+another scientist reading the paper and curious about its methods can
+download the source code, which shows exactly how all the numbers were
+calculated. But would scientists avail themselves of the opportunity?
+Nobody gets scientific glory by checking code for typos.</p>
+        <p>Another solution might be <span id="index-2"
+class="target"></span>replication. If scientists carefully recreate the
+experiments of other scientists and validate their results, it is much
+easier to rule out the possibility of a typo causing an errant result.
+Replication also weeds out fluke false positives. Many scientists claim
+that experimental replication is the heart of science: no new idea is
+accepted until it has been independently tested and retested around the
+world and found to hold water.</p>
+        <p>That’s not entirely true; scientists often take previous studies for
+granted, though occasionally scientists decide to systematically re-test
+earlier works. One new project, for example, aims to reproduce papers in
+major psychology journals to determine just how many papers hold up over
+time – and what attributes of a paper predict how likely it is to stand
+up to
+retesting.<a href="#reproducibility" id="id1" class="footnote-reference">[1]</a>
+In another example, cancer researchers at Amgen retested 53 landmark
+preclinical studies in cancer research. (By “preclinical” I mean the
+studies did not involve human patients, as they were testing new and
+unproven ideas.) Despite working in collaboration with the authors of
+the original papers, the Amgen researchers could only reproduce six of
+the
+studies.<span class="citation"><sup><a href="zbibliography.html#citation-begley-2012"
+class="reference internal">5</a></sup></span> Bayer researchers have
+reported similar difficulties when testing potential new drugs found in
+published
+papers.<span class="citation"><sup><a href="zbibliography.html#citation-prinz-2011gb"
+class="reference internal">49</a></sup></span></p>
+        <p>This is worrisome. Does the trend hold true for less speculative kinds
+of medical research? Apparently so: of the top-cited research articles
+in medicine, a quarter have gone untested after their publication, and a
+third have been found to be exaggerated or wrong by later
+research.<span class="citation"><sup><a href="zbibliography.html#citation-ioannidis-2005gy"
+class="reference internal">32</a></sup></span> That’s not as extreme as
+the Amgen result, but it makes you wonder what important errors still
+lurk unnoticed in important research. Replication is not as prevalent as
+we would like it to be, and the results are not always favorable.</p>
+        <p><table id="reproducibility" class="docutils footnote" data-frame="void"
+data-rules="none">
+<tbody data-valign="top">
+<tr>
+<td class="label"><a href="#id1" class="fn-backref">[1]</a></td>
+<td>The Reproducibility Project, at <a
+href="http://openscienceframework.org/reproducibility/"
+class="reference external">http://openscienceframework.org/reproducibility/</a></td>
+</tr>
+</tbody>
+</table></p>
+      </section>
+
+      <section xml:id="sec-p-value">
+        <title>p-value</title>
+        <p><span id="index-0"></span></p>
+        <p># The <em>p</em> value and the base rate fallacy<a href="#the-p-value-and-the-base-rate-fallacy" class="headerlink"
+title="Permalink to this headline">¶</a></p>
+        <p>You’ve already seen that <em>p</em> values are hard to interpret. Getting a
+statistically insignificant result doesn’t mean there’s no difference.
+What about getting a significant result?</p>
+        <p>Let’s try an example. Suppose I am testing a hundred potential cancer
+medications. Only ten of these drugs actually work, but I don’t know
+which; I must perform experiments to find them. In these experiments,
+I’ll look for <span class="math">\\p&lt;0.05\\</span> gains over a
+placebo, demonstrating that the drug has a significant benefit.</p>
+        <p>To illustrate, each square in this grid represents one drug. The blue
+squares are the drugs that work:</p>
+        <p>![](_images/drug-grids-1.png)</p>
+        <p>As we saw, most trials can’t perfectly detect every good medication.
+We’ll assume my tests have a statistical power of 0.8. Of the ten good
+drugs, I will correctly detect around eight of them, shown in purple:</p>
+        <p>![](_images/drug-grids-2.png)</p>
+        <p>Of the ninety ineffectual drugs, I will conclude that about 5 have
+significant effects. Why? Remember that <em>p</em> values are calculated under
+the assumption of no effect, so <span class="math">\\p = 0.05\\</span>
+means a 5% chance of falsely concluding that an ineffectual drug works.</p>
+        <p>So I perform my experiments and conclude there are 13 working drugs: 8
+good drugs and 5 I’ve included erroneously, shown in red:</p>
+        <p>![](_images/drug-grids-3.png)</p>
+        <p>The chance of any given “working” drug being truly effectual is only
+62%. If I were to randomly select a drug out of the lot of 100, run it
+through my tests, and discover a <span class="math">\\p &lt;
+0.05\\</span> statistically significant benefit, there is only a 62%
+chance that the drug is actually effective. In statistical terms, my
+false discovery rate – the fraction of statistically significant results
+which are really false positives – is 38%.</p>
+        <p>Because the <em>base rate</em> of effective cancer drugs is so low – only 10%
+of our hundred trial drugs actually work – most of the tested drugs do
+not work, and we have many opportunities for false positives. If I had
+the bad fortune of possessing a truckload of completely ineffective
+medicines, giving a base rate of 0%, there is a 0% chance that any
+statistically significant result is true. Nevertheless, I will get a
+<span class="math">\\p &lt; 0.05\\</span> result for 5% of the drugs in
+the truck.</p>
+        <p>You often hear people quoting <em>p</em> values as a sign that error is
+unlikely. “There’s only a 1 in 10,000 chance this result arose as a
+statistical fluke,” they say, because they got <span class="math">\\p =
+0.0001\\</span>. No! This ignores the base rate, and is called the *base
+rate fallacy<em>. Remember how </em>p* values are defined:</p>
+        <p>> The P value is defined as the probability, under the assumption of no
+> effect or no difference (the null hypothesis), of obtaining a result
+> equal to or more extreme than what was actually observed.</p>
+        <p>A <em>p</em> value is calculated under the assumption that the medication *does
+not work* and tells us the probability of obtaining the data we did, or
+data more extreme than it. It does <em>not</em> tell us the chance the
+medication is effective.</p>
+        <p>When someone uses their <em>p</em> values to say they’re probably right,
+remember this. Their study’s probability of error is almost certainly
+much higher. In fields where most tested hypotheses are false, like
+early drug trials (most early drugs don’t make it through trials), it’s
+likely that <em>most</em> “statistically significant” results with
+<span class="math">\\p &lt; 0.05\\</span> are actually flukes.</p>
+        <p>One good example is medical diagnostic tests.</p>
+        <p><span id="index-2"></span></p>
+        <p><p><em>The base rate fallacy in medical testing<a href="#the-base-rate-fallacy-in-medical-testing" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>There has been some controversy over the use of mammograms in screening
+breast cancer. Some argue that the dangers of false positive results,
+such as unnecessary biopsies, surgery and chemotherapy, outweigh the
+benefits of early cancer detection. This is a statistical question.
+Let’s evaluate it.</p>
+        <p>Suppose 0.8% of women who get mammograms have breast cancer. In 90% of
+women with breast cancer, the mammogram will correctly detect it.
+(That’s the statistical power of the test. This is an estimate, since
+it’s hard to tell how many cancers are missed if we don’t know they’re
+there.) However, among women with no breast cancer at all, about 7% will
+get a positive reading on the mammogram, leading to further tests and
+biopsies and so on. If you get a positive mammogram result, what are the
+chances you have breast cancer?</p>
+        <p>Ignoring the chance that you, the reader, are
+male,<a href="#male" id="id1" class="footnote-reference">[1]</a> the
+answer is
+9%.<span class="citation"><sup><a href="zbibliography.html#citation-kramer-2005in"
+class="reference internal">35</a></sup></span></p>
+        <p>Despite the test only giving false positives for 7% of cancer-free
+women, analogous to testing for <span class="math">\\p &lt;
+0.07\\</span>, 91% of positive tests are false positives.</p>
+        <p>How did I calculate this? It’s the same method as the cancer drug
+example. Imagine 1,000 randomly selected women who choose to get
+mammograms. Eight of them (0.8%) have breast cancer. The mammogram
+correctly detects 90% of breast cancer cases, so about seven of the
+eight women will have their cancer discovered. However, there are 992
+women without breast cancer, and 7% will get a false positive reading on
+their mammograms, giving us 70 women incorrectly told they have cancer.</p>
+        <p>In total, we have 77 women with positive mammograms, 7 of whom actually
+have breast cancer. Only 9% of women with positive mammograms have
+breast cancer.</p>
+        <p>If you administer questions like this one to statistics students and
+scientific methodology instructors, more than a third
+fail.<span class="citation"><sup><a href="zbibliography.html#citation-kramer-2005in"
+class="reference internal">35</a></sup></span> If you ask doctors, two
+thirds
+fail.<span class="citation"><sup><a href="zbibliography.html#citation-bramwell-2006er"
+class="reference internal">10</a></sup></span> They erroneously conclude
+that a <span class="math">\\p &lt; 0.05\\</span> result implies a 95%
+chance that the result is true – but as you can see in these examples,
+the likelihood of a positive result being true depends on *what
+proportion of hypotheses tested are true*. And we are very fortunate
+that only a small proportion of women have breast cancer at any given
+time.</p>
+        <p>Examine introductory statistical textbooks and you will often find the
+same error. <em>P</em> values are counterintuitive, and the base rate fallacy
+is everywhere.</p>
+        <p><span id="base-rate-gun"></span><span id="index-3"></span></p>
+        <p><p><em>Taking up arms against the base rate fallacy<a href="#taking-up-arms-against-the-base-rate-fallacy"</em></p>
+class="headerlink" title="Permalink to this headline">¶</a></p>
+        <p>You don’t have to be performing advanced cancer research or early cancer
+screenings to run into the base rate fallacy. What if you’re doing
+social research? You’d like to survey Americans to find out how often
+they use guns in self-defense. Gun control arguments, after all, center
+on the right to self-defense, so it’s important to determine whether
+guns are commonly used for defense and whether that use outweighs the
+downsides, such as homicides.</p>
+        <p>One way to gather this data would be through a survey. You could ask a
+representative sample of Americans whether they own guns and, if so,
+whether they’ve used the guns to defend their homes in burglaries or
+defend themselves from being mugged. You could compare these numbers to
+law enforcement statistics of gun use in homicides and make an informed
+decision about whether the benefits outweigh the downsides.</p>
+        <p>Such surveys have been done, with interesting results. One 1992
+telephone survey estimated that American civilians use guns in
+self-defense up to 2.5 million times every year – that is, about 1% of
+American adults have defended themselves with firearms. Now, 34% of
+these cases were in burglaries, giving us 845,000 burglaries stymied by
+gun owners. But in 1992, there were only 1.3 million burglaries
+committed while someone was at home. Two thirds of these occurred while
+the homeowners were asleep and were discovered only after the burglar
+had left. That leaves 430,000 burglaries involving homeowners who were
+at home and awake to confront the burglar – 845,000 of which, we are led
+to believe, were stymied by gun-toting
+residents.<span class="citation"><sup><a href="zbibliography.html#citation-hemenway-1997up"
+class="reference internal">28</a></sup></span></p>
+        <p>Whoops.</p>
+        <p>What happened? Why did the survey overestimate the use of guns in
+self-defense? Well, for the same reason that mammograms overestimate the
+incidence of breast cancer: there are far more opportunities for false
+positives than false negatives. If 99.9% of people have never used a gun
+in self-defense, but 1% of those people will answer “yes” to any
+question for fun, and 1% want to look manlier, and 1% misunderstand the
+question, then you’ll end up <em>vastly</em> overestimating the use of guns in
+self-defense.</p>
+        <p>What about false negatives? Could this effect be balanced by people who
+say “no” even though they gunned down a mugger last week? No. If very
+few people genuinely use a gun in self-defense, then there are very few
+opportunities for false negatives. They’re overwhelmed by the false
+positives.</p>
+        <p>This is exactly analogous to the cancer drug example earlier. Here, <em>p</em>
+is the probability that someone will falsely claim they’ve used a gun in
+self-defense. Even if <em>p</em> is small, your final answer will be wildly
+wrong.</p>
+        <p>To lower <em>p</em>, criminologists make use of more detailed surveys. The
+National Crime Victimization surveys, for instance, use detailed
+sit-down interviews with researchers where respondents are asked for
+details about crimes and their use of guns in self-defense. With far
+greater detail in the survey, researchers can better judge whether the
+incident meets their criteria for self-defense. The results are far
+smaller – something like 65,000 incidents per year, not millions.
+There’s a chance that survey respondents underreport such incidents, but
+a much smaller chance of massive overestimation.</p>
+        <p><span id="multiple-comparisons"></span><span id="index-4"></span></p>
+        <p><p><em>If at first you don’t succeed, try, try again<a href="#if-at-first-you-don-t-succeed-try-try-again"</em></p>
+class="headerlink" title="Permalink to this headline">¶</a></p>
+        <p>The base rate fallacy shows us that false positives are much more likely
+than you’d expect from a <span class="math">\\p &lt; 0.05\\</span>
+criterion for significance. Most modern research doesn’t make one
+significance test, however; modern studies compare the effects of a
+variety of factors, seeking to find those with the most significant
+effects.</p>
+        <p>For example, imagine testing whether jelly beans cause acne by testing
+the effect of every single jelly bean color on acne:</p>
+        <p>![](_images/xkcd-significant.png)</p>
+        <p><span class="caption-text">Cartoon from xkcd, by Randall Munroe.
+<a href="http://xkcd.com/882/"
+class="reference external">http://xkcd.com/882/</a></span></p>
+        <p>As you can see, making multiple comparisons means multiple chances for a
+false positive. For example, if I test 20 jelly bean flavors which do
+not cause acne at all, and look for a correlation at
+<span class="math">\\p &lt; 0.05\\</span> significance, I have a 64%
+chance of a false positive
+result.<span class="citation"><sup><a href="zbibliography.html#citation-smith-1987uz"
+class="reference internal">54</a></sup></span> If I test 45 materials,
+the chance of false positive is as high as 90%.</p>
+        <p>It’s easy to make multiple comparisons, and it doesn’t have to be as
+obvious as testing twenty potential medicines. Track the symptoms of a
+dozen patients for a dozen weeks and test for significant benefits
+during any of those weeks: bam, that’s twelve comparisons. Check for the
+occurrence of twenty-three potential dangerous side effects: alas, you
+have sinned. Send out a ten-page survey asking about nuclear power plant
+proximity, milk consumption, age, number of male cousins, favorite pizza
+topping, current sock color, and a few dozen other factors for good
+measure, and you’ll find that <em>something</em> causes cancer. Ask enough
+questions and it’s inevitable.</p>
+        <p>A survey of medical trials in the 1980s found that the average trial
+made 30 therapeutic comparisons. In more than half of the trials, the
+researchers had made so many comparisons that a false positive was
+highly likely, and the statistically significant results they did report
+were cast into doubt: they may have found a statistically significant
+effect, but it could just have easily been a false
+positive.<span class="citation"><sup><a href="zbibliography.html#citation-smith-1987uz"
+class="reference internal">54</a></sup></span></p>
+        <p>There exist techniques to correct for multiple comparisons. For example,
+the Bonferroni correction method says that if you make
+<span class="math">\\n\\</span> comparisons in the trial, your criterion
+for significance should be <span class="math">\\p &lt; 0.05/n\\</span>.
+This lowers the chances of a false positive to what you’d see from
+making only one comparison at <span class="math">\\p &lt; 0.05\\</span>.
+However, as you can imagine, this reduces statistical power, since
+you’re demanding much stronger correlations before you conclude they’re
+statistically significant. It’s a difficult tradeoff, and tragically few
+papers even consider it.</p>
+        <p><span id="red-herrings"></span><span id="index-5"></span></p>
+        <p><p><em>Red herrings in brain imaging<a href="#red-herrings-in-brain-imaging" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Neuroscientists do massive numbers of comparisons regularly. They often
+perform fMRI studies, where a three-dimensional image of the brain is
+taken before and after the subject performs some task. The images show
+blood flow in the brain, revealing which parts of the brain are most
+active when a person performs different tasks.</p>
+        <p>But how do you decide which regions of the brain are active during the
+task? A simple method is to divide the brain image into small cubes
+called voxels. A voxel in the “before” image is compared to the voxel in
+the “after” image, and if the difference in blood flow is significant,
+you conclude that part of the brain was involved in the task. Trouble
+is, there are thousands of voxels to compare and many opportunities for
+false positives.</p>
+        <p>One study, for instance, tested the effects of an “open-ended
+mentalizing task” on participants. Subjects were shown “a series of
+photographs depicting human individuals in social situations with a
+specified emotional valence,” and asked to “determine what emotion the
+individual in the photo must have been experiencing.” You can imagine
+how various emotional and logical centers of the brain would light up
+during this test.</p>
+        <p>The data was analyzed, and certain brain regions found to change
+activity during the task. Comparison of images made before and after the
+mentalizing task showed a <span class="math">\\p = 0.001\\</span>
+difference in a <span class="math">\\81 \text{mm}^3\\</span> cluster in
+the brain.</p>
+        <p>The study participants? Not college undergraduates paid $10 for their
+time, as is usual. No, the test subject was one 3.8-pound Atlantic
+salmon, which “was not alive at the time of
+scanning.”<span class="citation"><sup><a href="zbibliography.html#citation-bennett-2010uh"
+class="reference internal">8</a></sup></span></p>
+        <p>Of course, most neuroscience studies are more sophisticated than this;
+there are methods of looking for clusters of voxels which all change
+together, along with techniques for controlling the rate of false
+positives even when thousands of statistical tests are made. These
+methods are now widespread in the neuroscience literature, and few
+papers make such simple errors as I described. Unfortunately, almost
+every paper tackles the problem differently; a review of 241 fMRI
+studies found that they performed 223 unique analysis strategies, which,
+as we will discuss later,
+<a href="freedom.html#freedom" class="reference internal"><span
+class="std std-ref">gives the researchers great flexibility</span></a>
+to achieve statistically significant
+results.<span class="citation"><sup><a href="zbibliography.html#citation-carp-2012ba"
+class="reference internal">13</a></sup></span></p>
+        <p><span id="false-discovery"></span><span id="index-6"></span></p>
+        <p><p><em>Controlling the false discovery rate<a href="#controlling-the-false-discovery-rate" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>I mentioned earlier that techniques exist to correct for multiple
+comparisons. The Bonferroni procedure, for instance, says that you can
+get the right false positive rate by looking for <span class="math">\\p
+&lt; 0.05/n\\</span>, where <span class="math">\\n\\</span> is the
+number of statistical tests you’re performing. If you perform a study
+which makes twenty comparisons, you can use a threshold of
+<span class="math">\\p &lt; 0.0025\\</span> to be assured that there is
+only a 5% chance you will falsely decide a nonexistent effect is
+statistically significant.</p>
+        <p>This has drawbacks. By lowering the <em>p</em> threshold required to declare a
+result statistically significant, you decrease your statistical power
+greatly, and fail to detect true effects as well as false ones. There
+are more sophisticated procedures than the Bonferroni correction which
+take advantage of certain statistical properties of the problem to
+improve the statistical power, but they are not magic solutions.</p>
+        <p>Worse, they don’t spare you from the base rate fallacy. You can still be
+misled by your <em>p</em> threshold and falsely claim there’s “only a 5% chance
+I’m wrong” – you just eliminate some of the false positives. A scientist
+is more interested in the false discovery rate: what fraction of my
+statistically significant results are false positives? Is there a
+statistical test that will let me control this fraction?</p>
+        <p>For many years the answer was simply “no.” As you saw in the section on
+the base rate fallacy, we can compute the false discovery rate if we
+make an assumption about how many of our tested hypotheses are true –
+but we’d rather find that out from the data, rather than guessing.</p>
+        <p>In 1995, Benjamini and Hochberg provided a better answer. They devised
+an exceptionally simple procedure which tells you which <em>p</em> values to
+consider statistically significant. I’ve been saving you from
+mathematical details so far, but to illustrate just how simple the
+procedure is, here it is:</p>
+        <p>1.  Perform your statistical tests and get the <em>p</em> value for each. Make
+    a list and sort it in ascending order.
+2.  Choose a false-discovery rate and call it <em>q</em>. Call the number of
+    statistical tests <em>m</em>.
+3.  Find the largest <em>p</em> value such that <span class="math">\\p \leq i
+    q/m\\</span>, where <em>i</em> is the <em>p</em> value’s place in the sorted list.
+4.  Call that <em>p</em> value and all smaller than it statistically
+    significant.</p>
+        <p>You’re done! The procedure guarantees that out of all statistically
+significant results, no more than <em>q</em> percent will be false
+positives.<span class="citation"><sup><a href="zbibliography.html#citation-benjamini-1995ws"
+class="reference internal">7</a></sup></span></p>
+        <p>The Benjamini-Hochberg procedure is fast and effective, and it has been
+widely adopted by statisticians and scientists in certain fields. It
+usually provides better statistical power than the Bonferroni correction
+and friends while giving more intuitive results. It can be applied in
+many different situations, and variations on the procedure provide
+better statistical power when testing certain kinds of data.</p>
+        <p>Of course, it’s not perfect. In certain strange situations, the
+Benjamini-Hochberg procedure gives silly results, and it has been
+mathematically shown that it is always possible to beat it in
+controlling the false discovery rate. But it’s a start, and it’s much
+better than nothing.</p>
+        <p><table id="male" class="docutils footnote" data-frame="void"
+data-rules="none">
+<tbody data-valign="top">
+<tr>
+<td class="label"><a href="#id1" class="fn-backref">[1]</a></td>
+<td>Interestingly, being male doesn’t exclude you from getting breast
+cancer; it just makes it exceedingly unlikely.</td>
+</tr>
+</tbody>
+</table></p>
+      </section>
+
+      <section xml:id="sec-power">
+        <title>power</title>
+        <p><span id="power"></span><span id="index-0"></span></p>
+        <p># Statistical power and underpowered statistics<a href="#statistical-power-and-underpowered-statistics"
+class="headerlink" title="Permalink to this headline">¶</a></p>
+        <p>We’ve seen that it’s possible to miss a real effect simply by not taking
+enough data. In most cases, this is a problem: we might miss a viable
+medicine or fail to notice an important side-effect. How do we know how
+much data to collect?</p>
+        <p>Statisticians provide the answer in the form of “statistical power.” The
+power of a study is the likelihood that it will distinguish an effect of
+a certain size from pure luck. A study might easily detect a huge
+benefit from a medication, but detecting a subtle difference is much
+less likely. Let’s try a simple example.</p>
+        <p>Suppose a gambler is convinced that an opponent has an unfair coin:
+rather than getting heads half the time and tails half the time, the
+proportion is different, and the opponent is using this to cheat at
+incredibly boring coin-flipping games. How to prove it?</p>
+        <p>You can’t just flip the coin a hundred times and count the heads. Even
+with a perfectly fair coin, you don’t always get fifty heads:</p>
+        <p>![](_images/binomial.png)</p>
+        <p><span class="caption-text">This shows the likelihood of getting
+different numbers of heads, if you flip a coin a hundred times.</span></p>
+        <p>You can see that 50 heads is the most likely option, but it’s also
+reasonably likely to get 45 or 57. So if you get 57 heads, the coin
+might be rigged, but you might just be lucky.</p>
+        <p>Let’s work out the math. Let’s say we look for a <em>p</em> value of 0.05 or
+less, as scientists typically do. That is, if I count up the number of
+heads after 10 or 100 trials and find a deviation from what I’d expect –
+half heads, half tails – I call the coin unfair if there’s only a 5%
+chance of getting a deviation that size or larger with a fair coin.
+Otherwise, I can conclude nothing: the coin may be fair, or it may be
+only a little unfair. I can’t tell.</p>
+        <p>So, what happens if I flip a coin ten times and apply these criteria?</p>
+        <p>![](_images/power-curve-10.png)</p>
+        <p>This is called a <em>power curve.</em> Along the horizontal axis, we have the
+different possibilities for the coin’s true probability of getting
+heads, corresponding to different levels of unfairness. On the vertical
+axis is the probability that I will conclude the coin is rigged after
+ten tosses, based on the <em>p</em> value of the result.</p>
+        <p>You can see that if the coin is rigged to give heads 60% of the time,
+and I flip the coin 10 times, I only have a 20% chance of concluding
+that it’s rigged. There’s just too little data to separate rigging from
+random variation. The coin would have to be incredibly biased for me to
+always notice.</p>
+        <p>But what if I flip the coin 100 times?</p>
+        <p>![](_images/power-curve-100.png)</p>
+        <p>Or 1,000 times?</p>
+        <p>![](_images/power-curve-1000.png)</p>
+        <p>With one thousand flips, I can easily tell if the coin is rigged to give
+heads 60% of the time. It’s just overwhelmingly unlikely that I could
+flip a fair coin 1,000 times and get more than 600 heads.</p>
+        <p><span id="power-underpowered"></span></p>
+        <p><p><em>The power of being underpowered<a href="#the-power-of-being-underpowered" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>After hearing all this, you might think calculations of statistical
+power are essential to medical trials. A scientist might want to know
+how many patients are needed to test if a new medication improves
+survival by more than 10%, and a quick calculation of statistical power
+would provide the answer. Scientists are usually satisfied when the
+statistical power is 0.8 or higher, corresponding to an 80% chance of
+concluding there’s a real effect.</p>
+        <p>However, few scientists ever perform this calculation, and few journal
+articles ever mention the statistical power of their tests.</p>
+        <p>Consider a trial testing two different treatments for the same
+condition. You might want to know which medicine is safer, but
+unfortunately, side effects are rare. You can test each medicine on a
+hundred patients, but only a few in each group suffer serious side
+effects.</p>
+        <p>Obviously, you won’t have terribly much data to compare side effect
+rates. If four people have serious side effects in one group, and three
+in the other, you can’t tell if that’s the medication’s fault.</p>
+        <p>Unfortunately, many trials conclude with “There was no statistically
+significant difference in adverse effects between groups” without noting
+that there was insufficient data to detect any but the largest
+differences.<span class="citation"><sup><a href="zbibliography.html#citation-tsang-2009iw"
+class="reference internal">57</a></sup></span> And so doctors
+erroneously think the medications are equally safe, when one could well
+be much more dangerous than the other.</p>
+        <p>You might think this is only a problem when the medication only has a
+weak effect. But no: in one sample of studies published between 1975 and
+1990 in prestigious medical journals, 27% of randomized controlled
+trials gave negative results, but 64% of these didn’t collect enough
+data to detect a 50% difference in <em>primary outcome</em> between treatment
+groups. Fifty percent! Even if one medication decreases symptoms by 50%
+more than the other medication, there’s insufficient data to conclude
+it’s more effective. And 84% of the negative trials didn’t have the
+power to detect a 25%
+difference.<span class="citation"><sup><a href="zbibliography.html#citation-moher-1994"
+class="reference internal">17</a>,</sup>
+<sup><a href="zbibliography.html#citation-bedard-2007dy"
+class="reference internal">4</a>,</sup>
+<sup><a href="zbibliography.html#citation-brown-1987uu"
+class="reference internal">11</a>,</sup>
+<sup><a href="zbibliography.html#citation-chung-1998ku"
+class="reference internal">16</a></sup></span></p>
+        <p>In neuroscience the problem is even worse. Suppose we aggregate the data
+collected by numerous neuroscience papers investigating one particular
+effect and arrive at a strong estimate of the effect’s size. The median
+study has only a 20% chance of being able to detect that effect. Only
+after many studies were aggregated could the effect be discerned.
+Similar problems arise in neuroscience studies using animal models –
+which raises a significant ethical concern. If each individual study is
+underpowered, the true effect will only likely be discovered after many
+studies using many animals have been completed and analyzed, using far
+more animal subjects than if the study had been done properly the first
+time.<span class="citation"><sup><a href="zbibliography.html#citation-button-2013dz"
+class="reference internal">12</a></sup></span></p>
+        <p>That’s not to say scientists are lying when they state they detected no
+significant difference between groups. You’re just misleading yourself
+when you assume this means there is no <em>real</em> difference. There may be a
+difference, but the study was too small to notice it.</p>
+        <p>Let’s consider an example we see every day.</p>
+        <p><span id="rtor"></span><span id="index-2"></span></p>
+        <p><p><em>The wrong turn on red<a href="#the-wrong-turn-on-red" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>In the 1970s, many parts of the United States began to allow drivers to
+turn right at a red light. For many years prior, road designers and
+civil engineers argued that allowing right turns on a red light would be
+a safety hazard, causing many additional crashes and pedestrian deaths.
+But the 1973 oil crisis and its fallout spurred politicians to consider
+allowing right turn on red to save fuel wasted by commuters waiting at
+red lights.</p>
+        <p>Several studies were conducted to consider the safety impact of the
+change. For example, a consultant for the Virginia Department of
+Highways and Transportation conducted a before-and-after study of twenty
+intersections which began to allow right turns on red. Before the change
+there were 308 accidents at the intersections; after, there were 337 in
+a similar length of time. However, this difference was not statistically
+significant, and so the consultant concluded there was no safety impact.</p>
+        <p>Several subsequent studies had similar findings: small increases in the
+number of crashes, but not enough data to conclude these increases were
+significant. As one report concluded,</p>
+        <p>> There is no reason to suspect that pedestrian accidents involving RT
+> operations (right turns) have increased after the adoption of \[right
+> turn on red\]…</p>
+        <p>Based on this data, more cities and states began to allow right turns at
+red lights. The problem, of course, is that these studies were
+underpowered. More pedestrians were being run over and more cars were
+involved in collisions, but nobody collected enough data to show this
+conclusively until several years later, when studies arrived clearly
+showing the results: significant increases in collisions and pedestrian
+accidents (sometimes up to 100%
+increases).<span class="citation"><sup><a href="zbibliography.html#citation-hauer-2004fz"
+class="reference internal">27</a>,</sup>
+<sup><a href="zbibliography.html#citation-preusser-1982gp"
+class="reference internal">48</a></sup></span> The misinterpretation of
+underpowered studies cost lives.</p>
+      </section>
+
+      <section xml:id="sec-pseudoreplication">
+        <title>pseudoreplication</title>
+        <p><span id="index-0"></span></p>
+        <p># Pseudoreplication: choose your data wisely<a href="#pseudoreplication-choose-your-data-wisely" class="headerlink"
+title="Permalink to this headline">¶</a></p>
+        <p>Many studies strive to collect more data through replication: by
+repeating their measurements with additional patients or samples, they
+can be more certain of their numbers and discover subtle relationships
+that aren’t obvious at first glance. We’ve seen the value of additional
+data for improving statistical power and detecting small differences.
+But what exactly counts as a replication?</p>
+        <p>Let’s return to a medical example. I have two groups of 100 patients
+taking different medications, and I seek to establish which medication
+lowers blood pressure more. I have each group take the medication for a
+month to allow it to take effect, and then I follow each group for ten
+days, each day testing their blood pressure. I now have ten data points
+per patient and 1,000 data points per group.</p>
+        <p>Brilliant! 1,000 data points is quite a lot, and I can fairly easily
+establish whether one group has lower blood pressure than the other.
+When I do calculations for statistical significance I find significant
+results very easily.</p>
+        <p>But wait: we expect that taking a patient’s blood pressure ten times
+will yield ten very similar results. If one patient is genetically
+predisposed to low blood pressure, I have counted his genetics ten
+times. Had I collected data from 1,000 independent patients instead of
+repeatedly testing 100, I would be more confident that differences
+between groups came from the medicines and not from genetics and luck. I
+claimed a large sample size, giving me statistically significant results
+and high statistical power, but my claim is unjustified.</p>
+        <p>This problem is known as pseudoreplication, and it is quite
+common.<span class="citation"><sup><a href="zbibliography.html#citation-lazic-2010fc"
+class="reference internal">38</a></sup></span> After testing cells from
+a culture, a biologist might “replicate” his results by testing more
+cells from the same culture. Neuroscientists will test multiple neurons
+from the same animal, incorrectly claiming they have a large sample size
+because they tested hundreds of neurons from just two rats.</p>
+        <p>In statistical terms, pseudoreplication occurs when individual
+observations are heavily dependent on each other. Your measurement of a
+patient’s blood pressure will be highly related to his blood pressure
+yesterday, and your measurement of soil composition here will be highly
+correlated with your measurement five feet away. There are several ways
+to account for this dependence while performing your statistical
+analysis:</p>
+        <p>1.  Average the dependent data points. For example, average all the
+    blood pressure measurements taken from a single person. This isn’t
+    perfect, though; if you measured some patients more frequently than
+    others, this won’t be reflected in the averaged number. You want a
+    method that somehow counts measurements as more reliable as more are
+    taken.
+2.  Analyze each dependent data point separately. You could perform an
+    analysis of every patient’s blood pressure on day 5, giving you only
+    one data point per person. But be careful, because if you do this
+    for every day, you’ll have problems with
+    <a href="p-value.html#multiple-comparisons"
+    class="reference internal"><span class="std std-ref">multiple
+    comparisons</span></a>, which we will discuss in the next chapter.
+3.  Use a statistical model which accounts for the dependence, like a
+    hierarchical model or random effects model.</p>
+        <p>It’s important to consider each approach before analyzing your data, as
+each method is suited to different situations. Pseudoreplication makes
+it easy to achieve significance, even though it gives you little
+additional information on the test subjects. Researchers must be careful
+not to artificially inflate their sample sizes when they retest samples.</p>
+      </section>
+
+      <section xml:id="sec-regression">
+        <title>regression</title>
+        <p><span id="stopping-rules"></span><span id="index-0"></span></p>
+        <p># Stopping rules and regression to the mean<a href="#stopping-rules-and-regression-to-the-mean" class="headerlink"
+title="Permalink to this headline">¶</a></p>
+        <p>Medical trials are expensive. Supplying dozens of patients with
+experimental medications and tracking their symptoms over the course of
+months takes significant resources, and so many pharmaceutical companies
+develop “stopping rules,” which allow investigators to end a study early
+if it’s clear the experimental drug has a substantial effect. For
+example, if the trial is only half complete but there’s already a
+statistically significant difference in symptoms with the new
+medication, the researchers may terminate the study, rather than
+gathering more data to reinforce the conclusion.</p>
+        <p>When poorly done, however, this can lead to numerous false positives.</p>
+        <p>For example, suppose we’re comparing two groups of patients, one with a
+medication and one with a placebo. We measure the level of some protein
+in their bloodstreams as a way of seeing if the medication is working.
+In this case, though, the medication causes no difference whatsoever:
+patients in both groups have the same average protein levels, although
+of course individuals have levels which vary slightly.</p>
+        <p>We start with ten patients in each group, and gradually collect more
+data from more patients. As we go along, we do a <em>t</em> test to compare the
+two groups and see if there is a statistically significant difference
+between average protein levels. We might see a result like this
+simulation:</p>
+        <p>![](_images/sample-size.png)</p>
+        <p>This plot shows the <em>p</em> value of the difference between groups as we
+collect more data, with the horizontal line indicating the
+<span class="math">\\p = 0.05\\</span> level of significance. At first,
+there appears to be no significant difference. Then we collect more data
+and conclude there is. If we were to stop, we’d be misled: we’d believe
+there is a significant difference between groups when there is none. As
+we collect yet more data, we realize we were mistaken – but then a bit
+of luck leads us back to a false positive.</p>
+        <p>You’d expect that the <em>p</em> value dip shouldn’t happen, since there’s no
+real difference between groups. After all, taking more data shouldn’t
+make our conclusions worse, right? And it’s true that if we run the
+trial again we might find that the groups start out with no significant
+difference and stay that way as we collect more data, or start with a
+huge difference and quickly regress to having none. But if we wait long
+enough and test after every data point, we will eventually cross <em>any</em>
+arbitrary line of statistical significance, even if there’s no real
+difference at all. We can’t usually collect infinite samples, so in
+practice this doesn’t always happen, but poorly implemented stopping
+rules still increase false positive rates
+significantly.<span class="citation"><sup><a href="zbibliography.html#citation-simmons-2011iw"
+class="reference internal">53</a></sup></span></p>
+        <p>Modern clinical trials are often required to register their statistical
+protocols in advance, and generally pre-select only a few evaluation
+points at which they test their evidence, rather than testing after
+every observation. This causes only a small increase in the false
+positive rate, which can be adjusted for by carefully choosing the
+required significance levels and using more advanced statistical
+techniques.<span class="citation"><sup><a href="zbibliography.html#citation-todd-2001hg"
+class="reference internal">56</a></sup></span> But in fields where
+protocols are not registered and researchers have the freedom to use
+whatever methods they feel appropriate, there may be false positive
+demons lurking.</p>
+        <p><span id="index-1"></span><span id="id1"></span></p>
+        <p><p><em>Truth inflation<a href="#truth-inflation" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Medical trials also tend to have inadequate statistical power to detect
+moderate differences between medications. So they want to stop as soon
+as they detect an effect, but they don’t have the power to detect
+effects.</p>
+        <p>Suppose a medication reduces symptoms by 20% over a placebo, but the
+trial you’re using to test it does not have adequate statistical power
+to detect this difference. We know that small trials tend to have
+varying results: it’s easy to get ten lucky patients who have shorter
+colds than usual, but much harder to get ten thousand who all do.</p>
+        <p>Now imagine running many copies of this trial. Sometimes you get unlucky
+patients, and so you don’t notice any statistically significant
+improvement from your drug. Sometimes your patients are exactly average,
+and the treatment group has their symptoms reduced by 20% – but you
+don’t have enough data to call this a statistically significant
+increase, so you ignore it. Sometimes the patients are lucky and have
+their symptoms reduced by much more than 20%, and so you stop the trial
+and say “Look! It works!”</p>
+        <p>You’ve correctly concluded that your medication is effective, but you’ve
+inflated the size of its effect. You falsely believe it is much more
+effective than it really is.</p>
+        <p>This effect occurs in pharmacological trials, epidemiological studies,
+gene association studies (“gene A causes condition B”), psychological
+studies, and in some of the most-cited papers in the medical
+literature.<span class="citation"><sup><a href="zbibliography.html#citation-ioannidis-2008dy"
+class="reference internal">30</a>,</sup>
+<sup><a href="zbibliography.html#citation-ioannidis-2005gy"
+class="reference internal">32</a></sup></span> In fields where trials
+can be conducted quickly by many independent researchers (such as gene
+association studies), the earliest published results are often wildly
+contradictory, because small trials and a demand for statistical
+significance cause only the most extreme results to be
+published.<span class="citation"><sup><a href="zbibliography.html#citation-ioannidis-2005bj"
+class="reference internal">33</a></sup></span></p>
+        <p>As a bonus, truth inflation can combine forces with early stopping
+rules. If most drugs in clinical trials are not quite so effective to
+warrant stopping the trial early, then many trials stopped early will be
+the result of lucky patients, not brilliant drugs – and by stopping the
+trial we have deprived ourselves of the extra data needed to tell the
+difference. Reviews have compared trials stopped early with other
+studies addressing the same question which did not stop early; in most
+cases, the trials stopped early exaggerated the effects of their tested
+treatments by an average of
+29%.<span class="citation"><sup><a href="zbibliography.html#citation-bassler-2010ds"
+class="reference internal">3</a></sup></span></p>
+        <p>Of course, we do not know The Truth about any drug being studied, so we
+cannot tell if a particular study stopped early due to luck or a
+particularly good drug. Many studies do not even publish the original
+intended sample size or the stopping rule which was used to justify
+terminating the
+study.<span class="citation"><sup><a href="zbibliography.html#citation-montori-2005bo"
+class="reference internal">43</a></sup></span> A trial’s early stoppage
+is not automatic evidence that its results are biased, but it <em>is</em> a
+suggestive detail.</p>
+        <p><span id="index-2"></span></p>
+        <p><p><em>Little extremes<a href="#little-extremes" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Suppose you’re in charge of public school reform. As part of your
+research into the best teaching methods, you look at the effect of
+school size on standardized test scores. Do smaller schools perform
+better than larger schools? Should you try to build many small schools
+or a few large schools?</p>
+        <p>To answer this question, you compile a list of the highest-performing
+schools you have. The average school has about 1,000 students, but the
+top-scoring five or ten schools are almost all smaller than that. It
+seems that small schools do the best, perhaps because of their personal
+atmosphere where teachers can get to know students and help them
+individually.</p>
+        <p>Then you take a look at the worst-performing schools, expecting them to
+be large urban schools with thousands of students and overworked
+teachers. Surprise! They’re all small schools too.</p>
+        <p>What’s going on? Well, take a look at a plot of test scores vs. school
+size:</p>
+        <p>![](_images/school-size.png)</p>
+        <p>Smaller schools have more widely varying average test scores, entirely
+because they have fewer students. With fewer students, there are fewer
+data points to establish the “true” performance of the teachers, and so
+the average scores vary widely. As schools get larger, test scores vary
+less, and in fact <em>increase</em> on average.</p>
+        <p>This example used simulated data, but it’s based on real (and
+surprising) observations of Pennsylvania public
+schools.<span class="citation"><sup><a href="zbibliography.html#citation-wainer-2007wr"
+class="reference internal">59</a></sup></span></p>
+        <p>Another example: In the United States, counties with the lowest rates of
+<span id="index-3" class="target"></span>kidney cancer tend to be
+Midwestern, Southern and Western rural counties. How could this be? You
+can think of many explanations: rural people get more exercise, inhale
+less polluted air, and perhaps lead less stressful lives. Perhaps these
+factors lower their cancer rates.</p>
+        <p>On the other hand, counties with the highest rates of kidney cancer tend
+to be Midwestern, Southern and Western rural counties.</p>
+        <p>The problem, of course, is that rural counties have the smallest
+populations. A single kidney cancer patient in a county with ten
+residents gives that county the highest kidney cancer rate in the
+nation. Small counties hence have vastly more variable kidney cancer
+rates, simply because they have so few
+residents.<span class="citation"><sup><a href="zbibliography.html#citation-gelman-1999gi"
+class="reference internal">21</a></sup></span></p>
+      </section>
+
+      <section xml:id="sec-results">
+        <title>results</title>
+        <p><span id="wrought"></span></p>
+        <p># What have we wrought?<a href="#what-have-we-wrought" class="headerlink"
+title="Permalink to this headline">¶</a></p>
+        <p>I’ve painted a grim picture. But anyone can pick out small details in
+published studies and produce a tremendous list of errors. Do these
+problems matter?</p>
+        <p>Well, yes. I wouldn’t have written this otherwise.</p>
+        <p>John Ioannidis’s famous article “Why Most Published Research Findings
+are
+False”<span class="citation"><sup><a href="zbibliography.html#citation-ioannidis-2005bw"
+class="reference internal">31</a></sup></span> was grounded in
+mathematical concerns rather than an empirical test of research results.
+If most research articles have poor statistical power – and
+<a href="power.html#power" class="reference internal"><span
+class="std std-ref">they do</span></a> – while researchers have the
+freedom to choose among multitudes of analyses methods to get favorable
+results – and
+<a href="freedom.html#freedom" class="reference internal"><span
+class="std std-ref">they do</span></a> – when most tested hypotheses are
+false and most true hypotheses correspond to very small effects, we are
+mathematically determined to get a multitude of false positives.</p>
+        <p>But if you want empiricism, you can have it, courtesy of John Ioannidis
+and Jonathan Schoenfeld. They studied the question “Is everything we eat
+associated with
+cancer?”<span class="citation"><sup><a href="zbibliography.html#citation-schoenfeld-2013fq"
+class="reference internal">51</a></sup></span><a href="#ontology" id="id1" class="footnote-reference">[1]</a>
+After choosing fifty common ingredients out of a cookbook, they set out
+to find studies linking them to cancer rates – and found 216 studies on
+forty different ingredients. Of course, most of the studies disagreed
+with each other. Most ingredients had multiple studies claiming they
+increased <em>and</em> decreased the risk of getting cancer. Most of the
+statistical evidence was weak, and meta-analyses usually showed much
+smaller effects on cancer rates than the original studies.</p>
+        <p>Of course, being contradicted by follow-up studies and meta-analyses
+doesn’t prevent a paper from being cited as though it were true. Even
+effects which have been contradicted by massive follow-up trials with
+unequivocal results are frequently cited five or ten years later, with
+scientists apparently not noticing that the results are
+false.<span class="citation"><sup><a href="zbibliography.html#citation-tatsioni-2007cr"
+class="reference internal">55</a></sup></span> Of course, new findings
+get widely publicized in the press, while contradictions and corrections
+are hardly ever
+mentioned.<span class="citation"><sup><a href="zbibliography.html#citation-gonon-2012do"
+class="reference internal">23</a></sup></span> You can hardly blame the
+scientists for not keeping up.</p>
+        <p>Let’s not forget the merely biased results. Poor reporting standards in
+medical journals mean studies testing new treatments for schizophrenia
+can neglect to include the scale they used to evaluate symptoms – a
+handy source of bias, as trials using unpublished scales tend to produce
+better results than those using previously validated
+tests.<span class="citation"><sup><a href="zbibliography.html#citation-marshall-2000hg"
+class="reference internal">40</a></sup></span> Other medical studies
+simply
+<a href="hiding.html#omit-details" class="reference internal"><span
+class="std std-ref">omit particular results</span></a> if they’re not
+favorable or interesting, biasing subsequent meta-analyses to only
+include positive results. A third of meta-analyses are estimated to
+suffer from this
+problem.<span class="citation"><sup><a href="zbibliography.html#citation-kirkham-2010kj"
+class="reference internal">34</a></sup></span></p>
+        <p>Another review compared meta-analyses to subsequent large randomized
+controlled trials, considered the gold standard in medicine. In over a
+third of cases, the randomized trial’s outcome did not correspond well
+to the
+meta-analysis.<span class="citation"><sup><a href="zbibliography.html#citation-lelorier-1997ww"
+class="reference internal">39</a></sup></span> Other comparisons of
+meta-analyses to subsequent research found that most results were
+inflated, with perhaps a fifth representing false
+positives.<span class="citation"><sup><a href="zbibliography.html#citation-pereira-2011eg"
+class="reference internal">45</a></sup></span></p>
+        <p>Let’s not forget the multitude of physical science papers which misuse
+confidence
+intervals.<span class="citation"><sup><a href="zbibliography.html#citation-lanzante-2005hi"
+class="reference internal">37</a></sup></span> Or the peer-reviewed
+psychology paper allegedly providing evidence for psychic powers, on the
+basis of uncontrolled multiple comparisons in exploratory
+studies.<span class="citation"><sup><a href="zbibliography.html#citation-wagenmakers-2011tp"
+class="reference internal">58</a></sup></span> Unsurprisingly, results
+failed to be replicated – by scientists who appear not to have
+calculated the statistical power of their
+tests.<span class="citation"><sup><a href="zbibliography.html#citation-galak-2012fd"
+class="reference internal">20</a></sup></span></p>
+        <p>We have a problem. Let’s work on fixing it.</p>
+        <p><table id="ontology" class="docutils footnote" data-frame="void"
+data-rules="none">
+<tbody data-valign="top">
+<tr>
+<td class="label"><a href="#id1" class="fn-backref">[1]</a></td>
+<td>An important part of the ongoing <a
+href="http://dailymailoncology.tumblr.com/"
+class="reference external">Oncological Ontology</a> project to
+categorize everything into two categories: that which cures cancer and
+that which causes it.</td>
+</tr>
+</tbody>
+</table></p>
+      </section>
+
+      <section xml:id="sec-search">
+        <title>Search</title>
+        <p>Please activate JavaScript to enable the search functionality.</p>
+        <p>From here you can search these documents. Enter your search words into
+the box below and click "search". Note that the search function will
+automatically search for all of the words. Pages containing fewer words
+won't appear in the result list.</p>
+        <p><span id="search-progress" style="padding-left: 10px"></span></p>
+      </section>
+
+      <section xml:id="sec-significant-differences">
+        <title>When differences in significance aren’t significant differences<a</title>
+        <p>href="#when-differences-in-significance-aren-t-significant-differences"
+class="headerlink" title="Permalink to this headline">¶</a></p>
+        <p>“We compared treatments A and B with a placebo. Treatment A showed a
+significant benefit over placebo, while treatment B had no statistically
+significant benefit. Therefore, treatment A is better than treatment B.”</p>
+        <p>We hear this all the time. It’s an easy way of comparing medications,
+surgical interventions, therapies, and experimental results. It’s
+straightforward. It seems to make sense.</p>
+        <p>However, a difference in significance does not always make a significant
+difference.<span class="citation"><sup><a href="zbibliography.html#citation-gelman-2006bj"
+class="reference internal">22</a></sup></span></p>
+        <p>One reason is the arbitrary nature of the <span class="math">\\p &lt;
+0.05\\</span> cutoff. We could get two very similar results, with
+<span class="math">\\p = 0.04\\</span> and <span class="math">\\p =
+0.06\\</span>, and mistakenly say they’re clearly different from each
+other simply because they fall on opposite sides of the cutoff. The
+second reason is that <em>p</em> values are not measures of effect size, so
+similar <em>p</em> values do not always mean similar effects. Two results with
+identical statistical significance can nonetheless contradict each
+other.</p>
+        <p>Instead, think about statistical power. If we compare our new
+experimental drugs Fixitol and Solvix to a placebo but we don’t have
+enough test subjects to give us good statistical power, then we may fail
+to notice their benefits. If they have identical effects but we have
+only 50% power, then there’s a good chance we’ll say Fixitol has
+significant benefits and Solvix does not. Run the trial again, and it’s
+just as likely that Solvix will appear beneficial and Fixitol will not.</p>
+        <p>Instead of independently comparing each drug to the placebo, we should
+compare them against each other. We can test the hypothesis that they
+are equally effective, or we can construct a confidence interval for the
+extra benefit of Fixitol over Solvix. If the interval includes zero,
+then they could be equally effective; if it doesn’t, then one medication
+is a clear winner. This doesn’t improve our statistical power, but it
+does prevent the false conclusion that the drugs are different. Our
+tendency to look for a difference in significance should be replaced by
+a check for the significance of the difference.</p>
+        <p>Examples of this error in common literature and news stories abound. A
+huge proportion of papers in neuroscience, for instance, commit the
+error.<span class="citation"><sup><a href="zbibliography.html#citation-nieuwenhuis-2011dm"
+class="reference internal">44</a></sup></span> You might also remember a
+study a few years ago suggesting that men with more biological older
+brothers are more likely to be
+homosexual.<span class="citation"><sup><a href="zbibliography.html#citation-bogaert-2006tc"
+class="reference internal">9</a></sup></span> How did they reach this
+conclusion? And why older brothers and not older sisters?</p>
+        <p>The authors explain their conclusion by noting that they ran an analysis
+of various factors and their effect on homosexuality. Only the number of
+older brothers had a statistically significant effect; number of older
+sisters, or number of nonbiological older brothers, had no statistically
+significant effect.</p>
+        <p>But as we’ve seen, that doesn’t guarantee that there’s a significant
+difference between the effects of older brothers and older sisters. In
+fact, taking a closer look at the data, it appears there’s no
+statistically significant difference between the effect of older
+brothers and older sisters. Unfortunately, not enough data was published
+in the paper to allow a direct
+calculation.<span class="citation"><sup><a href="zbibliography.html#citation-gelman-2006bj"
+class="reference internal">22</a></sup></span></p>
+        <p><span id="confidence-intervals"></span><span id="index-0"></span></p>
+        <p><p><em>When significant differences are missed<a href="#when-significant-differences-are-missed" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>The problem can run the other way. Scientists routinely judge whether a
+significant difference exists simply by eye, making use of plots like
+this one:</p>
+        <p>![Two group means plotted with overlapping confidence
+intervals](_images/confidence.png)</p>
+        <p>Imagine the two plotted points indicate the estimated time until
+recovery from some disease in two different groups of patients, each
+containing ten patients. There are three different things those error
+bars could represent:</p>
+        <p>1.  The standard deviation of the measurements. Calculate how far each
+    observation is from the average, square each difference, and then
+    average the results and take the square root. This is the standard
+    deviation, and it measures how spread out the measurements are from
+    their mean.
+2.  The standard error of some estimator. For example, perhaps the error
+    bars are the standard error of the mean. If I were to measure many
+    different samples of patients, each containing exactly <em>n</em> subjects,
+    I can estimate that 68% of the mean times to recover I measure will
+    be within one standard error of “real” average time to recover. (In
+    the case of estimating means, the standard error is the standard
+    deviation of the measurements divided by the square root of the
+    number of measurements, so the estimate gets better as you get more
+    data – but not too fast.) Many statistical techniques, like
+    least-squares regression, provide standard error estimates for their
+    results.
+3.  The confidence interval of some estimator. A 95% confidence interval
+    is mathematically constructed to include the true value for 95
+    random samples out of 100, so it spans roughly two standard errors
+    in each direction. (In more complicated statistical models this may
+    not be exactly true.)</p>
+        <p>These three options are all different. The standard deviation is a
+simple measurement of my data. The standard error tells me how a
+statistic, like a mean or the slope of a best-fit line, would likely
+vary if I take many samples of patients. A confidence interval is
+similar, with an additional guarantee that 95% of 95% confidence
+intervals should include the “true” value.</p>
+        <p>In the example plot, we have two 95% confidence intervals which overlap.
+Many scientists would view this and conclude there is no statistically
+significant difference between the groups. After all, groups 1 and 2
+<em>might not</em> be different – the average time to recover could be 25 in
+both groups, for example, and the differences only appeared because
+group 1 was lucky this time. But does this mean the difference is not
+statistically significant? What would the
+<a href="data-analysis.html#p-values" class="reference internal"><span
+class="std std-ref">p value</span></a> be?</p>
+        <p>In this case, <span class="math">\\p&lt; 0.05\\</span>. There is a
+statistically significant difference between the groups, even though the
+confidence intervals
+overlap.<a href="#ttest" id="id1" class="footnote-reference">[1]</a></p>
+        <p>Unfortunately, many scientists skip hypothesis tests and simply glance
+at plots to see if confidence intervals overlap. This is actually a much
+more conservative test – requiring confidence intervals to not overlap
+is akin to requiring <span class="math">\\p &lt; 0.01\\</span> in some
+cases.<span class="citation"><sup><a href="zbibliography.html#citation-schenker-2001cr"
+class="reference internal">50</a></sup></span> It is easy to claim two
+measurements are not significantly different even when they are.</p>
+        <p>Conversely, comparing measurements with standard errors or standard
+deviations will also be misleading, as standard error bars are shorter
+than confidence interval bars. Two observations might have standard
+errors which do not overlap, and yet the difference between the two is
+not statistically significant.</p>
+        <p>A survey of psychologists, neuroscientists and medical researchers found
+that the majority made this simple error, with many scientists confusing
+standard errors, standard deviations, and confidence
+intervals.<span class="citation"><sup><a href="zbibliography.html#citation-belia-2005dg"
+class="reference internal">6</a></sup></span> Another survey of climate
+science papers found that a majority of papers which compared two groups
+with error bars made the
+error.<span class="citation"><sup><a href="zbibliography.html#citation-lanzante-2005hi"
+class="reference internal">37</a></sup></span> Even introductory
+textbooks for experimental scientists, such as *An Introduction to Error
+Analysis*, teach students to judge by eye, hardly mentioning formal
+hypothesis tests at all.</p>
+        <p>There are, of course, formal statistical procedures which generate
+confidence intervals which <em>can</em> be compared by eye, and even correct
+for <a href="p-value.html#multiple-comparisons"
+class="reference internal"><span class="std std-ref">multiple
+comparisons</span></a> automatically. For example, Gabriel comparison
+intervals are easily interpreted by
+eye.<span class="citation"><sup><a href="zbibliography.html#citation-gabriel-1978fp"
+class="reference internal">19</a></sup></span></p>
+        <p>Overlapping confidence intervals do not mean two values are not
+significantly different. Similarly, separated standard error bars do not
+mean two values <em>are</em> significantly different. It’s always best to use
+the appropriate hypothesis test instead. Your eyeball is not a
+well-defined statistical procedure.</p>
+        <p><table id="ttest" class="docutils footnote" data-frame="void"
+data-rules="none">
+<tbody data-valign="top">
+<tr>
+<td class="label"><a href="#id1" class="fn-backref">[1]</a></td>
+<td>This was calculated with an unpaired <em>t</em> test, based on a
+standard error of 2.5 in group 1 and 3.5 in group 2.</td>
+</tr>
+</tbody>
+</table></p>
+      </section>
+
+      <section xml:id="sec-what-next">
+        <title>what-next</title>
+        <p><span id="what-next"></span></p>
+        <p># What can be done?<a href="#what-can-be-done" class="headerlink"
+title="Permalink to this headline">¶</a></p>
+        <p>I’ve discussed many statistical problems throughout this guide. They
+appear in many fields of science: medicine, physics, climate science,
+biology, chemistry, neuroscience, and many others. Any researcher using
+statistical methods to analyze data is likely to make a mistake, and as
+we’ve seen, most of them do. What can we do about it?</p>
+        <p><p><em>Statistical education<a href="#statistical-education" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Most American science students have a minimal statistical education –
+perhaps one or two required courses, or even none at all for many
+students. And even when students have taken statistical courses,
+professors report that they can’t apply statistical concepts to
+scientific questions, having never fully understood – or simply
+forgotten – the appropriate techniques. This needs to change. Almost
+every scientific discipline depends on statistical analysis of
+experimental data, and statistical errors waste grant funding and
+researcher time.</p>
+        <p>Some universities have experimented with statistics courses integrated
+with science classes, with students immediately applying their
+statistical knowledge to problems in their field. Preliminary results
+suggests these methods work: students learn and retain more statistics,
+and they spend less time whining about being forced to take a statistics
+course.<span class="citation"><sup><a href="zbibliography.html#citation-metz-2008hs"
+class="reference internal">41</a></sup></span> More universities should
+adopt these techniques, using conceptual tests to see what methods work
+best.</p>
+        <p>We also need more freely available educational material. I was
+introduced to statistics when I needed to analyze data in a laboratory
+and didn’t know how; until strong statistics education is more
+widespread, many students will find themselves in the same position, and
+they need resources. Projects like
+<a href="http://www.openintro.org/stat/textbook.php"
+class="reference external">OpenIntro Stats</a> are promising, and I hope
+to see more in the near future.</p>
+        <p><p><em>Scientific publishing<a href="#scientific-publishing" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Scientific journals are slowly making progress towards solving many of
+the problems I have discussed. Reporting guidelines, such as CONSORT for
+randomized trials, make it clear what information is required for a
+published paper to be reproducible; unfortunately, as we’ve seen, these
+guidelines are infrequently enforced. We must continue to pressure
+journals to hold authors to more rigorous standards.</p>
+        <p>Premier journals need to lead the charge. <em>Nature</em> has begun to do so,
+announcing a new
+<a href="http://www.nature.com/authors/policies/checklist.pdf"
+class="reference external">checklist</a> which authors are required to
+complete before articles may be published. The checklist requires
+reporting of sample sizes, statistical power calculations, clinical
+trial registration numbers, a completed CONSORT checklist, adjustment
+for multiple comparisons, and sharing of data and source code. The
+guidelines cover most issues covered in <em>Statistics Done Wrong</em>, except
+for <a href="regression.html#stopping-rules"
+class="reference internal"><span class="std std-ref">stopping
+rules</span></a> and discussion of any reasons for departing from the
+trial’s registered
+<a href="freedom.html#freedom" class="reference internal"><span
+class="std std-ref">protocol</span></a>. <em>Nature</em> will also make
+statisticians available to consult for papers as needed.</p>
+        <p>If these guidelines are enforced, the result will be much more reliable
+and reproducible scientific research. More journals should do the same.</p>
+        <p><p><em>Your job<a href="#your-job" class="headerlink"</em></p>
+title="Permalink to this headline">¶</a></p>
+        <p>Your task can be expressed in four simple steps:</p>
+        <p>1.  Read a statistics textbook or take a good statistics course.
+    Practice.
+2.  Plan your data analyses carefully and deliberately, avoiding the
+    misconceptions and errors you have learned.
+3.  When you find common errors in the scientific literature – such as a
+    simple misinterpretation of <em>p</em> values – hit the perpetrator over
+    the head with your statistics textbook. It’s therapeutic.
+4.  Press for change in scientific education and publishing. It’s our
+    research. Let’s not screw it up.</p>
+      </section>
+
+      <section xml:id="sec-zbibliography">
+        <title>Bibliography<a href="#bibliography" class="headerlink"</title>
+        <p>title="Permalink to this headline">¶</a></p>
+        <p><table class="docutils" data-border="1">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody data-valign="top">
+<tr id="citation-baggerly-2009gk" class="footnote row-odd">
+<td>[1]</td>
+<td><span class="article reference"><span class="author">K. A.
+Baggerly</span><span>, </span><span class="author">K. R.
+Coombes</span><span>. </span><span class="title">Deriving
+chemosensitivity from cell lines: Forensic bioinformatics and
+reproducible research in high-throughput biology</span><span>.
+</span><em>The Annals of Applied Statistics</em><span>, </span><span
+class="volume">3</span><span>:</span><span
+class="pages">1309–1334</span><span>, </span><span
+class="year">2009</span><span>.</span></span></td>
+</tr>
+<tr id="citation-bakker-2011ja" class="footnote row-even">
+<td>[2]</td>
+<td><span class="article reference"><span class="author">M.
+Bakker</span><span>, </span><span class="author">J. M.
+Wicherts</span><span>. </span><span class="title">The (mis)reporting of
+statistical results in psychology journals</span><span>.
+</span><em>Behavior Research Methods</em><span>, </span><span
+class="volume">43</span><span>:</span><span
+class="pages">666–678</span><span>, </span><span
+class="year">2011</span><span>.</span></span></td>
+</tr>
+<tr id="citation-bassler-2010ds" class="footnote row-odd">
+<td>[3]</td>
+<td><span class="article reference"><span class="author">D.
+Bassler</span><span>, </span><span class="author">M. Briel</span><span>,
+</span><span class="author">V. M. Montori</span><span>, </span><span
+class="author">M. Lane</span><span>, </span><span class="author">P.
+Glasziou</span><span>, </span><span class="author">Q. Zhou</span><span>,
+</span><span class="author">D. Heels-Ansdell</span><span>, </span><span
+class="author">S. D. Walter</span><span>, </span><span class="author">G.
+H. Guyatt</span><span>. </span><span class="title">Stopping Randomized
+Trials Early for Benefit and Estimation of Treatment Effects: Systematic
+Review and Meta-regression Analysis</span><span>.
+</span><em>JAMA</em><span>, </span><span
+class="volume">303</span><span>:</span><span
+class="pages">1180–1187</span><span>, </span><span
+class="year">2010</span><span>.</span></span></td>
+</tr>
+<tr id="citation-bedard-2007dy" class="footnote row-even">
+<td>[4]</td>
+<td><span class="article reference"><span class="author">P. L.
+Bedard</span><span>, </span><span class="author">M. K.
+Krzyzanowska</span><span>, </span><span class="author">M.
+Pintilie</span><span>, </span><span class="author">I. F.
+Tannock</span><span>. </span><span class="title">Statistical Power of
+Negative Randomized Controlled Trials Presented at American Society for
+Clinical Oncology Annual Meetings</span><span>. </span><em>Journal of
+Clinical Oncology</em><span>, </span><span
+class="volume">25</span><span>:</span><span
+class="pages">3482–3487</span><span>, </span><span
+class="year">2007</span><span>.</span></span></td>
+</tr>
+<tr id="citation-begley-2012" class="footnote row-odd">
+<td>[5]</td>
+<td><span class="article reference"><span class="author">C. G.
+Begley</span><span>, </span><span class="author">L. M.
+Ellis</span><span>. </span><span class="title">Drug development: Raise
+standards for preclinical cancer research</span><span>.
+</span><em>Nature</em><span>, </span><span
+class="volume">483</span><span>:</span><span
+class="pages">531–533</span><span>, </span><span
+class="year">2012</span><span>.</span></span></td>
+</tr>
+<tr id="citation-belia-2005dg" class="footnote row-even">
+<td>[6]</td>
+<td><span class="article reference"><span class="author">S.
+Belia</span><span>, </span><span class="author">F. Fidler</span><span>,
+</span><span class="author">J. Williams</span><span>, </span><span
+class="author">G. Cumming</span><span>. </span><span
+class="title">Researchers misunderstand confidence intervals and
+standard error bars</span><span>. </span><em>Psychological
+methods</em><span>, </span><span
+class="volume">10</span><span>:</span><span
+class="pages">389–396</span><span>, </span><span
+class="year">2005</span><span>.</span></span></td>
+</tr>
+<tr id="citation-benjamini-1995ws" class="footnote row-odd">
+<td>[7]</td>
+<td><span class="article reference"><span class="author">Y.
+Benjamini</span><span>, </span><span class="author">Y.
+Hochberg</span><span>. </span><span class="title">Controlling the false
+discovery rate: a practical and powerful approach to multiple
+testing</span><span>. </span><em>Journal of the Royal Statistical
+Society Series B</em><span>, </span><span
+class="pages">289–300</span><span>, </span><span
+class="year">1995</span><span>.</span></span></td>
+</tr>
+<tr id="citation-bennett-2010uh" class="footnote row-even">
+<td>[8]</td>
+<td><span class="article reference"><span class="author">C.
+Bennett</span><span>, </span><span class="author">A. Baird</span><span>,
+</span><span class="author">M. Miller</span><span>, </span><span
+class="author">G. Wolford</span><span>. </span><span
+class="title">Neural Correlates of Interspecies Perspective Taking in
+the Post-Mortem Atlantic Salmon: An Argument For Proper Multiple
+Comparisons Correction</span><span>. </span><em>Journal of Serendipitous
+and Unexpected Results</em><span>, </span><span
+class="volume">1</span><span>:</span><span
+class="pages">1–5</span><span>, </span><span
+class="year">2010</span><span>.</span></span></td>
+</tr>
+<tr id="citation-bogaert-2006tc" class="footnote row-odd">
+<td>[9]</td>
+<td><span class="article reference"><span class="author">A. F.
+Bogaert</span><span>. </span><span class="title">Biological versus
+nonbiological older brothers and men’s sexual orientation</span><span>.
+</span><em>PNAS</em><span>, </span><span
+class="volume">103</span><span>:</span><span
+class="pages">10771–10774</span><span>, </span><span
+class="year">2006</span><span>.</span></span></td>
+</tr>
+<tr id="citation-bramwell-2006er" class="footnote row-even">
+<td>[10]</td>
+<td><span class="article reference"><span class="author">R.
+Bramwell</span><span>, </span><span class="author">H. West</span><span>.
+</span><span class="title">Health professionals’ and service users’
+interpretation of screening test results: experimental
+study</span><span>. </span><em>BMJ</em><span>, </span><span
+class="year">2006</span><span>.</span></span></td>
+</tr>
+<tr id="citation-brown-1987uu" class="footnote row-odd">
+<td>[11]</td>
+<td><span class="article reference"><span class="author">C. G.
+Brown</span><span>, </span><span class="author">G. D.
+Kelen</span><span>, </span><span class="author">J. J.
+Ashton</span><span>, </span><span class="author">H. A.
+Werman</span><span>. </span><span class="title">The beta error and
+sample size determination in clinical trials in emergency
+medicine</span><span>. </span><em>Annals of Emergency
+Medicine</em><span>, </span><span
+class="volume">16</span><span>:</span><span
+class="pages">183–187</span><span>, </span><span
+class="year">1987</span><span>.</span></span></td>
+</tr>
+<tr id="citation-button-2013dz" class="footnote row-even">
+<td>[12]</td>
+<td><span class="article reference"><span class="author">K. S.
+Button</span><span>, </span><span class="author">J. P. A.
+Ioannidis</span><span>, </span><span class="author">C.
+Mokrysz</span><span>, </span><span class="author">B. A.
+Nosek</span><span>, </span><span class="author">J. Flint</span><span>,
+</span><span class="author">E. S. J. Robinson</span><span>, </span><span
+class="author">M. R. Munafò</span><span>. </span><span
+class="title">Power failure: why small sample size undermines the
+reliability of neuroscience</span><span>. </span><em>Nature Reviews
+Neuroscience</em><span>, </span><span
+class="year">2013</span><span>.</span></span></td>
+</tr>
+<tr id="citation-carp-2012ba" class="footnote row-odd">
+<td>[13]</td>
+<td><span class="article reference"><span class="author">J.
+Carp</span><span>. </span><span class="title">The secret lives of
+experiments: methods reporting in the fMRI literature</span><span>.
+</span><em>Neuroimage</em><span>, </span><span
+class="volume">63</span><span>:</span><span
+class="pages">289–300</span><span>, </span><span
+class="year">2012</span><span>.</span></span></td>
+</tr>
+<tr id="citation-chan-2004gm" class="footnote row-even">
+<td>[14]</td>
+<td><span class="article reference"><span class="author">A.-W.
+Chan</span><span>, </span><span class="author">A.
+Hróbjartsson</span><span>, </span><span class="author">M. T.
+Haahr</span><span>, </span><span class="author">P. C.
+Gøtzsche</span><span>, </span><span class="author">D. G.
+Altman</span><span>. </span><span class="title">Empirical Evidence for
+Selective Reporting of Outcomes in Randomized Trials: Comparison of
+Protocols to Published Articles</span><span>.
+</span><em>JAMA</em><span>, </span><span
+class="volume">291</span><span>:</span><span
+class="pages">2457–2465</span><span>, </span><span
+class="year">2004</span><span>.</span></span></td>
+</tr>
+<tr id="citation-chan-2008bb" class="footnote row-odd">
+<td>[15]</td>
+<td><span class="article reference"><span class="author">A.-W.
+Chan</span><span>, </span><span class="author">A.
+Hróbjartsson</span><span>, </span><span class="author">K. J.
+Jørgensen</span><span>, </span><span class="author">P. C.
+Gøtzsche</span><span>, </span><span class="author">D. G.
+Altman</span><span>. </span><span class="title">Discrepancies in sample
+size calculations and data analyses reported in randomised trials:
+comparison of publications with protocols</span><span>.
+</span><em>BMJ</em><span>, </span><span
+class="volume">337</span><span>:</span><span
+class="pages">a2299</span><span>, </span><span
+class="year">2008</span><span>.</span></span></td>
+</tr>
+<tr id="citation-chung-1998ku" class="footnote row-even">
+<td>[16]</td>
+<td><span class="article reference"><span class="author">K. C.
+Chung</span><span>, </span><span class="author">L. K.
+Kalliainen</span><span>, </span><span class="author">R. A.
+Hayward</span><span>. </span><span class="title">Type II (beta) errors
+in the hand literature: the importance of power</span><span>.
+</span><em>The Journal of Hand Surgery</em><span>, </span><span
+class="volume">23</span><span>:</span><span
+class="pages">20–25</span><span>, </span><span
+class="year">1998</span><span>.</span></span></td>
+</tr>
+<tr id="citation-moher-1994" class="footnote row-odd">
+<td>[17]</td>
+<td><span class="article reference"><span class="author">M.
+D</span><span>, </span><span class="author">D. CS</span><span>,
+</span><span class="author">W. GA</span><span>. </span><span
+class="title">Statistical power, sample size, and their reporting in
+randomized controlled trials</span><span>. </span><em>JAMA</em><span>,
+</span><span class="volume">272</span><span>:</span><span
+class="pages">122-124</span><span>, </span><span
+class="year">1994</span><span>.</span></span></td>
+</tr>
+<tr id="citation-eyding-2010bx" class="footnote row-even">
+<td>[18]</td>
+<td><span class="article reference"><span class="author">D.
+Eyding</span><span>, </span><span class="author">M.
+Lelgemann</span><span>, </span><span class="author">U.
+Grouven</span><span>, </span><span class="author">M.
+Härter</span><span>, </span><span class="author">M. Kromp</span><span>,
+</span><span class="author">T. Kaiser</span><span>, </span><span
+class="author">M. F. Kerekes</span><span>, </span><span
+class="author">M. Gerken</span><span>, </span><span class="author">B.
+Wieseler</span><span>. </span><span class="title">Reboxetine for acute
+treatment of major depression: systematic review and meta-analysis of
+published and unpublished placebo and selective serotonin reuptake
+inhibitor controlled trials</span><span>. </span><em>BMJ</em><span>,
+</span><span class="volume">341</span><span>:</span><span
+class="year">2010</span><span>.</span></span></td>
+</tr>
+<tr id="citation-gabriel-1978fp" class="footnote row-odd">
+<td>[19]</td>
+<td><span class="article reference"><span class="author">K. R.
+Gabriel</span><span>. </span><span class="title">A simple method of
+multiple comparisons of means</span><span>. </span><em>Journal of the
+American Statistical Association</em><span>, </span><span
+class="volume">73</span><span>:</span><span
+class="pages">724–729</span><span>, </span><span
+class="year">1978</span><span>.</span></span></td>
+</tr>
+<tr id="citation-galak-2012fd" class="footnote row-even">
+<td>[20]</td>
+<td><span class="article reference"><span class="author">J.
+Galak</span><span>, </span><span class="author">R. A.
+LeBoeuf</span><span>, </span><span class="author">L. D.
+Nelson</span><span>, </span><span class="author">J. P.
+Simmons</span><span>. </span><span class="title">Correcting the past:
+Failures to replicate psi</span><span>. </span><em>Journal of
+Personality and Social Psychology</em><span>, </span><span
+class="volume">103</span><span>:</span><span
+class="pages">933–948</span><span>, </span><span
+class="year">2012</span><span>.</span></span></td>
+</tr>
+<tr id="citation-gelman-1999gi" class="footnote row-odd">
+<td>[21]</td>
+<td><span class="article reference"><span class="author">A.
+Gelman</span><span>, </span><span class="author">P.N.
+Price</span><span>. </span><span class="title">All maps of parameter
+estimates are misleading</span><span>. </span><em>Statistics in
+Medicine</em><span>, </span><span
+class="volume">18</span><span>:</span><span
+class="pages">3221–3234</span><span>, </span><span
+class="year">1999</span><span>.</span></span></td>
+</tr>
+<tr id="citation-gelman-2006bj" class="footnote row-even">
+<td>[22]</td>
+<td><span class="article reference"><span class="author">A.
+Gelman</span><span>, </span><span class="author">H. Stern</span><span>.
+</span><span class="title">The Difference Between “Significant” and “Not
+Significant” is not Itself Statistically Significant</span><span>.
+</span><em>The American Statistician</em><span>, </span><span
+class="volume">60</span><span>:</span><span
+class="pages">328–331</span><span>, </span><span
+class="year">2006</span><span>.</span></span></td>
+</tr>
+<tr id="citation-gonon-2012do" class="footnote row-odd">
+<td>[23]</td>
+<td><span class="article reference"><span class="author">F.
+Gonon</span><span>, </span><span class="author">J.-P.
+Konsman</span><span>, </span><span class="author">D. Cohen</span><span>,
+</span><span class="author">T. Boraud</span><span>. </span><span
+class="title">Why Most Biomedical Findings Echoed by Newspapers Turn Out
+to be False: The Case of Attention Deficit Hyperactivity
+Disorder</span><span>. </span><em>PLoS ONE</em><span>, </span><span
+class="volume">7</span><span>:</span><span
+class="pages">e44275</span><span>, </span><span
+class="year">2012</span><span>.</span></span></td>
+</tr>
+<tr id="citation-goodman-1999tx" class="footnote row-even">
+<td>[24]</td>
+<td><span class="article reference"><span class="author">S. N.
+Goodman</span><span>. </span><span class="title">Toward evidence-based
+medical statistics. 1: The P value fallacy</span><span>.
+</span><em>Annals of Internal Medicine</em><span>, </span><span
+class="volume">130</span><span>:</span><span
+class="pages">995–1004</span><span>, </span><span
+class="year">1999</span><span>.</span></span></td>
+</tr>
+<tr id="citation-gotzsche-2006du" class="footnote row-odd">
+<td>[25]</td>
+<td><span class="article reference"><span class="author">P. C.
+Gøtzsche</span><span>. </span><span class="title">Believability of
+relative risks and odds ratios in abstracts: cross sectional
+study</span><span>. </span><em>BMJ</em><span>, </span><span
+class="volume">333</span><span>:</span><span
+class="pages">231–234</span><span>, </span><span
+class="year">2006</span><span>.</span></span></td>
+</tr>
+<tr id="citation-gotzsche-1989uy" class="footnote row-even">
+<td>[26]</td>
+<td><span class="article reference"><span class="author">P. C.
+Gøtzsche</span><span>. </span><span class="title">Methodology and overt
+and hidden bias in reports of 196 double-blind trials of nonsteroidal
+antiinflammatory drugs in rheumatoid arthritis</span><span>.
+</span><em>Controlled Clinical Trials</em><span>, </span><span
+class="volume">10</span><span>:</span><span
+class="pages">31–56</span><span>, </span><span
+class="year">1989</span><span>.</span></span></td>
+</tr>
+<tr id="citation-hauer-2004fz" class="footnote row-odd">
+<td>[27]</td>
+<td><span class="article reference"><span class="author">E.
+Hauer</span><span>. </span><span class="title">The harm done by tests of
+significance</span><span>. </span><em>Accident Analysis &amp;
+Prevention</em><span>, </span><span
+class="volume">36</span><span>:</span><span
+class="pages">495–500</span><span>, </span><span
+class="year">2004</span><span>.</span></span></td>
+</tr>
+<tr id="citation-hemenway-1997up" class="footnote row-even">
+<td>[28]</td>
+<td><span class="article reference"><span class="author">D.
+Hemenway</span><span>. </span><span class="title">Survey Research and
+Self-Defense Gun Use: An Explanation of Extreme
+Overestimates</span><span>. </span><em>The Journal of Criminal Law and
+Criminology</em><span>, </span><span
+class="volume">87</span><span>:</span><span
+class="pages">1430–1445</span><span>, </span><span
+class="year">1997</span><span>.</span></span></td>
+</tr>
+<tr id="citation-huwilermuntener-2002ij" class="footnote row-odd">
+<td>[29]</td>
+<td><span class="article reference"><span class="author">K.
+Huwiler-Müntener</span><span>, </span><span class="author">P.
+Jüni</span><span>, </span><span class="author">C. Junker</span><span>,
+</span><span class="author">M. Egger</span><span>. </span><span
+class="title">Quality of Reporting of Randomized Trials as a Measure of
+Methodologic Quality</span><span>. </span><em>JAMA</em><span>,
+</span><span class="volume">287</span><span>:</span><span
+class="pages">2801–2804</span><span>, </span><span
+class="year">2002</span><span>.</span></span></td>
+</tr>
+<tr id="citation-ioannidis-2008dy" class="footnote row-even">
+<td>[30]</td>
+<td><span class="article reference"><span class="author">J. P. A.
+Ioannidis</span><span>. </span><span class="title">Why Most Discovered
+True Associations Are Inflated</span><span>.
+</span><em>Epidemiology</em><span>, </span><span
+class="volume">19</span><span>:</span><span
+class="pages">640–648</span><span>, </span><span
+class="year">2008</span><span>.</span></span></td>
+</tr>
+<tr id="citation-ioannidis-2005bw" class="footnote row-odd">
+<td>[31]</td>
+<td><span class="article reference"><span class="author">J. P. A.
+Ioannidis</span><span>. </span><span class="title">Why Most Published
+Research Findings Are False</span><span>. </span><em>PLoS
+Medicine</em><span>, </span><span
+class="volume">2</span><span>:</span><span
+class="pages">e124</span><span>, </span><span
+class="year">2005</span><span>.</span></span></td>
+</tr>
+<tr id="citation-ioannidis-2005gy" class="footnote row-even">
+<td>[32]</td>
+<td><span class="article reference"><span class="author">J. P. A.
+Ioannidis</span><span>. </span><span class="title">Contradicted and
+initially stronger effects in highly cited clinical
+research</span><span>. </span><em>JAMA</em><span>, </span><span
+class="volume">294</span><span>:</span><span
+class="pages">218–228</span><span>, </span><span
+class="year">2005</span><span>.</span></span></td>
+</tr>
+<tr id="citation-ioannidis-2005bj" class="footnote row-odd">
+<td>[33]</td>
+<td><span class="article reference"><span class="author">J. P. A.
+Ioannidis</span><span>, </span><span class="author">T. A.
+Trikalinos</span><span>. </span><span class="title">Early extreme
+contradictory estimates may appear in published research: the Proteus
+phenomenon in molecular genetics research and randomized
+trials</span><span>. </span><em>Journal of Clinical
+Epidemiology</em><span>, </span><span
+class="volume">58</span><span>:</span><span
+class="pages">543–549</span><span>, </span><span
+class="year">2005</span><span>.</span></span></td>
+</tr>
+<tr id="citation-kirkham-2010kj" class="footnote row-even">
+<td>[34]</td>
+<td><span class="article reference"><span class="author">J. J.
+Kirkham</span><span>, </span><span class="author">K. M.
+Dwan</span><span>, </span><span class="author">D. G.
+Altman</span><span>, </span><span class="author">C. Gamble</span><span>,
+</span><span class="author">S. Dodd</span><span>, </span><span
+class="author">R. Smyth</span><span>, </span><span class="author">P. R.
+Williamson</span><span>. </span><span class="title">The impact of
+outcome reporting bias in randomised controlled trials on a cohort of
+systematic reviews</span><span>. </span><em>BMJ</em><span>, </span><span
+class="volume">340</span><span>:</span><span
+class="pages">c365–c365</span><span>, </span><span
+class="year">2010</span><span>.</span></span></td>
+</tr>
+<tr id="citation-kramer-2005in" class="footnote row-odd">
+<td>[35]</td>
+<td><span class="article reference"><span class="author">W.
+Krämer</span><span>, </span><span class="author">G.
+Gigerenzer</span><span>. </span><span class="title">How to Confuse with
+Statistics or: The Use and Misuse of Conditional
+Probabilities</span><span>. </span><em>Statistical Science</em><span>,
+</span><span class="volume">20</span><span>:</span><span
+class="pages">223–230</span><span>, </span><span
+class="year">2005</span><span>.</span></span></td>
+</tr>
+<tr id="citation-kyzas-2005ep" class="footnote row-even">
+<td>[36]</td>
+<td><span class="article reference"><span class="author">P. A.
+Kyzas</span><span>, </span><span class="author">K. T.
+Loizou</span><span>, </span><span class="author">J. P. A.
+Ioannidis</span><span>. </span><span class="title">Selective Reporting
+Biases in Cancer Prognostic Factor Studies</span><span>.
+</span><em>Journal of the National Cancer Institute</em><span>,
+</span><span class="volume">97</span><span>:</span><span
+class="pages">1043–1055</span><span>, </span><span
+class="year">2005</span><span>.</span></span></td>
+</tr>
+<tr id="citation-lanzante-2005hi" class="footnote row-odd">
+<td>[37]</td>
+<td><span class="article reference"><span class="author">J. R.
+Lanzante</span><span>. </span><span class="title">A cautionary note on
+the use of error bars</span><span>. </span><em>Journal of
+climate</em><span>, </span><span
+class="volume">18</span><span>:</span><span
+class="pages">3699–3703</span><span>, </span><span
+class="year">2005</span><span>.</span></span></td>
+</tr>
+<tr id="citation-lazic-2010fc" class="footnote row-even">
+<td>[38]</td>
+<td><span class="article reference"><span class="author">S. E.
+Lazic</span><span>. </span><span class="title">The problem of
+pseudoreplication in neuroscientific studies: is it affecting your
+analysis?</span><span>. </span><em>BMC Neuroscience</em><span>,
+</span><span class="volume">11</span><span>:</span><span
+class="pages">5</span><span>, </span><span
+class="year">2010</span><span>.</span></span></td>
+</tr>
+<tr id="citation-lelorier-1997ww" class="footnote row-odd">
+<td>[39]</td>
+<td><span class="article reference"><span class="author">J.
+LeLorier</span><span>, </span><span class="author">G.
+Gregoire</span><span>, </span><span class="author">A.
+Benhaddad</span><span>. </span><span class="title">Discrepancies between
+meta-analyses and subsequent large randomized, controlled
+trials</span><span>. </span><em>New England Journal of
+Medicine</em><span>, </span><span
+class="year">1997</span><span>.</span></span></td>
+</tr>
+<tr id="citation-marshall-2000hg" class="footnote row-even">
+<td>[40]</td>
+<td><span class="article reference"><span class="author">M.
+Marshall</span><span>, </span><span class="author">A.
+Lockwood</span><span>, </span><span class="author">C.
+Bradley</span><span>, </span><span class="author">C. Adams</span><span>,
+</span><span class="author">C. Joy</span><span>, </span><span
+class="author">M. Fenton</span><span>. </span><span
+class="title">Unpublished rating scales: a major source of bias in
+randomised controlled trials of treatments for
+schizophrenia</span><span>. </span><em>The British Journal of
+Psychiatry</em><span>, </span><span
+class="volume">176</span><span>:</span><span
+class="pages">249–252</span><span>, </span><span
+class="year">2000</span><span>.</span></span></td>
+</tr>
+<tr id="citation-metz-2008hs" class="footnote row-odd">
+<td>[41]</td>
+<td><span class="article reference"><span class="author">A. M.
+Metz</span><span>. </span><span class="title">Teaching Statistics in
+Biology: Using Inquiry-based Learning to Strengthen Understanding of
+Statistical Analysis in Biology Laboratory Courses</span><span>.
+</span><em>CBE Life Sciences Education</em><span>, </span><span
+class="volume">7</span><span>:</span><span
+class="pages">317–326</span><span>, </span><span
+class="year">2008</span><span>.</span></span></td>
+</tr>
+<tr id="citation-mills-2005ei" class="footnote row-even">
+<td>[42]</td>
+<td><span class="article reference"><span class="author">E.
+Mills</span><span>, </span><span class="author">P. Wu</span><span>,
+</span><span class="author">J. Gagnier</span><span>, </span><span
+class="author">D. Heels-Ansdell</span><span>, </span><span
+class="author">V. M. Montori</span><span>. </span><span class="title">An
+analysis of general medical and specialist journals that endorse CONSORT
+found that reporting was not enforced consistently</span><span>.
+</span><em>Journal of Clinical Epidemiology</em><span>, </span><span
+class="volume">58</span><span>:</span><span
+class="pages">662–667</span><span>, </span><span
+class="year">2005</span><span>.</span></span></td>
+</tr>
+<tr id="citation-montori-2005bo" class="footnote row-odd">
+<td>[43]</td>
+<td><span class="article reference"><span class="author">V. M.
+Montori</span><span>, </span><span class="author">P. J.
+Devereaux</span><span>, </span><span class="author">N.
+Adhikari</span><span>. </span><span class="title">Randomized trials
+stopped early for benefit: a systematic review</span><span>.
+</span><em>JAMA</em><span>, </span><span
+class="volume">294</span><span>:</span><span
+class="pages">2203–2209</span><span>, </span><span
+class="year">2005</span><span>.</span></span></td>
+</tr>
+<tr id="citation-nieuwenhuis-2011dm" class="footnote row-even">
+<td>[44]</td>
+<td><span class="article reference"><span class="author">S.
+Nieuwenhuis</span><span>, </span><span class="author">B. U.
+Forstmann</span><span>, </span><span class="author">E.-J.
+Wagenmakers</span><span>. </span><span class="title">Erroneous analyses
+of interactions in neuroscience: a problem of significance</span><span>.
+</span><em>Nature Neuroscience</em><span>, </span><span
+class="volume">14</span><span>:</span><span
+class="pages">1105–1109</span><span>, </span><span
+class="year">2011</span><span>.</span></span></td>
+</tr>
+<tr id="citation-pereira-2011eg" class="footnote row-odd">
+<td>[45]</td>
+<td><span class="article reference"><span class="author">T. V.
+Pereira</span><span>, </span><span class="author">J. P. A.
+Ioannidis</span><span>. </span><span class="title">Statistically
+significant meta-analyses of clinical trials have modest credibility and
+inflated effects</span><span>. </span><em>Journal of Clinical
+Epidemiology</em><span>, </span><span
+class="volume">64</span><span>:</span><span
+class="pages">1060–1069</span><span>, </span><span
+class="year">2011</span><span>.</span></span></td>
+</tr>
+<tr id="citation-plint-2006uj" class="footnote row-even">
+<td>[46]</td>
+<td><span class="article reference"><span class="author">A. C.
+Plint</span><span>, </span><span class="author">D. Moher</span><span>,
+</span><span class="author">A. Morrison</span><span>, </span><span
+class="author">K. Schulz</span><span>, </span><span class="author">e.
+al</span><span>. </span><span class="title">Does the CONSORT checklist
+improve the quality of reports of randomised controlled trials? A
+systematic review</span><span>. </span><em>Medical journal of
+Australia</em><span>, </span><span
+class="volume">185</span><span>:</span><span
+class="pages">263–267</span><span>, </span><span
+class="year">2006</span><span>.</span></span></td>
+</tr>
+<tr id="citation-prayle-2011cs" class="footnote row-odd">
+<td>[47]</td>
+<td><span class="article reference"><span class="author">A. P.
+Prayle</span><span>, </span><span class="author">M. N.
+Hurley</span><span>, </span><span class="author">A. R.
+Smyth</span><span>. </span><span class="title">Compliance with mandatory
+reporting of clinical trial results on ClinicalTrials.gov: cross
+sectional study</span><span>. </span><em>BMJ</em><span>, </span><span
+class="volume">344</span><span>:</span><span
+class="pages">d7373</span><span>, </span><span
+class="year">2011</span><span>.</span></span></td>
+</tr>
+<tr id="citation-preusser-1982gp" class="footnote row-even">
+<td>[48]</td>
+<td><span class="article reference"><span class="author">D. F.
+Preusser</span><span>, </span><span class="author">W. A.
+Leaf</span><span>, </span><span class="author">K. B.
+DeBartolo</span><span>, </span><span class="author">R. D.
+Blomberg</span><span>, </span><span class="author">M. M.
+Levy</span><span>. </span><span class="title">The effect of
+right-turn-on-red on pedestrian and bicyclist accidents</span><span>.
+</span><em>Journal of Safety Research</em><span>, </span><span
+class="volume">13</span><span>:</span><span
+class="pages">45–55</span><span>, </span><span
+class="year">1982</span><span>.</span></span></td>
+</tr>
+<tr id="citation-prinz-2011gb" class="footnote row-odd">
+<td>[49]</td>
+<td><span class="article reference"><span class="author">F.
+Prinz</span><span>, </span><span class="author">T.
+Schlange</span><span>, </span><span class="author">K.
+Asadullah</span><span>. </span><span class="title">Believe it or not:
+how much can we rely on published data on potential drug
+targets?</span><span>. </span><em>Nature Reviews Drug
+Discovery</em><span>, </span><span
+class="volume">10</span><span>:</span><span
+class="pages">328–329</span><span>, </span><span
+class="year">2011</span><span>.</span></span></td>
+</tr>
+<tr id="citation-schenker-2001cr" class="footnote row-even">
+<td>[50]</td>
+<td><span class="article reference"><span class="author">N.
+Schenker</span><span>, </span><span class="author">J. F.
+Gentleman</span><span>. </span><span class="title">On judging the
+significance of differences by examining the overlap between confidence
+intervals</span><span>. </span><em>The American Statistician</em><span>,
+</span><span class="volume">55</span><span>:</span><span
+class="pages">182–186</span><span>, </span><span
+class="year">2001</span><span>.</span></span></td>
+</tr>
+<tr id="citation-schoenfeld-2013fq" class="footnote row-odd">
+<td>[51]</td>
+<td><span class="article reference"><span class="author">J. D.
+Schoenfeld</span><span>, </span><span class="author">J. P. A.
+Ioannidis</span><span>. </span><span class="title">Is everything we eat
+associated with cancer? A systematic cookbook review</span><span>.
+</span><em>American Journal of Clinical Nutrition</em><span>,
+</span><span class="volume">97</span><span>:</span><span
+class="pages">127–134</span><span>, </span><span
+class="year">2013</span><span>.</span></span></td>
+</tr>
+<tr id="citation-schroter-2008hw" class="footnote row-even">
+<td>[52]</td>
+<td><span class="article reference"><span class="author">S.
+Schroter</span><span>, </span><span class="author">N.
+Black</span><span>, </span><span class="author">S. Evans</span><span>,
+</span><span class="author">F. Godlee</span><span>, </span><span
+class="author">L. Osorio</span><span>, </span><span class="author">R.
+Smith</span><span>. </span><span class="title">What errors do peer
+reviewers detect, and does training improve their ability to detect
+them?</span><span>. </span><em>JRSM</em><span>, </span><span
+class="volume">101</span><span>:</span><span
+class="pages">507–514</span><span>, </span><span
+class="year">2008</span><span>.</span></span></td>
+</tr>
+<tr id="citation-simmons-2011iw" class="footnote row-odd">
+<td>[53]</td>
+<td><span class="article reference"><span class="author">J. P.
+Simmons</span><span>, </span><span class="author">L. D.
+Nelson</span><span>, </span><span class="author">U.
+Simonsohn</span><span>. </span><span class="title">False-Positive
+Psychology: Undisclosed Flexibility in Data Collection and Analysis
+Allows Presenting Anything as Significant</span><span>.
+</span><em>Psychological Science</em><span>, </span><span
+class="volume">22</span><span>:</span><span
+class="pages">1359–1366</span><span>, </span><span
+class="year">2011</span><span>.</span></span></td>
+</tr>
+<tr id="citation-smith-1987uz" class="footnote row-even">
+<td>[54]</td>
+<td><span class="article reference"><span class="author">D. G.
+Smith</span><span>, </span><span class="author">J. Clemens</span><span>,
+</span><span class="author">W. Crede</span><span>, </span><span
+class="author">M. Harvey</span><span>, </span><span class="author">E. J.
+Gracely</span><span>. </span><span class="title">Impact of multiple
+comparisons in randomized clinical trials</span><span>. </span><em>The
+American Journal of Medicine</em><span>, </span><span
+class="volume">83</span><span>:</span><span
+class="pages">545–550</span><span>, </span><span
+class="year">1987</span><span>.</span></span></td>
+</tr>
+<tr id="citation-tatsioni-2007cr" class="footnote row-odd">
+<td>[55]</td>
+<td><span class="article reference"><span class="author">A.
+Tatsioni</span><span>, </span><span class="author">N. G.
+Bonitsis</span><span>, </span><span class="author">J. P. A.
+Ioannidis</span><span>. </span><span class="title">Persistence of
+Contradicted Claims in the Literature</span><span>.
+</span><em>JAMA</em><span>, </span><span
+class="volume">298</span><span>:</span><span
+class="pages">2517–2526</span><span>, </span><span
+class="year">2007</span><span>.</span></span></td>
+</tr>
+<tr id="citation-todd-2001hg" class="footnote row-even">
+<td>[56]</td>
+<td><span class="article reference"><span class="author">S.
+Todd</span><span>, </span><span class="author">A.
+Whitehead</span><span>, </span><span class="author">N.
+Stallard</span><span>, </span><span class="author">J.
+Whitehead</span><span>. </span><span class="title">Interim analyses and
+sequential designs in phase III studies</span><span>. </span><em>British
+Journal of Clinical Pharmacology</em><span>, </span><span
+class="volume">51</span><span>:</span><span
+class="pages">394–399</span><span>, </span><span
+class="year">2001</span><span>.</span></span></td>
+</tr>
+<tr id="citation-tsang-2009iw" class="footnote row-odd">
+<td>[57]</td>
+<td><span class="article reference"><span class="author">R.
+Tsang</span><span>, </span><span class="author">L. Colley</span><span>,
+</span><span class="author">L. D. Lynd</span><span>. </span><span
+class="title">Inadequate statistical power to detect clinically
+significant differences in adverse event rates in randomized controlled
+trials</span><span>. </span><em>Journal of Clinical
+Epidemiology</em><span>, </span><span
+class="volume">62</span><span>:</span><span
+class="pages">609–616</span><span>, </span><span
+class="year">2009</span><span>.</span></span></td>
+</tr>
+<tr id="citation-wagenmakers-2011tp" class="footnote row-even">
+<td>[58]</td>
+<td><span class="article reference"><span class="author">E.
+Wagenmakers</span><span>, </span><span class="author">R.
+Wetzels</span><span>. </span><span class="title">Why psychologists must
+change the way they analyze their data: The case of psi</span><span>.
+</span><em>Journal of Personality and Social Psychology</em><span>,
+</span><span class="year">2011</span><span>.</span></span></td>
+</tr>
+<tr id="citation-wainer-2007wr" class="footnote row-odd">
+<td>[59]</td>
+<td><span class="article reference"><span class="author">H.
+Wainer</span><span>. </span><span class="title">The Most Dangerous
+Equation</span><span>. </span><em>American Scientist</em><span>,
+</span><span class="volume">95</span><span>:</span><span
+class="pages">249–256</span><span>, </span><span
+class="year">2007</span><span>.</span></span></td>
+</tr>
+<tr id="citation-wicherts-2011fp" class="footnote row-even">
+<td>[60]</td>
+<td><span class="article reference"><span class="author">J. M.
+Wicherts</span><span>, </span><span class="author">M.
+Bakker</span><span>, </span><span class="author">D.
+Molenaar</span><span>. </span><span class="title">Willingness to Share
+Research Data Is Related to the Strength of the Evidence and the Quality
+of Reporting of Statistical Results</span><span>. </span><em>PLoS
+ONE</em><span>, </span><span class="volume">6</span><span>:</span><span
+class="pages">e26828</span><span>, </span><span
+class="year">2011</span><span>.</span></span></td>
+</tr>
+<tr id="citation-wicherts-2006jg" class="footnote row-odd">
+<td>[61]</td>
+<td><span class="article reference"><span class="author">J. M.
+Wicherts</span><span>, </span><span class="author">D.
+Borsboom</span><span>, </span><span class="author">J. Kats</span><span>,
+</span><span class="author">D. Molenaar</span><span>. </span><span
+class="title">The poor availability of psychological research data for
+reanalysis</span><span>. </span><em>American Psychologist</em><span>,
+</span><span class="volume">61</span><span>:</span><span
+class="pages">726–728</span><span>, </span><span
+class="year">2006</span><span>.</span></span></td>
+</tr>
+</tbody>
+</table></p>
+      </section>
+
+    </chapter>
+  </book>
+</pretext>
