@@ -3,23 +3,241 @@
   <title>Stopping Rules and Regression to the Mean</title>
 
   <p>
-    When should you stop collecting data? If you analyze your data as you
-    collect it and stop when you achieve statistical significance, you will
-    dramatically inflate your false positive rate. This is known as optional
-    stopping, and it is a subtle but serious problem in scientific research.
+    Medical trials are expensive. Supplying dozens of patients with
+    experimental medications and tracking their symptoms over the course of
+    months takes significant resources, and so many pharmaceutical companies
+    develop <q>stopping rules,</q> which allow investigators to end a study early
+    if it's clear the experimental drug has a substantial effect. For
+    example, if the trial is only half complete but there's already a
+    statistically significant difference in symptoms with the new
+    medication, the researchers may terminate the study, rather than
+    gathering more data to reinforce the conclusion.
   </p>
 
   <p>
-    Related to this is regression to the mean: extreme measurements tend to
-    be followed by less extreme ones, simply because of random variation.
-    A patient who scores very low on a test will likely score higher the
-    next time <mdash/> not because of any treatment, but because their first
-    score was unusually low.
+    When poorly done, however, this can lead to numerous false positives.
   </p>
 
   <p>
-    This chapter discusses stopping rules, regression to the mean, and
-    how to avoid being fooled by these phenomena.
+    For example, suppose we're comparing two groups of patients, one with a
+    medication and one with a placebo. We measure the level of some protein
+    in their bloodstreams as a way of seeing if the medication is working.
+    In this case, though, the medication causes no difference whatsoever:
+    patients in both groups have the same average protein levels, although
+    of course individuals have levels which vary slightly.
   </p>
+
+  <p>
+    We start with ten patients in each group, and gradually collect more
+    data from more patients. As we go along, we do a <em>t</em> test to compare
+    the two groups and see if there is a statistically significant difference
+    between average protein levels. We might see a result like this
+    simulation:
+  </p>
+
+  <figure>
+    <image source="images/sample-size.png"/>
+  </figure>
+
+  <p>
+    This plot shows the <em>p</em> value of the difference between groups as we
+    collect more data, with the horizontal line indicating the
+    <m>p = 0.05</m> level of significance. At first, there appears to be
+    no significant difference. Then we collect more data and conclude there
+    is. If we were to stop, we'd be misled: we'd believe there is a
+    significant difference between groups when there is none. As we collect
+    yet more data, we realize we were mistaken <mdash/> but then a bit of luck
+    leads us back to a false positive.
+  </p>
+
+  <p>
+    You'd expect that the <em>p</em> value dip shouldn't happen, since there's no
+    real difference between groups. After all, taking more data shouldn't
+    make our conclusions worse, right? And it's true that if we run the
+    trial again we might find that the groups start out with no significant
+    difference and stay that way as we collect more data, or start with a
+    huge difference and quickly regress to having none. But if we wait long
+    enough and test after every data point, we will eventually cross <em>any</em>
+    arbitrary line of statistical significance, even if there's no real
+    difference at all. We can't usually collect infinite samples, so in
+    practice this doesn't always happen, but poorly implemented stopping
+    rules still increase false positive rates
+    significantly.<fn>J. P. Simmons, L. D. Nelson, U. Simonsohn.
+    False-positive psychology: Undisclosed flexibility in data collection
+    and analysis allows presenting anything as significant.
+    <em>Psychological Science</em>, 22(11):1359<ndash/>1366, 2011.</fn>
+  </p>
+
+  <p>
+    Modern clinical trials are often required to register their statistical
+    protocols in advance, and generally pre-select only a few evaluation
+    points at which they test their evidence, rather than testing after
+    every observation. This causes only a small increase in the false
+    positive rate, which can be adjusted for by carefully choosing the
+    required significance levels and using more advanced statistical
+    techniques.<fn>S. Todd. A practical guide to adaptive randomization in
+    clinical trials. <em>Statistics in Medicine</em>, 20(7):1041<ndash/>1074,
+    2001.</fn> But in fields where protocols are not registered and
+    researchers have the freedom to use whatever methods they feel
+    appropriate, there may be false positive demons lurking.
+  </p>
+
+  <section xml:id="sec-truth-inflation">
+    <title>Truth Inflation</title>
+
+    <p>
+      Medical trials also tend to have inadequate statistical power to detect
+      moderate differences between medications. So they want to stop as soon
+      as they detect an effect, but they don't have the power to detect
+      effects.
+    </p>
+
+    <p>
+      Suppose a medication reduces symptoms by 20% over a placebo, but the
+      trial you're using to test it does not have adequate statistical power
+      to detect this difference. We know that small trials tend to have
+      varying results: it's easy to get ten lucky patients who have shorter
+      colds than usual, but much harder to get ten thousand who all do.
+    </p>
+
+    <p>
+      Now imagine running many copies of this trial. Sometimes you get unlucky
+      patients, and so you don't notice any statistically significant
+      improvement from your drug. Sometimes your patients are exactly average,
+      and the treatment group has their symptoms reduced by 20% <mdash/> but you
+      don't have enough data to call this a statistically significant
+      increase, so you ignore it. Sometimes the patients are lucky and have
+      their symptoms reduced by much more than 20%, and so you stop the trial
+      and say <q>Look! It works!</q>
+    </p>
+
+    <p>
+      You've correctly concluded that your medication is effective, but you've
+      inflated the size of its effect. You falsely believe it is much more
+      effective than it really is.
+    </p>
+
+    <p>
+      This effect occurs in pharmacological trials, epidemiological studies,
+      gene association studies (<q>gene A causes condition B</q>), psychological
+      studies, and in some of the most-cited papers in the medical
+      literature.<fn>J. P. A. Ioannidis. Why most discovered true associations
+      are inflated. <em>Epidemiology</em>, 19(5):640<ndash/>648, 2008. Also:
+      J. P. A. Ioannidis. Why most published research findings are false.
+      <em>PLoS Medicine</em>, 2(8):e124, 2005.</fn> In fields where trials
+      can be conducted quickly by many independent researchers (such as gene
+      association studies), the earliest published results are often wildly
+      contradictory, because small trials and a demand for statistical
+      significance cause only the most extreme results to be
+      published.<fn>J. P. A. Ioannidis. Contradicted and initially stronger
+      effects in highly cited clinical research. <em>JAMA</em>,
+      294(2):218<ndash/>228, 2005.</fn>
+    </p>
+
+    <p>
+      As a bonus, truth inflation can combine forces with early stopping
+      rules. If most drugs in clinical trials are not quite so effective to
+      warrant stopping the trial early, then many trials stopped early will be
+      the result of lucky patients, not brilliant drugs <mdash/> and by stopping the
+      trial we have deprived ourselves of the extra data needed to tell the
+      difference. Reviews have compared trials stopped early with other
+      studies addressing the same question which did not stop early; in most
+      cases, the trials stopped early exaggerated the effects of their tested
+      treatments by an average of
+      29%.<fn>D. Bassler, M. Briel, V. M. Montori, et al. Stopping randomized
+      trials early for benefit and estimation of treatment effects.
+      <em>JAMA</em>, 303(12):1180<ndash/>1187, 2010.</fn>
+    </p>
+
+    <p>
+      Of course, we do not know The Truth about any drug being studied, so we
+      cannot tell if a particular study stopped early due to luck or a
+      particularly good drug. Many studies do not even publish the original
+      intended sample size or the stopping rule which was used to justify
+      terminating the
+      study.<fn>V. M. Montori, P. J. Devereaux, N. K. Adhikari, et al.
+      Randomized trials stopped early for benefit. <em>JAMA</em>,
+      294(17):2203<ndash/>2209, 2005.</fn> A trial's early stoppage is not
+      automatic evidence that its results are biased, but it <em>is</em> a
+      suggestive detail.
+    </p>
+
+  </section>
+
+  <section xml:id="sec-little-extremes">
+    <title>Little Extremes</title>
+
+    <p>
+      Suppose you're in charge of public school reform. As part of your
+      research into the best teaching methods, you look at the effect of
+      school size on standardized test scores. Do smaller schools perform
+      better than larger schools? Should you try to build many small schools
+      or a few large schools?
+    </p>
+
+    <p>
+      To answer this question, you compile a list of the highest-performing
+      schools you have. The average school has about 1,000 students, but the
+      top-scoring five or ten schools are almost all smaller than that. It
+      seems that small schools do the best, perhaps because of their personal
+      atmosphere where teachers can get to know students and help them
+      individually.
+    </p>
+
+    <p>
+      Then you take a look at the worst-performing schools, expecting them to
+      be large urban schools with thousands of students and overworked
+      teachers. Surprise! They're all small schools too.
+    </p>
+
+    <p>
+      What's going on? Well, take a look at a plot of test scores vs. school
+      size:
+    </p>
+
+    <figure>
+      <image source="images/school-size.png"/>
+    </figure>
+
+    <p>
+      Smaller schools have more widely varying average test scores, entirely
+      because they have fewer students. With fewer students, there are fewer
+      data points to establish the <q>true</q> performance of the teachers, and so
+      the average scores vary widely. As schools get larger, test scores vary
+      less, and in fact <em>increase</em> on average.
+    </p>
+
+    <p>
+      This example used simulated data, but it's based on real (and
+      surprising) observations of Pennsylvania public
+      schools.<fn>H. Wainer and H. I. Zwerling. Evidence that smaller schools
+      do not improve student achievement. <em>Phi Delta Kappan</em>,
+      88(4):300<ndash/>303, 2006.</fn>
+    </p>
+
+    <p>
+      Another example: In the United States, counties with the lowest rates of
+      kidney cancer tend to be Midwestern, Southern and Western rural
+      counties. How could this be? You can think of many explanations: rural
+      people get more exercise, inhale less polluted air, and perhaps lead
+      less stressful lives. Perhaps these factors lower their cancer rates.
+    </p>
+
+    <p>
+      On the other hand, counties with the highest rates of kidney cancer tend
+      to be Midwestern, Southern and Western rural counties.
+    </p>
+
+    <p>
+      The problem, of course, is that rural counties have the smallest
+      populations. A single kidney cancer patient in a county with ten
+      residents gives that county the highest kidney cancer rate in the
+      nation. Small counties hence have vastly more variable kidney cancer
+      rates, simply because they have so few
+      residents.<fn>A. Gelman and D. Nolan. <em>Teaching Statistics: A Bag of
+      Tricks</em>. Oxford University Press, 1999.</fn>
+    </p>
+
+  </section>
 
 </chapter>

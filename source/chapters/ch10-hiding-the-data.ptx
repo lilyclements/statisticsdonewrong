@@ -2,25 +2,260 @@
 <chapter xml:id="ch-hiding" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Hiding the Data</title>
 
+  <epigraph>
+    <p><q>Given enough eyeballs, all bugs are shallow.</q></p>
+    <attribution>Eric S. Raymond</attribution>
+  </epigraph>
+
   <p>
-    Science is built on transparency. Reproducibility requires that other
-    scientists be able to examine the data and methods behind a published
-    result. Yet data sharing is far from universal, and there are many ways
-    <mdash/> both intentional and accidental <mdash/> that data and methods
-    can be hidden from scrutiny.
+    We've talked about the common mistakes made by scientists, and how the
+    best way to spot them is a bit of outside scrutiny. Peer review provides
+    some of this scrutiny, but a peer reviewer doesn't have the time to
+    extensively re-analyze data and read code for typos <mdash/> reviewers can
+    only check that the methodology makes good sense. Sometimes they spot
+    obvious errors, but subtle problems are usually
+    missed.<fn>S. Schroter, N. Black, S. Evans, et al. What errors do peer
+    reviewers detect, and does training improve their ability to detect them?
+    <em>Journal of the Royal Society of Medicine</em>,
+    101(10):507<ndash/>514, 2008.</fn>
   </p>
 
   <p>
-    Publication bias means that positive results are far more likely to be
-    published than negative ones. Selective reporting means that only some
-    of the outcomes measured in a study appear in the final paper.
-    Together, these practices create a distorted picture of scientific
-    evidence.
+    This is why many journals and professional societies require researchers
+    to make their data available to other scientists on request. Full
+    datasets are usually too large to print in the pages of a journal, so
+    authors report their results and send the complete data to other
+    scientists if they ask for a copy. Perhaps they will find an error or a
+    pattern the original scientists missed.
   </p>
 
   <p>
-    This chapter discusses publication bias, selective reporting, data
-    sharing, and what the scientific community can do to improve transparency.
+    Or so it goes in theory. In 2005, Jelte Wicherts and colleagues at the
+    University of Amsterdam decided to analyze every recent article in
+    several prominent journals of the American Psychological Association to
+    learn about their statistical methods. They chose the APA partly because
+    it requires authors to agree to share their data with other
+    psychologists seeking to verify their claims.
   </p>
+
+  <p>
+    Of the 249 studies they sought data for, they had only received data for
+    64 six months later. Almost three quarters of study authors never sent
+    their
+    data.<fn>J. M. Wicherts, D. Borsboom, J. Kats, and D. Molenaar. The
+    poor availability of psychological research data for reanalysis.
+    <em>American Psychologist</em>, 61(7):726<ndash/>728, 2006.</fn>
+  </p>
+
+  <p>
+    Of course, scientists are busy people, and perhaps they simply didn't
+    have the time to compile their datasets, produce documents describing
+    what each variable means and how it was measured, and so on.
+  </p>
+
+  <p>
+    Wicherts and his colleagues decided they'd test this. They trawled
+    through all the studies looking for common errors which could be spotted
+    by reading the paper, such as inconsistent statistical results, misuse
+    of various statistical tests, and ordinary typos. At least half of the
+    papers had an error, usually minor, but 15% reported at least one
+    statistically significant result which was only significant because of
+    an error.
+  </p>
+
+  <p>
+    Next, they looked for a correlation between these errors and an
+    unwillingness to share data. There was a clear relationship. Authors who
+    refused to share their data were more likely to have committed an error
+    in their paper, and their statistical evidence tended to be
+    weaker.<fn>J. M. Wicherts, M. Bakker, and D. Molenaar. Willingness to
+    share research data is related to the strength of the evidence and the
+    quality of reporting of statistical results. <em>PloS ONE</em>,
+    6(11):e26828, 2011.</fn> Because most authors refused to share their
+    data, Wicherts could not dig for deeper statistical errors, and many
+    more may be lurking.
+  </p>
+
+  <p>
+    This is certainly not proof that authors hid their data out of fear
+    their errors may be uncovered, or even that the authors knew about the
+    errors at all. Correlation doesn't imply causation, but it does waggle
+    its eyebrows suggestively and gesture furtively while mouthing <q>look
+    over there.</q><fn>Joke shamelessly stolen from the alternate text of
+    <url href="http://xkcd.com/552/"
+    visual="xkcd.com/552/">http://xkcd.com/552/</url>.</fn>
+  </p>
+
+  <section xml:id="sec-omit-details">
+    <title>Just Leave Out the Details</title>
+
+    <p>
+      Nitpicking statisticians getting you down by pointing out flaws in your
+      paper? There's one clear solution: don't publish as much detail! They
+      can't find the errors if you don't say how you evaluated your data.
+    </p>
+
+    <p>
+      I don't mean to seriously suggest that evil scientists do this
+      intentionally, although perhaps some do. More frequently, details are
+      left out because authors simply forgot to include them, or because
+      journal space limits force their omission.
+    </p>
+
+    <p>
+      It's possible to evaluate studies to see what they left out. Scientists
+      leading medical trials are required to provide detailed study plans to
+      ethical review boards before starting a trial, so one group of
+      researchers obtained a collection of these plans from a review board.
+      The plans specify which outcomes the study will measure: for instance, a
+      study might monitor various symptoms to see if any are influenced by the
+      treatment. The researchers then found the published results of these
+      studies and looked for how well these outcomes were reported.
+    </p>
+
+    <p>
+      Roughly half of the outcomes never appeared in the scientific journal
+      papers at all. Many of these were statistically insignificant results
+      which were swept under the rug.<fn>Why do we always say <q>swept under
+      the rug</q>? Whose rug is it? And why don't they use a vacuum cleaner
+      instead of a broom?</fn> Another large chunk of results were not
+      reported in sufficient detail for scientists to use the results for
+      further
+      meta-analysis.<fn>A. W. Chan and D. G. Altman. Identifying outcome
+      reporting bias in randomised trials on PubMed. <em>BMJ</em>,
+      330(7494):753, 2005.</fn>
+    </p>
+
+    <p>
+      Other reviews have found similar problems. A review of medical trials
+      found that most studies omit important methodological details, such as
+      stopping rules and power calculations, with studies in small specialist
+      journals faring worse than those in large general medicine
+      journals.<fn>K. Huwiler-Müntener, P. Jüni, C. Junker, and M. Egger.
+      Quality of reporting of randomized trials as a measure of methodologic
+      quality. <em>JAMA</em>, 287(21):2801<ndash/>2804, 2002.</fn>
+    </p>
+
+    <p>
+      Medical journals have begun to combat this problem with standards for
+      reporting of results, such as the
+      <url href="http://www.consort-statement.org/"
+      visual="consort-statement.org">CONSORT checklist</url>. Authors are
+      required to follow the checklist's requirements before submitting their
+      studies, and editors check to make sure all relevant details are
+      included. The checklist seems to work; studies published in journals
+      which follow the guidelines tend to report more essential detail,
+      although not all of
+      it.<fn>A. C. Plint, D. Moher, A. Morrison, et al. Does the CONSORT
+      checklist improve the quality of reports of randomised controlled
+      trials? A systematic review. <em>Medical Journal of Australia</em>,
+      185(5):263<ndash/>267, 2006.</fn> Unfortunately the standards are
+      inconsistently applied and studies often slip through with missing
+      details
+      nonetheless.<fn>E. J. Mills, B. Wu, D. Gagnier, et al. The quality of
+      randomized trial reporting in leading medical journals since the revised
+      CONSORT statement. <em>Contemporary Clinical Trials</em>,
+      26(4):480<ndash/>487, 2005.</fn> Journal editors will need to make a
+      greater effort to enforce reporting standards.
+    </p>
+
+    <p>
+      We see that published papers aren't faring very well. What about
+      <em>unpublished</em> studies?
+    </p>
+
+  </section>
+
+  <section xml:id="sec-filing-cabinet">
+    <title>Science in a Filing Cabinet</title>
+
+    <p>
+      Earlier we saw the impact of multiple comparisons and truth inflation on
+      study results. These problems arise when studies make numerous
+      comparisons with low statistical power, giving a high rate of false
+      positives and inflated estimates of effect sizes, and they appear
+      everywhere in published research.
+    </p>
+
+    <p>
+      But not every study is published. We only ever see a fraction of medical
+      research, for instance, because few scientists bother publishing <q>We
+      tried this medicine and it didn't seem to work.</q>
+    </p>
+
+    <p>
+      Consider an example: studies of the tumor suppressor protein TP53 and
+      its effect on head and neck cancer. A number of studies suggested that
+      measurements of TP53 could be used to predict cancer mortality rates,
+      since it serves to regulate cell growth and development and hence must
+      function correctly to prevent cancer. When all 18 published studies on
+      TP53 and cancer were analyzed together, the result was a highly
+      statistically significant correlation: TP53 could clearly be measured to
+      tell how likely a tumor is to kill you.
+    </p>
+
+    <p>
+      But then suppose we dig up <em>unpublished</em> results on TP53: data that had
+      been mentioned in other studies but not published or analyzed. Add this
+      data to the mix and the statistically significant effect
+      vanishes.<fn>P. A. Kyzas, D. Loizou, and J. P. A. Ioannidis. Selective
+      reporting biases in cancer prognostic factor studies. <em>Journal of
+      the National Cancer Institute</em>, 97(14):1043<ndash/>1055, 2005.</fn>
+      After all, few authors bothered to publish data showing no correlation,
+      so the meta-analysis could only use a biased sample.
+    </p>
+
+    <p>
+      A similar study looked at reboxetine, an antidepressant sold by Pfizer.
+      Several published studies have suggested that it is effective compared
+      to placebo, leading several European countries to approve it for
+      prescription to depressed patients. The German Institute for Quality and
+      Efficiency in Health Care, responsible for assessing medical treatments,
+      managed to get unpublished trial data from Pfizer <mdash/> three times more
+      data than had ever been published <mdash/> and carefully analyzed it. The
+      result: reboxetine is not effective. Pfizer had only convinced the
+      public that it's effective by neglecting to mention the studies proving
+      it
+      isn't.<fn>D. Eyding, M. Lelgemann, U. Grouven, et al. Reboxetine for
+      acute treatment of major depression: systematic review and meta-analysis
+      of published and unpublished placebo and selective serotonin reuptake
+      inhibitor controlled trials. <em>BMJ</em>, 341:c4737, 2010.</fn>
+    </p>
+
+    <p>
+      This problem is commonly known as publication bias or the file-drawer
+      problem: many studies sit in a file drawer for years, never published,
+      despite the valuable data they could contribute.
+    </p>
+
+    <p>
+      The problem isn't simply the bias on published results. Unpublished
+      studies lead to a duplication of effort <mdash/> if other scientists don't
+      know you've done a study, they may well do it again, wasting money and
+      effort.
+    </p>
+
+    <p>
+      Regulators and scientific journals have attempted to halt this problem.
+      The Food and Drug Administration requires certain kinds of clinical
+      trials to be registered through their website ClinicalTrials.gov before
+      the trials begin, and requires the publication of results within a year
+      of the end of the trial. Similarly, the International Committee of
+      Medical Journal Editors announced in 2005 that they would not publish
+      studies which had not been pre-registered.
+    </p>
+
+    <p>
+      Unfortunately, a review of 738 registered clinical trials found that
+      only 22% met the legal requirement to
+      publish.<fn>A. P. Prayle, M. N. Hurley, and A. R. Smyth. Compliance
+      with mandatory reporting of clinical trial results on ClinicalTrials.gov:
+      cross sectional study. <em>BMJ</em>, 344:d7373, 2012.</fn> The FDA has
+      not fined any drug companies for noncompliance, and journals have not
+      consistently enforced the requirement to register trials. Most studies
+      simply vanish.
+    </p>
+
+  </section>
 
 </chapter>
