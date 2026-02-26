@@ -11,7 +11,7 @@
   </p>
 
   <p>
-    Statisticians provide the answer in the form of <q>statistical power.</q>
+    Statisticians provide the answer in the form of <q>statistical power.</q><idx>statistical power</idx>
     The power of a study is the likelihood that it will distinguish an effect
     of a certain size from pure luck. A study might easily detect a huge benefit
     from a medication, but detecting a subtle difference is much less likely.
@@ -73,7 +73,7 @@
   </figure>
 
   <p>
-    This is called a <em>power curve.</em> Along the horizontal axis, we have
+    This is called a <em>power curve</em>.<idx>power curve</idx> Along the horizontal axis, we have
     the different possibilities for the coin's true probability of getting
     heads, corresponding to different levels of unfairness. On the vertical axis
     is the probability that I will conclude the coin is rigged after ten tosses,

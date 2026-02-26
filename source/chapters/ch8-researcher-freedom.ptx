@@ -3,7 +3,7 @@
   <title>Researcher Freedom: Good Vibrations?</title>
 
   <p>
-    There's a common misconception that statistics is boring and monotonous.
+    There's a common misconception that statistics is boring and monotonous.<idx>researcher freedom</idx>
     Collect lots of data, plug the numbers into Excel or SPSS or R, and beat
     the software with a stick until it produces some colorful charts and
     graphs. Done! All the statistician must do is read off the results.
@@ -71,7 +71,7 @@
   </p>
 
   <p>
-    In simulations, it's possible to get effect sizes different by a factor
+    In simulations, it's possible to get effect sizes<idx>effect size</idx> different by a factor
     of two simply by adjusting for different variables, excluding different
     sets of cases, and handling outliers
     differently.<fn>J. P. A. Ioannidis. Why most discovered true associations

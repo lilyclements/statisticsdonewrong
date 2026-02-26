@@ -15,7 +15,7 @@
   <p>
     Much of statistics, then, comes down to making judgments about these
     kinds of differences. We talk about <q>statistically significant
-    differences</q> because statisticians have devised ways of telling if the
+    differences</q><idx>statistical significance</idx> because statisticians have devised ways of telling if the
     difference between two measurements is really big enough to ascribe to
     anything but chance.
   </p>
@@ -68,13 +68,13 @@
 
     <p>
       The common statistical tests used by scientists produce a number called the
-      <em>p</em> value that quantifies this. Here's how it's defined:
+      <em>p</em> value<idx>p value</idx> that quantifies this. Here's how it's defined:
     </p>
 
     <blockquote>
       <p>
         The P value is defined as the probability, under the assumption of no
-        effect or no difference (the null hypothesis), of obtaining a result
+        effect or no difference (the <term>null hypothesis</term><idx>null hypothesis</idx>), of obtaining a result
         equal to or more extreme than what was actually
         observed.<xref ref="goodman-1999tx"/>
       </p>

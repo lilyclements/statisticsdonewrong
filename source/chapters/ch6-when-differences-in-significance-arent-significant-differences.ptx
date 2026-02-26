@@ -104,7 +104,7 @@
     <ol>
       <li>
         <p>
-          The standard deviation of the measurements. Calculate how far each
+          The standard deviation<idx>standard deviation</idx> of the measurements. Calculate how far each
           observation is from the average, square each difference, and then
           average the results and take the square root. This is the standard
           deviation, and it measures how spread out the measurements are from
@@ -113,7 +113,7 @@
       </li>
       <li>
         <p>
-          The standard error of some estimator. For example, perhaps the
+          The standard error<idx>standard error</idx> of some estimator. For example, perhaps the
           error bars are the standard error of the mean. If I were to measure
           many different samples of patients, each containing exactly
           <em>n</em> subjects, I can estimate that 68% of the mean times to
@@ -128,7 +128,7 @@
       </li>
       <li>
         <p>
-          The confidence interval of some estimator. A 95% confidence
+          The confidence interval<idx>confidence interval</idx> of some estimator. A 95% confidence
           interval is mathematically constructed to include the true value
           for 95 random samples out of 100, so it spans roughly two standard
           errors in each direction. (In more complicated statistical models

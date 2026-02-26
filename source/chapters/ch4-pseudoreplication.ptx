@@ -39,7 +39,7 @@
   </p>
 
   <p>
-    This problem is known as pseudoreplication, and it is quite
+    This problem is known as pseudoreplication,<idx>pseudoreplication</idx> and it is quite
     common.<xref ref="lazic-2010fc"/> After testing cells from a culture, a biologist might
     <q>replicate</q> his results by testing more cells from the same culture.
     Neuroscientists will test multiple neurons from the same animal,

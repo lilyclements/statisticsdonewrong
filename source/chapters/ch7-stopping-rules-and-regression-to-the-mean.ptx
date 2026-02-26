@@ -6,7 +6,7 @@
     Medical trials are expensive. Supplying dozens of patients with
     experimental medications and tracking their symptoms over the course of
     months takes significant resources, and so many pharmaceutical companies
-    develop <q>stopping rules,</q> which allow investigators to end a study early
+    develop <q>stopping rules,</q><idx>stopping rules</idx> which allow investigators to end a study early
     if it's clear the experimental drug has a substantial effect. For
     example, if the trial is only half complete but there's already a
     statistically significant difference in symptoms with the new
@@ -136,7 +136,7 @@
     </p>
 
     <p>
-      As a bonus, truth inflation can combine forces with early stopping
+      As a bonus, truth inflation<idx>truth inflation</idx> can combine forces with early stopping
       rules. If most drugs in clinical trials are not quite so effective to
       warrant stopping the trial early, then many trials stopped early will be
       the result of lucky patients, not brilliant drugs <mdash/> and by stopping the

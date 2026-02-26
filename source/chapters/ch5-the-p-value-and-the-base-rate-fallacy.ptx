@@ -62,9 +62,9 @@
     62%. If I were to randomly select a drug out of the lot of 100, run it
     through my tests, and discover a <m>p \lt 0.05</m> statistically
     significant benefit, there is only a 62% chance that the drug is actually
-    effective. In statistical terms, my false discovery rate <mdash/> the
+    effective. In statistical terms, my false discovery rate<idx>false discovery rate</idx> <mdash/> the
     fraction of statistically significant results which are really false
-    positives <mdash/> is 38%.
+    positives<idx>false positive</idx> <mdash/> is 38%.
   </p>
 
   <p>
@@ -83,7 +83,7 @@
     unlikely. <q>There's only a 1 in 10,000 chance this result arose as a
     statistical fluke,</q> they say, because they got <m>p = 0.0001</m>.
     No! This ignores the base rate, and is called the <em>base rate
-    fallacy</em>. Remember how <em>p</em> values are defined:
+    fallacy</em>.<idx>base rate fallacy</idx> Remember how <em>p</em> values are defined:
   </p>
 
   <blockquote>
@@ -290,7 +290,7 @@
     </figure>
 
     <p>
-      As you can see, making multiple comparisons means multiple chances for
+      As you can see, making multiple comparisons<idx>multiple comparisons</idx> means multiple chances for
       a false positive. For example, if I test 20 jelly bean flavors which
       do not cause acne at all, and look for a correlation at
       <m>p \lt 0.05</m> significance, I have a 64% chance of a false
@@ -323,7 +323,7 @@
 
     <p>
       There exist techniques to correct for multiple comparisons. For
-      example, the Bonferroni correction method says that if you make
+      example, the Bonferroni correction<idx>Bonferroni correction</idx> method says that if you make
       <m>n</m> comparisons in the trial, your criterion for significance
       should be <m>p \lt 0.05/n</m>. This lowers the chances of a false
       positive to what you'd see from making only one comparison at
@@ -340,7 +340,7 @@
 
     <p>
       Neuroscientists do massive numbers of comparisons regularly. They often
-      perform fMRI studies, where a three-dimensional image of the brain is
+      perform fMRI<idx>fMRI</idx> studies, where a three-dimensional image of the brain is
       taken before and after the subject performs some task. The images show
       blood flow in the brain, revealing which parts of the brain are most
       active when a person performs different tasks.
@@ -438,7 +438,7 @@
 
     <p>
       In 1995, Benjamini and Hochberg provided a better answer. They devised
-      an exceptionally simple procedure which tells you which <em>p</em>
+      an exceptionally simple procedure<idx>Benjamini-Hochberg procedure</idx> which tells you which <em>p</em>
       values to consider statistically significant. I've been saving you
       from mathematical details so far, but to illustrate just how simple
       the procedure is, here it is:
