@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xml:id="ch-hiding" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Hiding the Data</title>
-
+<introduction>
   <epigraph>
     <p><q>Given enough eyeballs, all bugs are shallow.</q></p>
     <attribution>Eric S. Raymond</attribution>
@@ -85,6 +85,7 @@
     <url href="http://xkcd.com/552/"
     visual="xkcd.com/552/">http://xkcd.com/552/</url>.</fn>
   </p>
+</introduction>
 
   <section xml:id="sec-omit-details">
     <title>Just Leave Out the Details</title>
