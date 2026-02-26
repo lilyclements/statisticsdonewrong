@@ -89,7 +89,7 @@
     </p>
 
     <figure xml:id="fig-confidence">
-      <image source="../_images/confidence.png">
+      <image source="images/confidence.png">
         <description>Two group means plotted with overlapping confidence intervals.</description>
       </image>
     </figure>

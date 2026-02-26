@@ -22,7 +22,7 @@
   </p>
 
   <figure xml:id="fig-drug-grids-1">
-    <image source="../_images/drug-grids-1.png">
+    <image source="images/drug-grids-1.png">
       <description>Grid of squares representing drugs, with blue squares indicating drugs that work.</description>
     </image>
   </figure>
@@ -34,7 +34,7 @@
   </p>
 
   <figure xml:id="fig-drug-grids-2">
-    <image source="../_images/drug-grids-2.png">
+    <image source="images/drug-grids-2.png">
       <description>Grid showing the eight correctly detected good drugs highlighted in purple.</description>
     </image>
   </figure>
@@ -52,7 +52,7 @@
   </p>
 
   <figure xml:id="fig-drug-grids-3">
-    <image source="../_images/drug-grids-3.png">
+    <image source="images/drug-grids-3.png">
       <description>Grid showing 8 true positives (good drugs detected) and 5 false positives (ineffectual drugs incorrectly labeled as working) in red.</description>
     </image>
   </figure>
@@ -282,7 +282,7 @@
     </p>
 
     <figure xml:id="fig-xkcd-significant">
-      <image source="../_images/xkcd-significant.png">
+      <image source="images/xkcd-significant.png">
         <description>xkcd comic showing that testing many jelly bean colors individually leads to false positives.</description>
       </image>
       <caption>Cartoon from xkcd, by Randall Munroe.
