@@ -39,7 +39,7 @@
     <xi:include href="chapters/ch3-statistical-power-and-underpowered-statistics.ptx"/>
     <xi:include href="chapters/ch4-pseudoreplication.ptx"/>
     <xi:include href="chapters/ch5-the-p-value-and-the-base-rate-fallacy.ptx"/>
-    <xi:include href="chapters/ch6-when-differences-significance-arent-signficant-differences.ptx"/>
+    <xi:include href="chapters/ch6-when-differences-in-significance-arent-significant-differences.ptx"/>
     <xi:include href="chapters/ch7-stopping-rules-and-regression-to-the-mean.ptx"/>
     <xi:include href="chapters/ch8-researcher-freedom.ptx"/>
     <xi:include href="chapters/ch9-everybody-makes-mistakes.ptx"/>
