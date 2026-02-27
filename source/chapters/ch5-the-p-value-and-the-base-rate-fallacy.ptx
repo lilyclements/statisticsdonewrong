@@ -118,7 +118,7 @@
     <title>The Base Rate Fallacy in Medical Testing</title>
 
     <p>
-      There has been some controversy over the use of mammograms in screening
+      There has been some controversy over the use of mammograms<idx>mammograms</idx> in screening
       breast cancer. Some argue that the dangers of false positive results,
       such as unnecessary biopsies, surgery and chemotherapy, outweigh the
       benefits of early cancer detection. This is a statistical question.
@@ -191,7 +191,7 @@
       You don't have to be performing advanced cancer research or early cancer
       screenings to run into the base rate fallacy. What if you're doing
       social research? You'd like to survey Americans to find out how often
-      they use guns in self-defense. Gun control arguments, after all, center
+      they use guns in self-defense.<idx><h>base rate fallacy</h><h>gun use</h></idx> Gun control arguments, after all, center
       on the right to self-defense, so it's important to determine whether
       guns are commonly used for defense and whether that use outweighs the
       downsides, such as homicides.
@@ -376,7 +376,7 @@
     <p>
       The study participants? Not college undergraduates paid $10 for their
       time, as is usual. No, the test subject was one 3.8-pound Atlantic
-      salmon, which <q>was not alive at the time of scanning.</q><xref ref="bennett-2010uh"/>
+      salmon, which <q>was not alive at the time of scanning.</q><idx><h>multiple comparisons</h><h>Atlantic salmon</h></idx><xref ref="bennett-2010uh"/>
     </p>
 
     <p>

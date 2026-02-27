@@ -136,7 +136,7 @@
     </p>
 
     <p>
-      As a bonus, truth inflation<idx>truth inflation</idx> can combine forces with early stopping
+      As a bonus, truth inflation<idx>truth inflation</idx><idx><h>winner's curse</h><see>truth inflation</see></idx> can combine forces with early stopping
       rules. If most drugs in clinical trials are not quite so effective to
       warrant stopping the trial early, then many trials stopped early will be
       the result of lucky patients, not brilliant drugs <mdash/> and by stopping the
@@ -154,7 +154,7 @@
       Of course, we do not know The Truth about any drug being studied, so we
       cannot tell if a particular study stopped early due to luck or a
       particularly good drug. Many studies do not even publish the original
-      intended sample size or the stopping rule which was used to justify
+      intended sample size<idx>sample size</idx> or the stopping rule which was used to justify
       terminating the
       study.<fn>V. M. Montori, P. J. Devereaux, N. K. Adhikari, et al.
       Randomized trials stopped early for benefit. <em>JAMA</em>,
@@ -218,7 +218,7 @@
 
     <p>
       Another example: In the United States, counties with the lowest rates of
-      kidney cancer tend to be Midwestern, Southern and Western rural
+      kidney cancer<idx>kidney cancer</idx> tend to be Midwestern, Southern and Western rural
       counties. How could this be? You can think of many explanations: rural
       people get more exercise, inhale less polluted air, and perhaps lead
       less stressful lives. Perhaps these factors lower their cancer rates.

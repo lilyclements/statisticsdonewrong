@@ -3,7 +3,7 @@
   <title>Researcher Freedom: Good Vibrations?</title>
 
   <p>
-    There's a common misconception that statistics is boring and monotonous.<idx>researcher freedom</idx>
+    There's a common misconception that statistics is boring and monotonous.<idx>researcher freedom</idx><idx>vibration of effects</idx>
     Collect lots of data, plug the numbers into Excel or SPSS or R, and beat
     the software with a stick until it produces some colorful charts and
     graphs. Done! All the statistician must do is read off the results.
@@ -96,7 +96,7 @@
 
   <p>
     Medical researchers have devised ways of preventing this. Researchers
-    are often required to draft a clinical trial protocol, explaining how
+    are often required to draft a clinical trial protocol,<idx>clinical trial protocol</idx> explaining how
     the data will be collected and analyzed. Since the protocol is drafted
     before the researchers see any data, they can't possibly craft their
     analysis to be most favorable to them. Unfortunately, many studies

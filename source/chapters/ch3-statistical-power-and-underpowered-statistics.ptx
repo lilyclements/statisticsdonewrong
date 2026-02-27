@@ -22,7 +22,7 @@
     Suppose a gambler is convinced that an opponent has an unfair coin: rather
     than getting heads half the time and tails half the time, the proportion is
     different, and the opponent is using this to cheat at incredibly boring
-    coin-flipping games. How to prove it?
+    coin-flipping games.<idx>coin flip</idx> How to prove it?
   </p>
 
   <p>
@@ -206,7 +206,7 @@
     <p>
       In the 1970s, many parts of the United States began to allow drivers to
       turn right at a red light. For many years prior, road designers and civil
-      engineers argued that allowing right turns on a red light would be a safety
+      engineers argued that allowing right turns on a red light<idx>right turn on red</idx> would be a safety
       hazard, causing many additional crashes and pedestrian deaths. But the 1973
       oil crisis and its fallout spurred politicians to consider allowing right
       turn on red to save fuel wasted by commuters waiting at red lights.

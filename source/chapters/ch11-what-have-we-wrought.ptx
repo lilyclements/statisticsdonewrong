@@ -33,7 +33,7 @@
     cookbook review. <em>American Journal of Clinical Nutrition</em>,
     97:127<ndash/>134, 2013.</fn><fn>An important part of the ongoing
     <url href="http://dailymailoncology.tumblr.com/"
-    visual="dailymailoncology.tumblr.com">Oncological Ontology</url>
+    visual="dailymailoncology.tumblr.com">Oncological Ontology</url><idx>oncological ontology</idx>
     project to categorize everything into two categories: that which cures
     cancer and that which causes it.</fn> After choosing fifty common
     ingredients out of a cookbook, they set out to find studies linking
@@ -41,7 +41,7 @@
     ingredients. Of course, most of the studies disagreed with each other.
     Most ingredients had multiple studies claiming they increased
     <em>and</em> decreased the risk of getting cancer. Most of the
-    statistical evidence was weak, and meta-analyses usually showed much
+    statistical evidence was weak, and meta-analyses<idx>meta-analyses</idx> usually showed much
     smaller effects on cancer rates than the original studies.
   </p>
 
@@ -64,7 +64,7 @@
 
   <p>
     Let's not forget the merely biased results. Poor reporting standards in
-    medical journals mean studies testing new treatments for schizophrenia
+    medical journals mean studies testing new treatments for schizophrenia<idx>schizophrenia</idx>
     can neglect to include the scale they used to evaluate symptoms
     <mdash/> a handy source of bias, as trials using unpublished scales
     tend to produce better results than those using previously validated
@@ -98,10 +98,10 @@
 
   <p>
     Let's not forget the multitude of physical science papers which misuse
-    confidence intervals.<fn>J. R. Lanzante. A cautionary note on the use
+    confidence intervals.<idx>confidence interval</idx><fn>J. R. Lanzante. A cautionary note on the use
     of error bars. <em>Journal of Climate</em>, 18:3699<ndash/>3703,
     2005.</fn> Or the peer-reviewed psychology paper allegedly providing
-    evidence for psychic powers, on the basis of uncontrolled multiple
+    evidence for psychic powers,<idx>psychic powers</idx> on the basis of uncontrolled multiple
     comparisons in exploratory studies.<fn>E. Wagenmakers and R. Wetzels.
     Why psychologists must change the way they analyze their data: The
     case of psi. <em>Journal of Personality and Social Psychology</em>,

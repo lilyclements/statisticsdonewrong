@@ -22,7 +22,7 @@
 
   <p>
     This is why many journals and professional societies require researchers
-    to make their data available to other scientists on request. Full
+    to make their data available<idx>open data</idx> to other scientists on request. Full
     datasets are usually too large to print in the pages of a journal, so
     authors report their results and send the complete data to other
     scientists if they ask for a copy. Perhaps they will find an error or a
