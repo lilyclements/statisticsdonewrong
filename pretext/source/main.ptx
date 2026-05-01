@@ -33,6 +33,38 @@
         </copyright>
       </colophon>
 
+      <preface xml:id="preface-ptx-version">
+        <title>Note on This PreTeXt Edition</title>
+
+        <p>
+          This is a
+          <url href="https://pretextbook.org/" visual="pretextbook.org">PreTeXt</url>
+          conversion of <em>Statistics Done Wrong: The Woefully Complete Guide</em>,
+          originally written by
+          <url href="https://www.refsmmat.com/">Alex Reinhart</url>.
+          The original work is available online at
+          <url href="https://www.statisticsdonewrong.com/"
+            visual="statisticsdonewrong.com">statisticsdonewrong.com</url>
+          and was published by No Starch Press.
+        </p>
+
+        <p>
+          This PreTeXt edition was prepared by
+          <url href="https://github.com/PreTeXtBooks/statisticsdonewrong">the PreTeXtBooks project</url>
+          to make the content available in the PreTeXt format, enabling
+          accessible and structured output in HTML, PDF, and other formats.
+          All prose, code examples, figures, and mathematical content are
+          faithful reproductions of the original work.
+        </p>
+
+        <p>
+          The original work by Alex Reinhart is licensed under a
+          <url href="https://creativecommons.org/licenses/by/3.0/">Creative
+          Commons Attribution 3.0 Unported License</url>.
+        </p>
+
+      </preface>
+
       <preface xml:id="preface">
         <title>Preface</title>
 
